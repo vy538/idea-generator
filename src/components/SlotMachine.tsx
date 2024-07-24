@@ -1,15 +1,13 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-
-interface IdeaTag {
-  en: string;
-  zh: string;
-}
-
-interface Idea {
-  category: string;
-  text: IdeaTag;
-}
+import { Idea } from '../data/ideas';
+import {
+  SlotMachineWrapper,
+  SlotRow,
+  Slot,
+  CategoryTitle,
+  IdeaText
+} from '../styles/SlotMachineStyles';
 
 interface Props {
   ideas: Idea[];
@@ -18,19 +16,20 @@ interface Props {
 const SlotMachine: React.FC<Props> = ({ ideas }) => {
   const { t, i18n } = useTranslation();
 
-  const getCurrentLanguageText = (text: IdeaTag) => {
-    return i18n.language.startsWith('zh') ? text.zh : text.en;
-  };
-
   return (
-    <div>
-      {ideas.map((idea, index) => (
-        <div key={index}>
-          <h3>{t(`categories.${idea.category}`)}</h3>
-          <p>{getCurrentLanguageText(idea.text)}</p>
-        </div>
-      ))}
-    </div>
+    <SlotMachineWrapper>
+      <SlotRow>
+        {ideas.map((idea, index) => (
+          <Slot key={index}>
+            <CategoryTitle>{t(`categories.${idea.category}`)}</CategoryTitle>
+            <IdeaText>
+              {i18n.language.startsWith('zh') ? idea.text.zh : idea.text.en}
+            </IdeaText>
+          </Slot>
+        ))}
+      </SlotRow>
+    </SlotMachineWrapper>
   );
 };
+
 export default SlotMachine;

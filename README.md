@@ -33,6 +33,11 @@ illustration-idea-generator/
 │   │   └── api.ts
 │   ├── data/
 │   │   └── ideas.ts
+│   ├── styles/
+│   │   ├── HeaderStyles.ts
+│   │   ├── SlotMachineStyles.ts
+│   │   ├── GenerateButtonStyles.ts
+│   │   └── GalleryStyles.ts
 │   ├── types/
 │   ├── utils/
 │   ├── assets/

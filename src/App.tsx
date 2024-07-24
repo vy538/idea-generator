@@ -1,21 +1,24 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { I18nextProvider } from 'react-i18next';
+import i18n from './i18n';
+import Header from './components/Header';
 import MainPage from './pages/MainPage';
 import GalleryPage from './pages/GalleryPage';
-import Header from './components/Header';
-import './i18n';
 
 function App() {
   return (
-    <Router>
-      <div className="App">
+    <I18nextProvider i18n={i18n}>
+      <Router>
         <Header />
-        <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/gallery" element={<GalleryPage />} />
-        </Routes>
-      </div>
-    </Router>
+        <Suspense fallback="Loading...">
+          <Routes>
+            <Route path="/" element={<MainPage />} />
+            <Route path="/gallery" element={<GalleryPage />} />
+          </Routes>
+        </Suspense>
+      </Router>
+    </I18nextProvider>
   );
 }
 

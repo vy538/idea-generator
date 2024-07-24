@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { HeaderWrapper, Nav, LanguageButton } from '../styles/HeaderStyles';
 
 const Header: React.FC = () => {
   const { t, i18n } = useTranslation();
@@ -10,18 +11,18 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header>
-      <nav>
+    <HeaderWrapper>
+      <Nav>
         <ul>
           <li><Link to="/">{t('header.home')}</Link></li>
           <li><Link to="/gallery">{t('header.gallery')}</Link></li>
         </ul>
-      </nav>
+      </Nav>
       <div>
-        <button onClick={() => changeLanguage('en')}>English</button>
-        <button onClick={() => changeLanguage('zh')}>中文</button>
+        <LanguageButton onClick={() => changeLanguage('en')}>English</LanguageButton>
+        <LanguageButton onClick={() => changeLanguage('zh')}>中文</LanguageButton>
       </div>
-    </header>
+    </HeaderWrapper>
   );
 };
 

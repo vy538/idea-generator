@@ -1,59 +1,40 @@
 import React from 'react';
-import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
+import {
+  GalleryWrapper,
+  IllustrationCard,
+  IllustrationImage,
+  TagsContainer,
+  Tag
+} from '../styles/GalleryStyles';
+import { Idea } from '../data/ideas';
 
-interface IllustrationItem {
-  id: string;
-  imageUrl: string;
-  tags: string[];
-}
-
-// Mock data - replace this with actual data fetching logic later
-const mockIllustrations: IllustrationItem[] = [
-  { id: '1', imageUrl: 'https://example.com/image1.jpg', tags: ['神秘的', '魔法師', '古老森林'] },
-  { id: '2', imageUrl: 'https://example.com/image2.jpg', tags: ['勇敢的', '戰士', '山頂'] },
-  { id: '3', imageUrl: 'https://example.com/image3.jpg', tags: ['聰明的', '科學家', '實驗室'] },
+// Mock data for illustrations - replace with actual data later
+const mockIllustrations: { imageUrl: string; ideas: Idea[] }[] = [
+  {
+    imageUrl: 'https://example.com/image1.jpg',
+    ideas: [
+      { category: 'adjective', text: { en: 'Mysterious', zh: '神秘的' } },
+      { category: 'character', text: { en: 'Wizard', zh: '魔法師' } },
+      { category: 'location', text: { en: 'Ancient Forest', zh: '古老森林' } },
+    ]
+  },
+  // Add more mock illustrations as needed
 ];
 
-const GalleryWrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
-  padding: 20px;
-`;
-
-const IllustrationCard = styled.div`
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  overflow: hidden;
-`;
-
-const IllustrationImage = styled.img`
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-`;
-
-const TagsContainer = styled.div`
-  padding: 10px;
-`;
-
-const Tag = styled.span`
-  background-color: #f0f0f0;
-  padding: 5px 10px;
-  margin-right: 5px;
-  border-radius: 4px;
-  font-size: 0.8em;
-`;
-
 const Gallery: React.FC = () => {
+  const { t, i18n } = useTranslation();
+
   return (
     <GalleryWrapper>
-      {mockIllustrations.map((item) => (
-        <IllustrationCard key={item.id}>
-          <IllustrationImage src={item.imageUrl} alt={`Illustration ${item.id}`} />
+      {mockIllustrations.map((illustration, index) => (
+        <IllustrationCard key={index}>
+          <IllustrationImage src={illustration.imageUrl} alt={`Illustration ${index + 1}`} />
           <TagsContainer>
-            {item.tags.map((tag, index) => (
-              <Tag key={index}>{tag}</Tag>
+            {illustration.ideas.map((idea, ideaIndex) => (
+              <Tag key={ideaIndex}>
+                {t(`categories.${idea.category}`)}: {i18n.language.startsWith('zh') ? idea.text.zh : idea.text.en}
+              </Tag>
             ))}
           </TagsContainer>
         </IllustrationCard>
