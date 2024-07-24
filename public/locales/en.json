@@ -1,0 +1,21 @@
+{
+  "header": {
+    "home": "Home",
+    "gallery": "Gallery"
+  },
+  "mainPage": {
+    "generate": "Generate",
+    "loading": "Loading...",
+    "error": "Error: {{message}}"
+  },
+  "gallery": {
+    "title": "Illustration Gallery"
+  },
+  "categories": {
+    "adjective": "Adjective",
+    "character": "Character",
+    "location": "Location",
+    "verb": "Verb",
+    "element": "Other Element"
+  }
+}

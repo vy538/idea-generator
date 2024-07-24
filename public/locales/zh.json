@@ -1,0 +1,21 @@
+{
+  "header": {
+    "home": "首頁",
+    "gallery": "畫廊"
+  },
+  "mainPage": {
+    "generate": "生成",
+    "loading": "加載中...",
+    "error": "錯誤：{{message}}"
+  },
+  "gallery": {
+    "title": "插圖畫廊"
+  },
+  "categories": {
+    "adjective": "形容詞",
+    "character": "主角",
+    "location": "地點",
+    "verb": "動詞",
+    "element": "其他元素"
+  }
+}
