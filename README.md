@@ -80,7 +80,3 @@ illustration-idea-generator/
 - Implement backend API to replace mock data
 - Add more categories or ideas to the generator
 - Implement user accounts and ability to save favorite combinations
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
