@@ -3,25 +3,44 @@ import { useTranslation } from 'react-i18next';
 import { Idea, ideas as allIdeas } from '../data/ideas';
 import {
   SlotMachineWrapper,
+  SlotWindowWrapper,
   SlotColumn,
   SlotWindow,
   SlotContent,
   Slot,
   IdeaText,
   IdeaImage,
-  ColumnHeader
+  ColumnHeader,
+  GenerateButtonWrapper
 } from '../styles/SlotMachineStyles';
+import GenerateButton from './GenerateButton';
 
 interface Props {
   ideas: Idea[];
   spinning: boolean;
+  onGenerate: () => void;
 }
 
-const SlotMachine: React.FC<Props> = ({ ideas, spinning }) => {
+const SlotMachine: React.FC<Props> = ({ ideas, spinning, onGenerate }) => {
   const { t, i18n } = useTranslation();
   const [displayedIdeas, setDisplayedIdeas] = useState<Idea[][]>([]);
   const spinningRef = useRef(spinning);
   spinningRef.current = spinning;
+
+  const initializeDisplayedIdeas = (baseIdeas: Idea[]) => {
+    return baseIdeas.map(idea => {
+      const categoryIdeas = allIdeas.filter(i => i.category === idea.category);
+      return [
+        categoryIdeas[Math.floor(Math.random() * categoryIdeas.length)],
+        idea,
+        categoryIdeas[Math.floor(Math.random() * categoryIdeas.length)]
+      ];
+    });
+  };
+
+  useEffect(() => {
+    setDisplayedIdeas(initializeDisplayedIdeas(ideas));
+  }, [ideas]);
 
   useEffect(() => {
     if (spinning) {
@@ -39,6 +58,8 @@ const SlotMachine: React.FC<Props> = ({ ideas, spinning }) => {
         elapsed += intervalDuration;
         if (elapsed >= spinDuration || !spinningRef.current) {
           clearInterval(interval);
+          // Set the final position
+          setDisplayedIdeas(initializeDisplayedIdeas(ideas));
         } else {
           setDisplayedIdeas(prev => prev.map(column => {
             const [first, ...rest] = column;
@@ -48,30 +69,37 @@ const SlotMachine: React.FC<Props> = ({ ideas, spinning }) => {
       }, intervalDuration);
 
       return () => clearInterval(interval);
-    } else {
-      setDisplayedIdeas(ideas.map(idea => [idea]));
     }
   }, [spinning, ideas]);
 
+  if (displayedIdeas.length === 0) {
+    return null; // or a loading indicator
+  }
+
   return (
     <SlotMachineWrapper>
-      {displayedIdeas.map((ideaColumn, index) => (
-        <SlotColumn key={index}>
-          <ColumnHeader>{t(`categories.${ideaColumn[0].category}`)}</ColumnHeader>
-          <SlotWindow>
-            <SlotContent spinning={spinning} duration={2 + Math.random()} delay={Math.random() * 0.5}>
-              {ideaColumn.map((idea, ideaIndex) => (
-                <Slot key={ideaIndex}>
-                  <IdeaImage src={idea.image} alt={idea.text.en} />
-                  <IdeaText>
-                    {i18n.language === 'zh' ? idea.text.zh : idea.text.en}
-                  </IdeaText>
-                </Slot>
-              ))}
-            </SlotContent>
-          </SlotWindow>
-        </SlotColumn>
-      ))}
+      <SlotWindowWrapper>
+        {displayedIdeas.map((ideaColumn, index) => (
+          <SlotColumn key={index}>
+            <ColumnHeader>{t(`categories.${ideaColumn[1].category}`)}</ColumnHeader>
+            <SlotWindow>
+              <SlotContent spinning={spinning} duration={2 + Math.random()} delay={Math.random() * 0.5}>
+                {ideaColumn.map((idea, ideaIndex) => (
+                  <Slot key={ideaIndex}>
+                    <IdeaImage src={idea.image} alt={idea.text.en} />
+                    <IdeaText>
+                      {i18n.language === 'zh' ? idea.text.zh : idea.text.en}
+                    </IdeaText>
+                  </Slot>
+                ))}
+              </SlotContent>
+            </SlotWindow>
+          </SlotColumn>
+        ))}
+      </SlotWindowWrapper>
+      <GenerateButtonWrapper>
+        <GenerateButton onClick={onGenerate} />
+      </GenerateButtonWrapper>
     </SlotMachineWrapper>
   );
 };

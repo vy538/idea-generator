@@ -13,8 +13,7 @@ const MainPage: React.FC = () => {
 
   return (
     <div>
-      <SlotMachine ideas={ideas} spinning={spinning} />
-      <GenerateButton onClick={refetch} disabled={spinning} />
+      <SlotMachine ideas={ideas} spinning={spinning}  onGenerate={refetch}/>
     </div>
   );
 };
