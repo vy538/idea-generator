@@ -4,10 +4,12 @@ import { Idea, ideas as allIdeas } from '../data/ideas';
 import {
   SlotMachineWrapper,
   SlotColumn,
+  SlotWindow,
   SlotContent,
   Slot,
-  CategoryTitle,
-  IdeaText
+  IdeaText,
+  IdeaImage,
+  ColumnHeader
 } from '../styles/SlotMachineStyles';
 
 interface Props {
@@ -55,16 +57,19 @@ const SlotMachine: React.FC<Props> = ({ ideas, spinning }) => {
     <SlotMachineWrapper>
       {displayedIdeas.map((ideaColumn, index) => (
         <SlotColumn key={index}>
-          <SlotContent spinning={spinning} duration={2 + Math.random()} delay={Math.random() * 0.5}>
-            {ideaColumn.map((idea, ideaIndex) => (
-              <Slot key={ideaIndex}>
-                <CategoryTitle>{t(`categories.${idea.category}`)}</CategoryTitle>
-                <IdeaText>
-                  {i18n.language.startsWith('zh') ? idea.text.zh : idea.text.en}
-                </IdeaText>
-              </Slot>
-            ))}
-          </SlotContent>
+          <ColumnHeader>{t(`categories.${ideaColumn[0].category}`)}</ColumnHeader>
+          <SlotWindow>
+            <SlotContent spinning={spinning} duration={2 + Math.random()} delay={Math.random() * 0.5}>
+              {ideaColumn.map((idea, ideaIndex) => (
+                <Slot key={ideaIndex}>
+                  <IdeaImage src={idea.image} alt={idea.text.en} />
+                  <IdeaText>
+                    {i18n.language === 'zh' ? idea.text.zh : idea.text.en}
+                  </IdeaText>
+                </Slot>
+              ))}
+            </SlotContent>
+          </SlotWindow>
         </SlotColumn>
       ))}
     </SlotMachineWrapper>

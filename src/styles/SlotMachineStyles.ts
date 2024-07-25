@@ -16,6 +16,17 @@ export const SlotMachineWrapper = styled.div`
 
 export const SlotColumn = styled.div`
   width: 18%;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const ColumnHeader = styled.h3`
+  text-align: center;
+  margin-bottom: 10px;
+  color: #333;
+`;
+
+export const SlotWindow = styled.div`
   height: 100px;
   overflow: hidden;
   background-color: white;
@@ -25,9 +36,6 @@ export const SlotColumn = styled.div`
 `;
 
 export const SlotContent = styled.div<{ spinning: boolean; duration: number; delay: number }>`
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.5s ease-out;
   ${({ spinning, duration, delay }) => spinning && css`
     animation: ${spin} ${duration}s linear infinite;
     animation-delay: ${delay}s;
@@ -43,15 +51,16 @@ export const Slot = styled.div`
   text-align: center;
 `;
 
-export const CategoryTitle = styled.h3`
-  margin: 0 0 5px 0;
-  font-size: 14px;
-  color: #666;
+export const IdeaImage = styled.img`
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  margin-bottom: 5px;
 `;
 
 export const IdeaText = styled.p`
   margin: 0;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   color: #333;
 `;
