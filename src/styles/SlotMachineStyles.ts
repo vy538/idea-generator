@@ -1,4 +1,5 @@
 import styled, { keyframes, css } from 'styled-components';
+import { theme } from './theme';
 
 const spin = keyframes`
   0% { transform: translateY(0); }
@@ -10,21 +11,22 @@ export const SlotMachineWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: calc(100vh - 72px);
-  margin-top: 72px;
+  min-height: calc(100vh - 60px);
   padding: 20px;
-  background-color: #f0f0f0;
+  background-color: ${theme.colors.background};
+  font-family: ${theme.fonts.primary};
 `;
 
 export const SlotWindowWrapper = styled.div`
   display: flex;
   justify-content: space-around;
-  width: 95%;
-  max-width: 1200px;
+  width: 100%;
+  gap: 32px;
+  margin-bottom: 30px;
 `;
 
 export const SlotColumn = styled.div`
-  width: 18%;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,17 +35,19 @@ export const SlotColumn = styled.div`
 export const ColumnHeader = styled.h3`
   text-align: center;
   margin-bottom: 10px;
-  color: #333;
+  color: ${theme.colors.secondary};
+  font-weight: 500;
+  font-size: 16px;
+  text-transform: uppercase;
 `;
 
 export const SlotWindow = styled.div`
-  height: 360px; // Keep this the same
+  height: 360px;
   width: 100%;
   overflow: hidden;
-  background-color: white;
-  border: 2px solid #ddd;
-  border-radius: 5px;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: ${theme.colors.background};
+  border: 1px solid ${theme.colors.border};
+  border-radius: 8px;
   position: relative;
 
   &::before, &::after {
@@ -51,21 +55,22 @@ export const SlotWindow = styled.div`
     position: absolute;
     left: 0;
     right: 0;
-    height: 120px; // Increased from 100px to 110px
+    height: 90px;
     z-index: 1;
     pointer-events: none;
   }
 
   &::before {
     top: 0;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.8) 10%, rgba(0,0,0,0));
+    background: linear-gradient(to bottom, ${theme.colors.border} 0%, rgba(253,248,243,0) 100%);
   }
 
   &::after {
     bottom: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.8) 10%, rgba(0,0,0,0));
+    background: linear-gradient(to top, ${theme.colors.border} 0%, rgba(253,248,243,0) 100%);
   }
 `;
+
 
 export const SlotContent = styled.div<{ spinning: boolean; duration: number; delay: number }>`
   transition: transform 0.5s ease-out;
@@ -102,5 +107,5 @@ export const IdeaText = styled.p`
 `;
 
 export const GenerateButtonWrapper = styled.div`
-  margin-top: 20px;
+  margin-top: 30px;
 `;

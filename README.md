@@ -36,6 +36,7 @@ illustration-idea-generator/
 │   ├── data/
 │   │   └── ideas.ts
 │   ├── styles/
+│   │   ├── theme.ts
 │   │   ├── HeaderStyles.ts
 │   │   ├── SlotMachineStyles.ts
 │   │   ├── GenerateButtonStyles.ts
