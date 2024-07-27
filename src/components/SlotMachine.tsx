@@ -77,7 +77,7 @@ const SlotMachine: React.FC<Props> = ({ ideas, spinning, onGenerate }) => {
   }
 
   return (
-    <SlotMachineWrapper>
+    <SlotMachineWrapper lang={i18n.language as 'en' | 'zh'}>
       <SlotWindowWrapper>
         {displayedIdeas.map((ideaColumn, index) => (
           <SlotColumn key={index}>
@@ -87,7 +87,7 @@ const SlotMachine: React.FC<Props> = ({ ideas, spinning, onGenerate }) => {
                 {ideaColumn.map((idea, ideaIndex) => (
                   <Slot key={ideaIndex}>
                     <IdeaImage src={idea.image} alt={idea.text.en} />
-                    <IdeaText>
+                    <IdeaText lang={i18n.language as 'en' | 'zh'}>
                       {i18n.language === 'zh' ? idea.text.zh : idea.text.en}
                     </IdeaText>
                   </Slot>

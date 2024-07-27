@@ -9,6 +9,7 @@ export const theme = {
     buttonHover: '#E6D1BD',
   },
   fonts: {
-    primary: 'Arial, sans-serif',
+    en: "'Montserrat', Arial, sans-serif",
+    zh: "'Noto Sans TC', Arial, sans-serif",
   },
 };

@@ -11,7 +11,7 @@ const Header: React.FC = () => {
   };
 
   return (
-    <HeaderWrapper>
+    <HeaderWrapper lang={i18n.language as 'en' | 'zh'}>
       <Nav>
         <Link to="/">{t('header.home')}</Link>
         <Link to="/gallery">{t('header.gallery')}</Link>

@@ -6,7 +6,7 @@ const spin = keyframes`
   100% { transform: translateY(-33.33%); }
 `;
 
-export const SlotMachineWrapper = styled.div`
+export const SlotMachineWrapper = styled.div<{ lang: 'en' | 'zh' }>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,7 +14,7 @@ export const SlotMachineWrapper = styled.div`
   min-height: calc(100vh - 60px);
   padding: 20px;
   background-color: ${theme.colors.background};
-  font-family: ${theme.fonts.primary};
+  font-family: ${props => theme.fonts[props.lang]};
 `;
 
 export const SlotWindowWrapper = styled.div`
@@ -99,11 +99,12 @@ export const IdeaImage = styled.img`
   margin-bottom: 5px;
 `;
 
-export const IdeaText = styled.p`
+export const IdeaText = styled.p<{ lang: 'en' | 'zh' }>`
   margin: 0;
   font-size: 14px;
   font-weight: bold;
   color: #333;
+  font-family: ${props => theme.fonts[props.lang]};
 `;
 
 export const GenerateButtonWrapper = styled.div`

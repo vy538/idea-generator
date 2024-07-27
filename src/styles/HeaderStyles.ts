@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { theme } from './theme';
 
-export const HeaderWrapper = styled.header`
+export const HeaderWrapper = styled.header<{ lang: 'en' | 'zh' }>`
   height: 60px;
   width: 100wh;
   background-color: ${theme.colors.background};
@@ -9,7 +9,7 @@ export const HeaderWrapper = styled.header`
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
-  font-family: ${theme.fonts.primary};
+  font-family: ${props => theme.fonts[props.lang]};
 `;
 
 export const Nav = styled.nav`
