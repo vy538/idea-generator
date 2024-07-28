@@ -1,5 +1,6 @@
 import styled, { keyframes, css } from 'styled-components';
 import { theme } from './theme';
+import { H3, Body } from './Typography';
 
 const spin = keyframes`
   0% { transform: translateY(0); }
@@ -14,7 +15,7 @@ export const SlotMachineWrapper = styled.div<{ lang: 'en' | 'zh' }>`
   min-height: calc(100vh - 60px);
   padding: 20px;
   background-color: ${theme.colors.background};
-  font-family: ${props => theme.fonts[props.lang]};
+  font-family: ${props => theme.fonts[props.lang].family};
 `;
 
 export const SlotWindowWrapper = styled.div`
@@ -32,21 +33,20 @@ export const SlotColumn = styled.div`
   align-items: center;
 `;
 
-export const ColumnHeader = styled.h3`
+export const ColumnHeader = styled(H3)<{ lang: 'en' | 'zh' }>`
   text-align: center;
   margin-bottom: 10px;
-  color: ${theme.colors.secondary};
-  font-weight: 500;
-  font-size: 16px;
+  color: ${theme.colors.secondaryText};
   text-transform: uppercase;
 `;
 
 export const SlotWindow = styled.div`
+
   height: 360px;
   width: 100%;
   overflow: hidden;
   background-color: ${theme.colors.background};
-  border: 1px solid ${theme.colors.border};
+  border: 4px solid ${theme.colors.primaryAccent};
   border-radius: 8px;
   position: relative;
 
@@ -62,12 +62,12 @@ export const SlotWindow = styled.div`
 
   &::before {
     top: 0;
-    background: linear-gradient(to bottom, ${theme.colors.border} 0%, rgba(253,248,243,0) 100%);
+    background: linear-gradient(to bottom, ${theme.colors.primaryAccent} 0%, rgba(253,248,243,0) 100%);
   }
 
   &::after {
     bottom: 0;
-    background: linear-gradient(to top, ${theme.colors.border} 0%, rgba(253,248,243,0) 100%);
+    background: linear-gradient(to top, ${theme.colors.primaryAccent} 0%, rgba(253,248,243,0) 100%);
   }
 `;
 
@@ -99,13 +99,11 @@ export const IdeaImage = styled.img`
   margin-bottom: 5px;
 `;
 
-export const IdeaText = styled.p<{ lang: 'en' | 'zh' }>`
+export const IdeaText = styled(Body)<{ lang: 'en' | 'zh' }>`
   margin: 0;
-  font-size: 14px;
-  font-weight: bold;
-  color: #333;
-  font-family: ${props => theme.fonts[props.lang]};
+  color: ${theme.colors.primaryText};
 `;
+
 
 export const GenerateButtonWrapper = styled.div`
   margin-top: 30px;

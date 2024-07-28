@@ -81,7 +81,7 @@ const SlotMachine: React.FC<Props> = ({ ideas, spinning, onGenerate }) => {
       <SlotWindowWrapper>
         {displayedIdeas.map((ideaColumn, index) => (
           <SlotColumn key={index}>
-            <ColumnHeader>{t(`categories.${ideaColumn[1].category}`)}</ColumnHeader>
+            <ColumnHeader lang={i18n.language as 'en' | 'zh'}>{t(`categories.${ideaColumn[1].category}`)}</ColumnHeader>
             <SlotWindow>
               <SlotContent spinning={spinning} duration={2 + Math.random()} delay={Math.random() * 0.5}>
                 {ideaColumn.map((idea, ideaIndex) => (

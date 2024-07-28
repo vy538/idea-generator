@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { theme } from './theme';
+import { NavBarLink, SecondaryNavBarLink } from './Typography';
 
 export const HeaderWrapper = styled.header<{ lang: 'en' | 'zh' }>`
   height: 60px;
@@ -9,7 +10,7 @@ export const HeaderWrapper = styled.header<{ lang: 'en' | 'zh' }>`
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
-  font-family: ${props => theme.fonts[props.lang]};
+  font-family: ${props => theme.fonts[props.lang].family};
 `;
 
 export const Nav = styled.nav`
@@ -17,10 +18,8 @@ export const Nav = styled.nav`
   gap: 20px;
 `;
 
-export const NavLink = styled.a`
-  text-decoration: none;
-  color: ${theme.colors.primary};
-  font-weight: 500;
+export const NavLink = styled(NavBarLink)`
+  // You can add any additional styles specific to the header here
 `;
 
 export const LanguageSelector = styled.div`
@@ -28,11 +27,6 @@ export const LanguageSelector = styled.div`
   gap: 16px;
 `;
 
-export const LanguageButton = styled.button`
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-weight: 500;
-  padding: 0px;
-  color: ${theme.colors.primary};
+export const LanguageButton = styled(SecondaryNavBarLink)`
+  // You can add any additional styles specific to the language buttons here
 `;
