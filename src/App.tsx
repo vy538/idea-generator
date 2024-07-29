@@ -5,16 +5,23 @@ import i18n from './i18n';
 import Header from './components/Header';
 import MainPage from './pages/MainPage';
 import GalleryPage from './pages/GalleryPage';
+import { PageWrapper } from './styles/LayoutStyles';
+
+const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <>
+    <Header />
+    <PageWrapper>{children}</PageWrapper>
+  </>
+);
 
 function App() {
   return (
     <I18nextProvider i18n={i18n}>
       <Router>
-        <Header />
         <Suspense fallback="Loading...">
           <Routes>
-            <Route path="/" element={<MainPage />} />
-            <Route path="/gallery" element={<GalleryPage />} />
+            <Route path="/" element={<Layout><MainPage /></Layout>} />
+            <Route path="/gallery" element={<Layout><GalleryPage /></Layout>} />
           </Routes>
         </Suspense>
       </Router>

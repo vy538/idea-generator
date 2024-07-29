@@ -4,13 +4,18 @@ import { NavBarLink, SecondaryNavBarLink } from './Typography';
 
 export const HeaderWrapper = styled.header<{ lang: 'en' | 'zh' }>`
   height: 60px;
-  width: 100wh;
-  background-color: ${theme.colors.background};
+  background-color: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
   font-family: ${props => theme.fonts[props.lang].family};
+  z-index: 1000;
+  backdrop-filter: blur(5px);
 `;
 
 export const Nav = styled.nav`

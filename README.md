@@ -38,6 +38,7 @@ illustration-idea-generator/
 │   ├── styles/
 │   │   ├── theme.ts
 │   │   ├── HeaderStyles.ts
+│   │   ├── LayoutStyles.ts
 │   │   ├── SlotMachineStyles.ts
 │   │   ├── GenerateButtonStyles.ts
 │   │   └── GalleryStyles.ts

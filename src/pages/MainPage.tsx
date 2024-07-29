@@ -1,8 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import SlotMachine from '../components/SlotMachine';
-import GenerateButton from '../components/GenerateButton';
 import { useRandomIdeas } from '../hooks/useRandomIdeas';
+import { MainPageWrapper } from '../styles/LayoutStyles';
 
 const MainPage: React.FC = () => {
   const { t } = useTranslation();
@@ -12,9 +12,9 @@ const MainPage: React.FC = () => {
   if (error) return <div>{t('mainPage.error', { message: error.message })}</div>;
 
   return (
-    <div>
-      <SlotMachine ideas={ideas} spinning={spinning}  onGenerate={refetch}/>
-    </div>
+    <MainPageWrapper>
+      <SlotMachine ideas={ideas} spinning={spinning} onGenerate={refetch} />
+    </MainPageWrapper>
   );
 };
 
