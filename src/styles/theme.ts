@@ -11,6 +11,7 @@ export const theme = {
     en: {
       family: "'Montserrat', Arial, sans-serif",
       weights: {
+        light:300,
         regular: 400,
         medium: 500,
         bold: 700,
@@ -20,6 +21,7 @@ export const theme = {
     zh: {
       family: "'Noto Sans TC', Arial, sans-serif",
       weights: {
+        light:300,
         regular: 400,
         medium: 500,
         bold: 700,

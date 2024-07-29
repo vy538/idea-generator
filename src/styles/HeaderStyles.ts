@@ -35,7 +35,18 @@ export const LanguageSelector = styled.div`
 `;
 
 export const LanguageButton = styled(SecondaryNavBarLink)`
-  // You can add any additional styles specific to the language buttons here
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0px 4px;
+  border-radius: 4px;
+  color: ${theme.colors.primaryText};
+
+  &:hover {
+    color: ${theme.colors.primaryText};
+    text-decoration: underline;
+    text-decoration-color: ${theme.colors.primaryText};
+  }
 `;
 
 export const LogoWrapper = styled.div`
@@ -46,6 +57,5 @@ export const LogoWrapper = styled.div`
   img {
     width: 80px;
     height: 40px;
-    /* Adjust size as needed */
   }
 `;

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { NavLink as RouterNavLink } from 'react-router-dom';
 import { theme } from './theme';
 
 interface TypographyProps {
@@ -33,25 +33,22 @@ export const Body = styled.p<TypographyProps>`
   line-height: ${theme.typography.body.lineHeight};
 `;
 
-export const NavBarLink = styled(Link)<TypographyProps>`
+export const NavBarLink = styled(RouterNavLink)<TypographyProps>`
   font-family: ${props => theme.fonts[props.lang].family};
-  font-weight: ${props => theme.fonts[props.lang].weights.bold};
+  font-weight: ${props => theme.fonts[props.lang].weights.medium};
   font-size: ${theme.typography.body.fontSize};
   line-height: ${theme.typography.body.lineHeight};
   text-decoration: none;
   color: ${theme.colors.primaryText};
-
-  &:hover {
-    color: ${theme.colors.primaryAccent};
-  }
-
-  &:active {
-    color: ${theme.colors.secondaryText};
-  }
+  padding: 0px 4px;
+  border-radius: 4px;
 
   &.active {
-    font-weight: ${props => theme.fonts[props.lang].weights.bold};
-    color: ${theme.colors.primaryAccent};
+    background-color: ${theme.colors.primaryAccent};
+  }
+
+  &:hover {
+    background-color: ${theme.colors.secondaryAccent};
   }
 `;
 
@@ -60,17 +57,4 @@ export const SecondaryNavBarLink = styled.button<TypographyProps>`
   font-weight: ${props => theme.fonts[props.lang].weights.regular};
   font-size: ${theme.typography.body.fontSize};
   line-height: ${theme.typography.body.lineHeight};
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  color: ${theme.colors.primaryText};
-
-  &:hover {
-    color: ${theme.colors.primaryAccent};
-  }
-
-  &:active {
-    color: ${theme.colors.secondaryText};
-  }
 `;
