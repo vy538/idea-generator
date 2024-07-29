@@ -1,11 +1,11 @@
 export const theme = {
   colors: {
-    background: '#FDF8F3',
+    background: '#FFFDF6',
     primaryText: '#494949',
     secondaryText: '#666666',
-    primaryAccent: '#E6D1BD',
-    secondaryAccent: '#F2E9E1',
-    buttonHover: '#E6D1BD',
+    primaryAccent: '#ECE8D9',
+    secondaryAccent: '#FAF6E9',
+    buttonHover: '#ECE8D9',
   },
   fonts: {
     en: {

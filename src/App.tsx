@@ -6,6 +6,7 @@ import Header from './components/Header';
 import MainPage from './pages/MainPage';
 import GalleryPage from './pages/GalleryPage';
 import { PageWrapper } from './styles/LayoutStyles';
+import { GlobalStyles } from './styles/GlobalStyles';
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <>
@@ -16,6 +17,8 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
 
 function App() {
   return (
+    <>
+      <GlobalStyles/>
     <I18nextProvider i18n={i18n}>
       <Router>
         <Suspense fallback="Loading...">
@@ -25,7 +28,8 @@ function App() {
           </Routes>
         </Suspense>
       </Router>
-    </I18nextProvider>
+      </I18nextProvider>
+    </>
   );
 }
 

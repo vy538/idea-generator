@@ -15,7 +15,7 @@ export const HeaderWrapper = styled.header<{ lang: 'en' | 'zh' }>`
   padding: 0 20px;
   font-family: ${props => theme.fonts[props.lang].family};
   z-index: 1000;
-  backdrop-filter: blur(5px);
+  // backdrop-filter: blur(5px);
 `;
 
 export const Nav = styled.nav`

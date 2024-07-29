@@ -12,9 +12,8 @@ export const SlotMachineWrapper = styled.div<{ lang: 'en' | 'zh' }>`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: calc(100vh - 60px);
-  padding: 20px;
-  background-color: ${theme.colors.background};
+  min-height: 100%;
+  padding: 0px 20px;
   font-family: ${props => theme.fonts[props.lang].family};
 `;
 
@@ -23,7 +22,7 @@ export const SlotWindowWrapper = styled.div`
   justify-content: space-around;
   width: 100%;
   gap: 32px;
-  margin-bottom: 30px;
+  margin-bottom: 120px;
 `;
 
 export const SlotColumn = styled.div`
@@ -106,5 +105,4 @@ export const IdeaText = styled(Body)<{ lang: 'en' | 'zh' }>`
 
 
 export const GenerateButtonWrapper = styled.div`
-  margin-top: 30px;
 `;

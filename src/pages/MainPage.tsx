@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import SlotMachine from '../components/SlotMachine';
 import { useRandomIdeas } from '../hooks/useRandomIdeas';
-import { MainPageWrapper } from '../styles/LayoutStyles';
+import { MainPageWrapper, VideoBackground } from '../styles/LayoutStyles';
 
 const MainPage: React.FC = () => {
   const { t } = useTranslation();
@@ -12,9 +12,15 @@ const MainPage: React.FC = () => {
   if (error) return <div>{t('mainPage.error', { message: error.message })}</div>;
 
   return (
-    <MainPageWrapper>
-      <SlotMachine ideas={ideas} spinning={spinning} onGenerate={refetch} />
-    </MainPageWrapper>
+    <>
+      <VideoBackground autoPlay loop muted playsInline>
+        <source src="/media/background.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </VideoBackground>
+      <MainPageWrapper>
+        <SlotMachine ideas={ideas} spinning={spinning} onGenerate={refetch} />
+      </MainPageWrapper>
+    </>
   );
 };
 
