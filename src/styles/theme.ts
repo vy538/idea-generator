@@ -14,6 +14,7 @@ export const theme = {
         regular: 400,
         medium: 500,
         bold: 700,
+        semiBold: 900,
       },
     },
     zh: {
@@ -22,6 +23,7 @@ export const theme = {
         regular: 400,
         medium: 500,
         bold: 700,
+        semiBold: 900,
       },
     }
   }, typography: {

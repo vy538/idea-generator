@@ -35,18 +35,22 @@ export const SlotColumn = styled.div`
 export const ColumnHeader = styled(H3)<{ lang: 'en' | 'zh' }>`
   text-align: center;
   margin-bottom: 10px;
-  color: ${theme.colors.secondaryText};
+  background-color: ${theme.colors.primaryText};
+  color: ${theme.colors.background};
+  border-radius: 4px;
+  padding: 12px 0px;
+  width: 100%;
   text-transform: uppercase;
 `;
 
 export const SlotWindow = styled.div`
-
   height: 360px;
   width: 100%;
   overflow: hidden;
   background-color: ${theme.colors.background};
-  border: 4px solid ${theme.colors.primaryAccent};
-  border-radius: 8px;
+  outline: 4px solid ${theme.colors.primaryText};
+  outline-offset: -4px;
+  border-radius: 4px;
   position: relative;
 
   &::before, &::after {
@@ -59,15 +63,15 @@ export const SlotWindow = styled.div`
     pointer-events: none;
   }
 
-  &::before {
-    top: 0;
-    background: linear-gradient(to bottom, ${theme.colors.primaryAccent} 0%, rgba(253,248,243,0) 100%);
-  }
+  // &::before {
+  //   top: 0;
+  //   background: linear-gradient(to bottom, ${theme.colors.primaryAccent} 0%, rgba(253,248,243,0) 100%);
+  // }
 
-  &::after {
-    bottom: 0;
-    background: linear-gradient(to top, ${theme.colors.primaryAccent} 0%, rgba(253,248,243,0) 100%);
-  }
+  // &::after {
+  //   bottom: 0;
+  //   background: linear-gradient(to top, ${theme.colors.primaryAccent} 0%, rgba(253,248,243,0) 100%);
+  // }
 `;
 
 
@@ -95,7 +99,7 @@ export const IdeaImage = styled.img`
   width: 60px;
   height: 60px;
   object-fit: contain;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
 `;
 
 export const IdeaText = styled(Body)<{ lang: 'en' | 'zh' }>`

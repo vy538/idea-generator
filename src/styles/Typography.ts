@@ -7,21 +7,21 @@ interface TypographyProps {
 }
 export const H1 = styled.h1<TypographyProps>`
   font-family: ${props => theme.fonts[props.lang].family};
-  font-weight: ${props => theme.fonts[props.lang].weights.bold};
+  font-weight: ${props => theme.fonts[props.lang].weights.semiBold};
   font-size: ${theme.typography.h1.fontSize};
   line-height: ${theme.typography.h1.lineHeight};
 `;
 
 export const H2 = styled.h2<TypographyProps>`
   font-family: ${props => theme.fonts[props.lang].family};
-  font-weight: ${props => theme.fonts[props.lang].weights.bold};
+  font-weight: ${props => theme.fonts[props.lang].weights.semiBold};
   font-size: ${theme.typography.h2.fontSize};
   line-height: ${theme.typography.h2.lineHeight};
 `;
 
 export const H3 = styled.h3<TypographyProps>`
   font-family: ${props => theme.fonts[props.lang].family};
-  font-weight: ${props => theme.fonts[props.lang].weights.medium};
+  font-weight: ${props => theme.fonts[props.lang].weights.bold};
   font-size: ${theme.typography.h3.fontSize};
   line-height: ${theme.typography.h3.lineHeight};
 `;

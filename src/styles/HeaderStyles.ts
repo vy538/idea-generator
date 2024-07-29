@@ -15,12 +15,12 @@ export const HeaderWrapper = styled.header<{ lang: 'en' | 'zh' }>`
   padding: 0 20px;
   font-family: ${props => theme.fonts[props.lang].family};
   z-index: 1000;
-  // backdrop-filter: blur(5px);
 `;
 
 export const Nav = styled.nav`
   display: flex;
   gap: 20px;
+  flex: 1;
 `;
 
 export const NavLink = styled(NavBarLink)`
@@ -30,8 +30,22 @@ export const NavLink = styled(NavBarLink)`
 export const LanguageSelector = styled.div`
   display: flex;
   gap: 16px;
+  flex: 1;
+  justify-content: flex-end;
 `;
 
 export const LanguageButton = styled(SecondaryNavBarLink)`
   // You can add any additional styles specific to the language buttons here
+`;
+
+export const LogoWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  img {
+    width: 80px;
+    height: 40px;
+    /* Adjust size as needed */
+  }
 `;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { HeaderWrapper, Nav, LanguageButton, LanguageSelector, NavLink } from '../styles/HeaderStyles';
+import { HeaderWrapper, Nav, LanguageButton, LanguageSelector, NavLink, LogoWrapper } from '../styles/HeaderStyles';
 
 const Header: React.FC = () => {
   const { t, i18n } = useTranslation();
@@ -16,6 +16,9 @@ const Header: React.FC = () => {
         <NavLink to="/" lang={currentLang}>{t('header.home')}</NavLink>
         <NavLink to="/gallery" lang={currentLang}>{t('header.gallery')}</NavLink>
       </Nav>
+      <LogoWrapper>
+        <img src="/logo.svg" alt="Logo" />
+      </LogoWrapper>
       <LanguageSelector>
         <LanguageButton lang={currentLang} onClick={() => changeLanguage('en')}>English</LanguageButton>
         <LanguageButton lang={currentLang} onClick={() => changeLanguage('zh')}>中文</LanguageButton>
