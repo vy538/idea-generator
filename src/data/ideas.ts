@@ -6,7 +6,7 @@ export interface IdeaTag {
 export interface Idea {
   category: string;
   text: IdeaTag;
-  image: string; // Add this line
+  image: string;
 }
 
 export const ideas: Idea[] = [

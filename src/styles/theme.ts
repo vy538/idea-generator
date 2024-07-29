@@ -36,7 +36,7 @@ export const theme = {
       lineHeight: 1.3,
     },
     h3: {
-      fontSize: '1.75rem',
+      fontSize: '1.5rem',
       lineHeight: 1.4,
     },
     body: {

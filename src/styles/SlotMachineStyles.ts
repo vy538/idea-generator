@@ -2,6 +2,8 @@ import styled, { keyframes, css } from 'styled-components';
 import { theme } from './theme';
 import { H3, Body } from './Typography';
 
+const gradientImage = require('../assets/gradient@2x.png');
+
 const spin = keyframes`
   0% { transform: translateY(0); }
   100% { transform: translateY(-33.33%); }
@@ -18,12 +20,13 @@ export const SlotMachineWrapper = styled.div<{ lang: 'en' | 'zh' }>`
 `;
 
 export const SlotWindowWrapper = styled.div`
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   gap: 32px;
+  width: 100%;
   margin-bottom: 120px;
 `;
+
 
 export const SlotColumn = styled.div`
   flex-grow: 1;
@@ -41,6 +44,7 @@ export const ColumnHeader = styled(H3)<{ lang: 'en' | 'zh' }>`
   padding: 12px 0px;
   width: 100%;
   text-transform: uppercase;
+  text-overflow: ellipsis;
 `;
 
 export const SlotWindow = styled.div`
@@ -48,10 +52,11 @@ export const SlotWindow = styled.div`
   width: 100%;
   overflow: hidden;
   background-color: ${theme.colors.background};
-  outline: 4px solid ${theme.colors.primaryText};
-  outline-offset: -4px;
+  outline: 8px solid ${theme.colors.primaryText};
+  outline-offset: -8px;
   border-radius: 4px;
   position: relative;
+  box-sizing: border-box; // Ensures padding and border are included in the width
 
   &::before, &::after {
     content: '';
@@ -61,17 +66,19 @@ export const SlotWindow = styled.div`
     height: 90px;
     z-index: 1;
     pointer-events: none;
+    background-image: url(${gradientImage});
+    background-size: cover;
+    background-repeat: no-repeat;
   }
 
-  // &::before {
-  //   top: 0;
-  //   background: linear-gradient(to bottom, ${theme.colors.primaryAccent} 0%, rgba(253,248,243,0) 100%);
-  // }
+  &::before {
+    top: 0;
+    transform: rotate(180deg);
+  }
 
-  // &::after {
-  //   bottom: 0;
-  //   background: linear-gradient(to top, ${theme.colors.primaryAccent} 0%, rgba(253,248,243,0) 100%);
-  // }
+  &::after {
+    bottom: 0;
+  }
 `;
 
 
@@ -105,6 +112,11 @@ export const IdeaImage = styled.img`
 export const IdeaText = styled(Body)<{ lang: 'en' | 'zh' }>`
   margin: 0;
   color: ${theme.colors.primaryText};
+  width: 100%;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 
