@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import { theme } from './theme';
 
 export const StyledButton = styled.button<{ lang: 'en' | 'zh' }>`
-  background-color: ${theme.colors.secondaryAccent};
+  background-color: ${theme.colors.primaryText};
   border: none;
-  color: ${theme.colors.primaryText};
+  color: ${theme.colors.secondaryAccent};
   padding: 15px 30px;
   text-align: center;
   text-decoration: none;
