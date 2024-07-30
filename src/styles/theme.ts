@@ -31,15 +31,15 @@ export const theme = {
   }, typography: {
     h1: {
       fontSize: '2.5rem',
-      lineHeight: 1.2,
+      lineHeight: 1,
     },
     h2: {
       fontSize: '2rem',
-      lineHeight: 1.3,
+      lineHeight: 1,
     },
     h3: {
       fontSize: '1.5rem',
-      lineHeight: 1.4,
+      lineHeight: 1.5,
     },
     body: {
       fontSize: '1rem',

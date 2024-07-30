@@ -1,16 +1,19 @@
 import styled from 'styled-components';
+import { theme } from './theme';
 
 export const GalleryWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
   padding: 20px;
+  background-color: ${theme.colors.background};
 `;
 
 export const IllustrationCard = styled.div`
-  border: 1px solid #ddd;
+  border: 1px solid ${theme.colors.primaryAccent};
   border-radius: 8px;
   overflow: hidden;
+  background-color: ${theme.colors.secondaryAccent};
 `;
 
 export const IllustrationImage = styled.img`
@@ -24,17 +27,22 @@ export const TagsContainer = styled.div`
 `;
 
 export const Tag = styled.span`
-  background-color: #f0f0f0;
+  background-color: ${theme.colors.primaryAccent};
+  color: ${theme.colors.primaryText};
   padding: 5px 10px;
   margin-right: 5px;
   margin-bottom: 5px;
   border-radius: 4px;
-  font-size: 0.8em;
+  font-size: ${theme.typography.body.fontSize};
+  font-family: ${theme.fonts.en.family};
+  font-weight: ${theme.fonts.en.weights.regular};
   display: inline-block;
 `;
 
 export const AuthorInfo = styled.div`
   margin-top: 10px;
-  font-size: 0.8em;
-  color: #666;
+  font-size: ${theme.typography.body.fontSize};
+  color: ${theme.colors.secondaryText};
+  font-family: ${theme.fonts.en.family};
+  font-weight: ${theme.fonts.en.weights.light};
 `;

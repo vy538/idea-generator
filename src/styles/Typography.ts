@@ -8,8 +8,8 @@ interface TypographyProps {
 export const H1 = styled.h1<TypographyProps>`
   font-family: ${props => theme.fonts[props.lang].family};
   font-weight: ${props => theme.fonts[props.lang].weights.semiBold};
-  font-size: ${theme.typography.h1.fontSize};
-  line-height: ${theme.typography.h1.lineHeight};
+  font-size: 2.5rem;
+  line-height: 1.2;
 `;
 
 export const H2 = styled.h2<TypographyProps>`

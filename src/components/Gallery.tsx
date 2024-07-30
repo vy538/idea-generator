@@ -15,7 +15,6 @@ import { GalleryItem, Idea, Category } from '../types';
 
 const Gallery: React.FC = () => {
   const { t, i18n } = useTranslation();
-
   const getIdeaById = (category: Category, id: string): Idea | undefined => {
   return ideas[category].find(idea => idea.text.en === id || idea.text.zh === id);
 };
