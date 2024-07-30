@@ -16,6 +16,7 @@ This project is a web application that generates random illustration ideas using
 ```
 illustration-idea-generator/
 ├── public/
+│   ├── logo.svg
 │   ├── index.html
 │   ├── locales/
 │   │   ├── en.json
@@ -35,6 +36,7 @@ illustration-idea-generator/
 │   ├── services/
 │   │   └── api.ts
 │   ├── data/
+│   │   ├── gallery.json
 │   │   └── ideas.ts
 │   ├── styles/
 │   │   ├── theme.ts
@@ -42,9 +44,11 @@ illustration-idea-generator/
 │   │   ├── GlobalStyles.ts
 │   │   ├── LayoutStyles.ts
 │   │   ├── SlotMachineStyles.ts
+│   │   ├── Typography.ts
 │   │   ├── GenerateButtonStyles.ts
 │   │   └── GalleryStyles.ts
 │   ├── types/
+│   │   └── index.ts
 │   ├── utils/
 │   ├── assets/
 │   ├── i18n.ts
