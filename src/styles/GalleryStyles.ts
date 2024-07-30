@@ -7,7 +7,7 @@ import { Category } from '../types';
 
 export const GalleryWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 32px;
   padding: 20px;
 `;
@@ -17,6 +17,8 @@ export const IllustrationCard = styled.div`
   border-radius: 8px;
   overflow: hidden;
   aspect-ratio: 1 / 1;
+
+  border: 4px solid ${theme.colors.primaryText};
 
   &:hover .overlay {
     opacity: 1;
@@ -35,7 +37,8 @@ export const Overlay = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(255, 165, 180, 0.9); // Pink with 90% opacity
+  background-color: ${theme.colors.background}80;
+  backdrop-filter: blur(4px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -45,6 +48,7 @@ export const Overlay = styled.div`
 `;
 
 export const AuthorInfo = styled(Body)`
+  margin: 0;
   align-self: flex-end;
   color: ${theme.colors.primaryText};
   font-weight: ${props => theme.fonts[props.lang].weights.medium};
@@ -57,9 +61,10 @@ export const TagsContainer = styled.div`
 `;
 
 export const Tag = styled(Body)<{ category: Category }>`
-  background-color: ${theme.colors.primaryAccent};
-  color: ${theme.colors.primaryText};
-  padding: 5px 10px;
-  border-radius: 4px;
+  background-color: ${theme.colors.primaryText};
+  color: ${theme.colors.background};
+  padding: 4px 8px;
+  border-radius: 50px;
+  margin: 0;
   font-weight: ${props => theme.fonts[props.lang].weights.regular};
 `;

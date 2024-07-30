@@ -28,6 +28,8 @@ const GalleryItem: React.FC<GalleryItemProps> = ({ item, getIdeaById }) => {
         <TagsContainer>
           {item.ideaReferences.map((ref, index) => {
             const idea = getIdeaById(ref.category, ref.id);
+
+            console.log(idea)
             if (!idea) return null;
             return (
               <Tag lang={i18n.language as 'en' | 'zh'} key={index} category={ref.category}>
