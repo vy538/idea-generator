@@ -1,48 +1,65 @@
+// GalleryStyles.ts
+
 import styled from 'styled-components';
 import { theme } from './theme';
+import { Body } from './Typography';
+import { Category } from '../types';
 
 export const GalleryWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
   padding: 20px;
-  background-color: ${theme.colors.background};
 `;
 
 export const IllustrationCard = styled.div`
-  border: 1px solid ${theme.colors.primaryAccent};
+  position: relative;
   border-radius: 8px;
   overflow: hidden;
-  background-color: ${theme.colors.secondaryAccent};
+  aspect-ratio: 1 / 1;
+
+  &:hover .overlay {
+    opacity: 1;
+  }
 `;
 
 export const IllustrationImage = styled.img`
   width: 100%;
-  height: 200px;
+  height: 100%;
   object-fit: cover;
 `;
 
-export const TagsContainer = styled.div`
-  padding: 10px;
+export const Overlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 165, 180, 0.9); // Pink with 90% opacity
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 16px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 `;
 
-export const Tag = styled.span`
+export const AuthorInfo = styled(Body)`
+  align-self: flex-end;
+  color: ${theme.colors.primaryText};
+  font-weight: ${props => theme.fonts[props.lang].weights.medium};
+`;
+
+export const TagsContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+`;
+
+export const Tag = styled(Body)<{ category: Category }>`
   background-color: ${theme.colors.primaryAccent};
   color: ${theme.colors.primaryText};
   padding: 5px 10px;
-  margin-right: 5px;
-  margin-bottom: 5px;
   border-radius: 4px;
-  font-size: ${theme.typography.body.fontSize};
-  font-family: ${theme.fonts.en.family};
-  font-weight: ${theme.fonts.en.weights.regular};
-  display: inline-block;
-`;
-
-export const AuthorInfo = styled.div`
-  margin-top: 10px;
-  font-size: ${theme.typography.body.fontSize};
-  color: ${theme.colors.secondaryText};
-  font-family: ${theme.fonts.en.family};
-  font-weight: ${theme.fonts.en.weights.light};
+  font-weight: ${props => theme.fonts[props.lang].weights.regular};
 `;

@@ -2,14 +2,14 @@
 
 export type Category = 'adjective' | 'character' | 'location' | 'verb' | 'element';
 
-export interface IdeaTag {
+export interface Language {
   en: string;
   zh: string;
 }
 
 export interface Idea {
   category: Category;
-  text: IdeaTag;
+  text: Language;
   image: string;
 }
 

@@ -30,9 +30,9 @@ export const MainPageWrapper = styled(PageWrapper)`
 export const GalleryPageWrapper = styled(PageWrapper)`
   // Add any specific styles for the gallery page here
   background-color: ${theme.colors.background};
-  padding: 60px 20px;
+  padding: 60px 0px;
   position: relative;
   z-index: 1;
   height: 100vh;
-  overflow-y: hidden;
+  overflow-x: hidden;
 `;
