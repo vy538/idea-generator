@@ -8,7 +8,6 @@ const GalleryPage: React.FC = () => {
 
   return (
     <GalleryPageWrapper>
-      <h1>{t('gallery.title')}</h1>
       <Gallery />
     </GalleryPageWrapper>
   );

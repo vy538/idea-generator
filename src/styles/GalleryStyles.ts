@@ -32,3 +32,9 @@ export const Tag = styled.span`
   font-size: 0.8em;
   display: inline-block;
 `;
+
+export const AuthorInfo = styled.div`
+  margin-top: 10px;
+  font-size: 0.8em;
+  color: #666;
+`;

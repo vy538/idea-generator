@@ -1,3 +1,4 @@
+// src/components/Gallery.tsx
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -5,38 +6,42 @@ import {
   IllustrationCard,
   IllustrationImage,
   TagsContainer,
-  Tag
+  Tag,
+  AuthorInfo
 } from '../styles/GalleryStyles';
-import { Idea } from '../data/ideas';
-
-// Mock data for illustrations - replace with actual data later
-const mockIllustrations: { imageUrl: string; ideas: Idea[] }[] = [
-  {
-    imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEikmx4VupmJ8_0o_0tXxKyfMIPBsSCW1WPqe69larq_HT0wF2TDj4Mj0CCi3AEaFMo0atevfDN5I7D2l-Fuykaxm0FM2HKyIrMTW0WXmV5fTJcuLzH4wCDAoKPL8q3bqUEBz4lgG7ovjGU/s180-c/kandume_tomato.png',
-    ideas: [
-      { category: 'adjective', text: { en: 'Mysterious', zh: '神秘的'}, image:"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiOCiIKPOlZd_ln1VFeO0Ps4KO7vOHZiCSiQegD06giTH2E0vUzwQPX_uuEdpp2eWhF37cJ4V2MkyJdX9E1IIQIYFUy1qBH1T5FDifC53LSlpdVCCRZE9kbuXLo2AidIFqswVoyoEmEikIU/s800/tomato_red.png"},
-      { category: 'character', text: { en: 'Wizard', zh: '魔法師'}, image:"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiOCiIKPOlZd_ln1VFeO0Ps4KO7vOHZiCSiQegD06giTH2E0vUzwQPX_uuEdpp2eWhF37cJ4V2MkyJdX9E1IIQIYFUy1qBH1T5FDifC53LSlpdVCCRZE9kbuXLo2AidIFqswVoyoEmEikIU/s800/tomato_red.png"},
-      { category: 'location', text: { en: 'Ancient Forest', zh: '古老森林'}, image:"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiOCiIKPOlZd_ln1VFeO0Ps4KO7vOHZiCSiQegD06giTH2E0vUzwQPX_uuEdpp2eWhF37cJ4V2MkyJdX9E1IIQIYFUy1qBH1T5FDifC53LSlpdVCCRZE9kbuXLo2AidIFqswVoyoEmEikIU/s800/tomato_red.png"},
-    ]
-  },
-  // Add more mock illustrations as needed
-];
+import galleryData from '../data/gallery.json';
+import { ideas } from '../data/ideas';
+import { GalleryItem, Idea, Category } from '../types';
 
 const Gallery: React.FC = () => {
   const { t, i18n } = useTranslation();
 
+  const getIdeaById = (category: Category, id: string): Idea | undefined => {
+  return ideas[category].find(idea => idea.text.en === id || idea.text.zh === id);
+};
+
   return (
     <GalleryWrapper>
-      {mockIllustrations.map((illustration, index) => (
-        <IllustrationCard key={index}>
-          <IllustrationImage src={illustration.imageUrl} alt={`Illustration ${index + 1}`} />
+      {(galleryData as GalleryItem[]).map((item: GalleryItem) => (
+        <IllustrationCard key={item.id}>
+          <IllustrationImage src={item.imageUrl} alt={`Illustration ${item.id}`} />
           <TagsContainer>
-            {illustration.ideas.map((idea, ideaIndex) => (
-              <Tag key={ideaIndex}>
-                {t(`categories.${idea.category}`)}: {i18n.language.startsWith('zh') ? idea.text.zh : idea.text.en}
-              </Tag>
-            ))}
+            {item.ideaReferences.map((ref, index) => {
+              const idea = getIdeaById(ref.category, ref.id);
+              if (!idea) return null;
+              return (
+                <Tag key={index}>
+                  {t(`categories.${ref.category}`)}: {i18n.language.startsWith('zh') ? idea.text.zh : idea.text.en}
+                </Tag>
+              );
+            })}
           </TagsContainer>
+          <AuthorInfo>
+            <p>{item.author.name}</p>
+            <p>{item.author.email}</p>
+            <p>{item.author.instagram}</p>
+            <p>{item.author.github}</p>
+          </AuthorInfo>
         </IllustrationCard>
       ))}
     </GalleryWrapper>

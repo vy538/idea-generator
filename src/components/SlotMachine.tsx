@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Idea, ideas as allIdeas } from '../data/ideas';
+import { ideas as allIdeas } from '../data/ideas';
 import {
   SlotMachineWrapper,
   SlotWindowWrapper,
@@ -14,6 +14,7 @@ import {
   GenerateButtonWrapper
 } from '../styles/SlotMachineStyles';
 import GenerateButton from './GenerateButton';
+import { Idea } from '../types';
 
 interface Props {
   ideas: Idea[];
@@ -29,7 +30,7 @@ const SlotMachine: React.FC<Props> = ({ ideas, spinning, onGenerate }) => {
 
   const initializeDisplayedIdeas = (baseIdeas: Idea[]) => {
     return baseIdeas.map(idea => {
-      const categoryIdeas = allIdeas.filter(i => i.category === idea.category);
+      const categoryIdeas = allIdeas[idea.category];
       return [
         categoryIdeas[Math.floor(Math.random() * categoryIdeas.length)],
         idea,
@@ -45,7 +46,7 @@ const SlotMachine: React.FC<Props> = ({ ideas, spinning, onGenerate }) => {
   useEffect(() => {
     if (spinning) {
       const newDisplayedIdeas = ideas.map(idea => {
-        const categoryIdeas = allIdeas.filter(i => i.category === idea.category);
+        const categoryIdeas = allIdeas[idea.category];
         return [...categoryIdeas, ...categoryIdeas, ...categoryIdeas]; // Repeat to ensure enough items
       });
       setDisplayedIdeas(newDisplayedIdeas);

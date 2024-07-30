@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Idea, ideas } from '../data/ideas';
+import { ideas } from '../data/ideas';
+import { Idea, Category } from '../types';
 
 export const useRandomIdeas = () => {
   const [randomIdeas, setRandomIdeas] = useState<Idea[]>([]);
@@ -8,9 +9,9 @@ export const useRandomIdeas = () => {
   const [error, setError] = useState<Error | null>(null);
 
   const generateRandomIdeas = useCallback(() => {
-    const categories = ['adjective', 'character', 'location', 'verb', 'element'];
+    const categories: Category[] = ['adjective', 'character', 'location', 'verb', 'element'];
     return categories.map(category => {
-      const categoryIdeas = ideas.filter(idea => idea.category === category);
+      const categoryIdeas = ideas[category];
       const randomIndex = Math.floor(Math.random() * categoryIdeas.length);
       return categoryIdeas[randomIndex];
     });
