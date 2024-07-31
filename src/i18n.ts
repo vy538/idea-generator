@@ -8,6 +8,9 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
+    lng: 'en', // default language
+    supportedLngs: ['en', 'zh'], // specify supported languages
+    load: 'languageOnly', // This will convert 'zh-TW' to 'zh'
     fallbackLng: 'en',
     debug: true,
     interpolation: {

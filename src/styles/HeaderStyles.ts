@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { theme } from './theme';
 import { NavBarLink, SecondaryNavBarLink } from './Typography';
 
 export const HeaderWrapper = styled.header<{ lang: 'en' | 'zh' }>`
@@ -13,7 +12,15 @@ export const HeaderWrapper = styled.header<{ lang: 'en' | 'zh' }>`
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
-  font-family: ${props => theme.fonts[props.lang].family};
+  font-family: ${({ theme, lang }) => {
+  
+    console.log('HeaderWrapper render. Theme:', theme, 'Lang:', lang);
+  if (!theme || !theme.fonts || !theme.fonts[lang]) {
+      console.error('Theme or fonts not available in HeaderWrapper');
+      return 'Arial, sans-serif'; // Fallback
+    }
+    return theme.fonts[lang].family;
+  }};
   z-index: 1000;
 `;
 
@@ -40,12 +47,12 @@ export const LanguageButton = styled(SecondaryNavBarLink)`
   cursor: pointer;
   padding: 0px 4px;
   border-radius: 4px;
-  color: ${theme.colors.primaryText};
+  color: ${({ theme }) =>theme.colors.primaryText};
 
   &:hover {
-    color: ${theme.colors.primaryText};
+    color: ${({ theme }) =>theme.colors.primaryText};
     text-decoration: underline;
-    text-decoration-color: ${theme.colors.primaryText};
+    text-decoration-color: ${({ theme }) =>theme.colors.primaryText};
   }
 `;
 

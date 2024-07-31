@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { theme } from './theme';
 
 export const Overlay = styled.div`
   position: fixed;
@@ -7,7 +6,7 @@ export const Overlay = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: ${theme.colors.primaryText}E0;
+  background-color: ${({ theme }) => theme.colors.primaryText}E0;
   backdrop-filter: blur(4px);
   display: flex;
   justify-content: center;
@@ -27,7 +26,7 @@ export const CloseButton = styled.button`
   right: 20px;
   background: transparent;
   border: none;
-  color: ${theme.colors.background};
+  color: ${({ theme }) => theme.colors.background};
   font-size: 24px;
   cursor: pointer;
   padding: 8px;

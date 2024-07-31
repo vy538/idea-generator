@@ -1,5 +1,4 @@
 import styled, { keyframes, css } from 'styled-components';
-import { theme } from './theme';
 import { H3, Body } from './Typography';
 
 const gradientImage = require('../assets/gradient@2x.png');
@@ -16,7 +15,7 @@ export const SlotMachineWrapper = styled.div<{ lang: 'en' | 'zh' }>`
   justify-content: center;
   min-height: 100%;
   padding: 0px 20px;
-  font-family: ${props => theme.fonts[props.lang].family};
+  font-family: ${ ({ theme, lang }) => theme.fonts[lang].family};
 `;
 
 export const SlotWindowWrapper = styled.div`
@@ -38,8 +37,8 @@ export const SlotColumn = styled.div`
 export const ColumnHeader = styled(H3)<{ lang: 'en' | 'zh' }>`
   text-align: center;
   margin-bottom: 10px;
-  background-color: ${theme.colors.primaryText};
-  color: ${theme.colors.background};
+  background-color: ${({ theme }) => theme.colors.primaryText};
+  color: ${({ theme }) => theme.colors.background};
   border-radius: 4px;
   padding: 12px 0px;
   width: 100%;
@@ -51,8 +50,8 @@ export const SlotWindow = styled.div`
   height: 360px;
   width: 100%;
   overflow: hidden;
-  background-color: ${theme.colors.background};
-  outline: 8px solid ${theme.colors.primaryText};
+  background-color: ${({ theme }) => theme.colors.background};
+  outline: 8px solid ${({ theme }) => theme.colors.primaryText};
   outline-offset: -8px;
   border-radius: 4px;
   position: relative;
@@ -111,7 +110,7 @@ export const IdeaImage = styled.img`
 
 export const IdeaText = styled(Body)<{ lang: 'en' | 'zh' }>`
   margin: 0;
-  color: ${theme.colors.primaryText};
+  color: ${({ theme }) => theme.colors.primaryText};
   width: 100%;
   text-align: center;
   white-space: nowrap;

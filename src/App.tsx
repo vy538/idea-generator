@@ -8,6 +8,9 @@ import GalleryPage from './pages/GalleryPage';
 import { PageWrapper } from './styles/LayoutStyles';
 import { GlobalStyles } from './styles/GlobalStyles';
 
+import { theme } from './styles/theme';
+import { ThemeProvider } from 'styled-components';
+
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <>
     <Header />
@@ -16,20 +19,21 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
 );
 
 function App() {
+  console.log('App rendering. Theme:', JSON.stringify(theme, null, 2));
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <GlobalStyles/>
-    <I18nextProvider i18n={i18n}>
-      <Router>
-        <Suspense fallback="Loading...">
-          <Routes>
-            <Route path="/" element={<Layout><MainPage /></Layout>} />
-            <Route path="/gallery" element={<Layout><GalleryPage /></Layout>} />
-          </Routes>
-        </Suspense>
-      </Router>
-      </I18nextProvider>
-    </>
+      <I18nextProvider i18n={i18n}>
+        <Router>
+          <Suspense fallback="Loading...">
+            <Routes>
+              <Route path="/" element={<Layout><MainPage /></Layout>} />
+              <Route path="/gallery" element={<Layout><GalleryPage /></Layout>} />
+            </Routes>
+          </Suspense>
+        </Router>
+        </I18nextProvider>
+    </ThemeProvider> 
   );
 }
 

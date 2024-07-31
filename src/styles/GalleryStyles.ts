@@ -1,7 +1,6 @@
 // GalleryStyles.ts
 
 import styled from 'styled-components';
-import { theme } from './theme';
 import { Body } from './Typography';
 import { Category } from '../types';
 
@@ -18,7 +17,7 @@ export const IllustrationCard = styled.div`
   overflow: hidden;
   aspect-ratio: 1 / 1;
 
-  border: 4px solid ${theme.colors.primaryText};
+  border: 4px solid ${({ theme }) => theme.colors.primaryText};
 
   &:hover .overlay {
     opacity: 1;
@@ -37,7 +36,7 @@ export const Overlay = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: ${theme.colors.background}80;
+  background-color: ${({ theme }) => theme.colors.background}80;
   backdrop-filter: blur(4px);
   display: flex;
   flex-direction: column;
@@ -50,8 +49,8 @@ export const Overlay = styled.div`
 export const AuthorInfo = styled(Body)`
   margin: 0;
   align-self: flex-end;
-  color: ${theme.colors.primaryText};
-  font-weight: ${props => theme.fonts[props.lang].weights.medium};
+  color: ${({ theme }) => theme.colors.primaryText};
+  font-weight: ${({ theme,lang }) => theme.fonts[lang].weights.medium};
 `;
 
 export const TagsContainer = styled.div`
@@ -61,10 +60,10 @@ export const TagsContainer = styled.div`
 `;
 
 export const Tag = styled(Body)<{ category: Category }>`
-  background-color: ${theme.colors.primaryText};
-  color: ${theme.colors.background};
+  background-color: ${({ theme }) => theme.colors.primaryText};
+  color: ${({ theme }) => theme.colors.background};
   padding: 4px 8px;
   border-radius: 50px;
   margin: 0;
-  font-weight: ${props => theme.fonts[props.lang].weights.regular};
+  font-weight: ${({ theme,lang }) => theme.fonts[lang].weights.regular};
 `;

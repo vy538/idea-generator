@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { theme } from './theme';
 
 export const PageWrapper = styled.div`
   min-height: 100vh;
@@ -29,7 +28,7 @@ export const MainPageWrapper = styled(PageWrapper)`
 
 export const GalleryPageWrapper = styled(PageWrapper)`
   // Add any specific styles for the gallery page here
-  background-color: ${theme.colors.background};
+  background-color: ${({ theme }) => theme.colors.background};
   padding: 60px 0px;
   position: relative;
   z-index: 1;
