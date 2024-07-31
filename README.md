@@ -19,12 +19,13 @@ This project is a web application that generates random illustration ideas using
 ```
 illustration-idea-generator/
 ├── public/
+│   ├── favicon.ico
 │   ├── logo.svg
 │   ├── index.html
 │   ├── locales/
 │   │   ├── en.json
 │   │   └── zh.json
-│   └── assets/
+│   └── media/
 ├── src/
 │   ├── components/
 │   │   ├── Header.tsx
