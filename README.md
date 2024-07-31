@@ -75,55 +75,29 @@ illustration-idea-generator/
 ## User Flow
 
 1. User visits the website
-2. The main page displays a slot machine interface with five categories
-3. Initial random ideas and their corresponding images are shown in each slot
-4. User can click the "Generate" button to spin the slot machine and get new random ideas
-5. The slot machine animates, spinning the ideas and images
-6. User can switch between English and Chinese using language buttons in the header
-7. User can navigate to the Gallery page to view created illustrations
-8. In the Gallery, user can click on an illustration to view an enlarged version
-9. The enlarged view displays the image with a blurred overlay and close button
-10. User can close the enlarged view by clicking the close button or outside the image
+2. Main page displays a slot machine interface with five category slots
+3. User clicks "Generate" to spin for new random ideas
+4. User can switch between English and Chinese
+5. Gallery page showcases illustrations with generated idea tags
+6. Enlarged view available for illustrations in the gallery
 
 ## Technologies Used
 
 - React
 - TypeScript
-- react-i18next for internationalization
-- styled-components for styling
-
-## Development Notes
-
-- The `useRandomIdeas` hook in `src/hooks/useRandomIdeas.ts` manages the state and logic for generating random ideas
-- Ideas are stored in `src/data/ideas.ts` and can be easily updated or expanded
-- Gallery data is stored in `src/data/gallery.json`
-- Translations are managed using i18next, with language files stored in `public/locales/`
-- The project uses a component-based architecture with separate files for each major component
-- Styles are organized in the `src/styles` directory, with separate files for each component
-- The `theme.ts` file contains global theme variables used across the application
-- The `Typography.ts` file defines reusable text components
-
-## Recent Updates
-
-- Added a Gallery feature to showcase illustrations
-- Implemented an enlarged view for gallery items with a blurred overlay
-- Created separate components for GalleryItem and EnlargedView
-- Updated styling to use theme variables consistently
-- Improved z-index management for proper layering of components
+- react-i18next
+- styled-components
+- Netlify
 
 ## Future Improvements
 
-## Future Improvements
-
-- Implement backend API to replace mock data
-- Add more categories or ideas to the generator
-- Implement user accounts and ability to save favorite combinations
-- Enhance the spinning animation with more advanced effects or transitions
-- Add sharing functionality for gallery items
-- Develop an invitation system for select users to contribute their own ideas or images
-- Create a user-friendly interface for invited users to submit and manage their contributions
-- Implement a moderation system for reviewing and approving user-submitted content
-- Add attribution features to credit users for their contributed ideas and images in the generator and gallery
+- Implement backend API
+- Add more categories and ideas
+- User accounts with favorite combinations
+- Enhanced animations
+- Sharing functionality
+- User contribution system
+- Moderation system for user-submitted content
 
 ## License
 
