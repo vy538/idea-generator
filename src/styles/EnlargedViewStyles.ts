@@ -33,9 +33,8 @@ export const CloseButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-`;
-
-export const CloseIcon = styled.img`
-  width: 24px;
-  height: 24px;
+  img{
+    width: 24px;
+    height: 24px;
+  }
 `;

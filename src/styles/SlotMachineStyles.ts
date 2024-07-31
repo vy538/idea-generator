@@ -23,7 +23,7 @@ export const SlotWindowWrapper = styled.div`
   grid-template-columns: repeat(5, 1fr);
   gap: 32px;
   width: 100%;
-  margin-bottom: 120px;
+  margin-bottom: 60px;
 `;
 
 
@@ -47,7 +47,7 @@ export const ColumnHeader = styled(H3)<{ lang: 'en' | 'zh' }>`
 `;
 
 export const SlotWindow = styled.div`
-  height: 360px;
+  height: 480px;
   width: 100%;
   overflow: hidden;
   background-color: ${({ theme }) => theme.colors.background};
@@ -92,7 +92,7 @@ export const SlotContent = styled.div<{ spinning: boolean; duration: number; del
 `;
 
 export const Slot = styled.div`
-  height: 100px; // Keep this the same
+  height: 140px; // Keep this the same
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -102,10 +102,10 @@ export const Slot = styled.div`
 `;
 
 export const IdeaImage = styled.img`
-  width: 60px;
-  height: 60px;
+  width: 100px;
+  height: 100px;
   object-fit: contain;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
 `;
 
 export const IdeaText = styled(Body)<{ lang: 'en' | 'zh' }>`
@@ -116,8 +116,4 @@ export const IdeaText = styled(Body)<{ lang: 'en' | 'zh' }>`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-`;
-
-
-export const GenerateButtonWrapper = styled.div`
 `;

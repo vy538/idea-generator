@@ -12,8 +12,8 @@ const EnlargedView: React.FC<EnlargedViewProps> = ({ imageUrl, onClose }) => {
     <Overlay onClick={onClose}>
       <EnlargedImage src={imageUrl} alt="Enlarged view" onClick={(e) => e.stopPropagation()} />
       <CloseButton onClick={onClose}>
-  <img src={require('../assets/icons/close-icon.svg').default} alt="Close" />
-</CloseButton>
+        <img src="/assets/icons/close-icon.svg" alt="Close" />
+      </CloseButton>
     </Overlay>
   );
 };

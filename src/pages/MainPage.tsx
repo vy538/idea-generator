@@ -14,7 +14,7 @@ const MainPage: React.FC = () => {
   return (
     <>
       <VideoBackground autoPlay loop muted playsInline>
-        <source src="/media/background.mp4" type="video/mp4" />
+        <source src="/assets/video/background.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </VideoBackground>
       <MainPageWrapper>

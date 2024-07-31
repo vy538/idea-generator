@@ -10,8 +10,7 @@ import {
   Slot,
   IdeaText,
   IdeaImage,
-  ColumnHeader,
-  GenerateButtonWrapper
+  ColumnHeader
 } from '../styles/SlotMachineStyles';
 import GenerateButton from './GenerateButton';
 import { Idea } from '../types';
@@ -98,9 +97,7 @@ const SlotMachine: React.FC<Props> = ({ ideas, spinning, onGenerate }) => {
           </SlotColumn>
         ))}
       </SlotWindowWrapper>
-      <GenerateButtonWrapper>
         <GenerateButton onClick={onGenerate} />
-      </GenerateButtonWrapper>
     </SlotMachineWrapper>
   );
 };

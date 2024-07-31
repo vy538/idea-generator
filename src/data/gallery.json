@@ -1,12 +1,12 @@
 [
   {
     "id": 1,
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEikmx4VupmJ8_0o_0tXxKyfMIPBsSCW1WPqe69larq_HT0wF2TDj4Mj0CCi3AEaFMo0atevfDN5I7D2l-Fuykaxm0FM2HKyIrMTW0WXmV5fTJcuLzH4wCDAoKPL8q3bqUEBz4lgG7ovjGU/s180-c/kandume_tomato.png",
+    "imageUrl": "/assets/images/gallery/magc_burger.JPG",
     "author": {
-      "name": "test author",
-      "email": "abc@example.com",
-      "instagram": "@test",
-      "github": "https://github.com/test"
+      "name": "Vic Yen",
+      "email": "good5538@gmail.com",
+      "instagram": "@_vicvicyen",
+      "github": "https://github.com/vy538"
     },
     "ideaReferences": [
       {
