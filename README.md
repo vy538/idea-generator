@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/96c6f571-15ef-4cca-9b4e-9ce54f755992/deploy-status)](https://app.netlify.com/sites/idea-generator-vy538/deploys)
+
 # Illustration Idea Generator
 
 This project is a web application that generates random illustration ideas using a slot machine-like interface. It supports both English and Chinese languages and includes a gallery feature to showcase illustrations.
