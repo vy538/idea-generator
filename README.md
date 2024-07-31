@@ -1,6 +1,6 @@
 # Illustration Idea Generator
 
-This project is a web application that generates random illustration ideas using a slot machine-like interface. It supports both English and Chinese languages.
+This project is a web application that generates random illustration ideas using a slot machine-like interface. It supports both English and Chinese languages and includes a gallery feature to showcase illustrations.
 
 ## Features
 
@@ -9,7 +9,8 @@ This project is a web application that generates random illustration ideas using
 - Animated slot machine spinning effect
 - Responsive design that works on both desktop and mobile devices
 - Bilingual support (English and Chinese)
-- Gallery page to showcase created illustrations (to be implemented)
+- Gallery page to showcase created illustrations
+- Enlarged view for gallery items with interactive overlay
 
 ## Project Structure
 
@@ -21,13 +22,17 @@ illustration-idea-generator/
 │   ├── locales/
 │   │   ├── en.json
 │   │   └── zh.json
-│   └── media/
+│   └── assets/
+│       └── icons/
+│           └── close-icon.svg
 ├── src/
 │   ├── components/
 │   │   ├── Header.tsx
 │   │   ├── SlotMachine.tsx
 │   │   ├── GenerateButton.tsx
-│   │   └── Gallery.tsx
+│   │   ├── Gallery.tsx
+│   │   ├── GalleryItem.tsx
+│   │   └── EnlargedView.tsx
 │   ├── pages/
 │   │   ├── MainPage.tsx
 │   │   └── GalleryPage.tsx
@@ -40,13 +45,14 @@ illustration-idea-generator/
 │   │   └── ideas.ts
 │   ├── styles/
 │   │   ├── theme.ts
+│   │   ├── Typography.ts
 │   │   ├── HeaderStyles.ts
 │   │   ├── GlobalStyles.ts
 │   │   ├── LayoutStyles.ts
 │   │   ├── SlotMachineStyles.ts
-│   │   ├── Typography.ts
 │   │   ├── GenerateButtonStyles.ts
-│   │   └── GalleryStyles.ts
+│   │   ├── GalleryStyles.ts
+│   │   └── EnlargedViewStyles.ts
 │   ├── types/
 │   │   └── index.ts
 │   ├── utils/
@@ -57,6 +63,7 @@ illustration-idea-generator/
 ├── package.json
 ├── tsconfig.json
 └── README.md
+
 ```
 
 ## Setup and Installation
@@ -73,7 +80,10 @@ illustration-idea-generator/
 4. User can click the "Generate" button to spin the slot machine and get new random ideas
 5. The slot machine animates, spinning the ideas and images
 6. User can switch between English and Chinese using language buttons in the header
-7. User can navigate to the Gallery page (to be implemented) to view created illustrations
+7. User can navigate to the Gallery page to view created illustrations
+8. In the Gallery, user can click on an illustration to view an enlarged version
+9. The enlarged view displays the image with a blurred overlay and close button
+10. User can close the enlarged view by clicking the close button or outside the image
 
 ## Technologies Used
 
@@ -86,19 +96,34 @@ illustration-idea-generator/
 
 - The `useRandomIdeas` hook in `src/hooks/useRandomIdeas.ts` manages the state and logic for generating random ideas
 - Ideas are stored in `src/data/ideas.ts` and can be easily updated or expanded
-- Each idea now includes an image property for visual representation
+- Gallery data is stored in `src/data/gallery.json`
 - Translations are managed using i18next, with language files stored in `public/locales/`
 - The project uses a component-based architecture with separate files for each major component
-- The `SlotMachine` component now includes an animated spinning effect for a more engaging user experience
+- Styles are organized in the `src/styles` directory, with separate files for each component
+- The `theme.ts` file contains global theme variables used across the application
+- The `Typography.ts` file defines reusable text components
+
+## Recent Updates
+
+- Added a Gallery feature to showcase illustrations
+- Implemented an enlarged view for gallery items with a blurred overlay
+- Created separate components for GalleryItem and EnlargedView
+- Updated styling to use theme variables consistently
+- Improved z-index management for proper layering of components
 
 ## Future Improvements
 
-- Implement the Gallery page to showcase created illustrations
-- Add functionality to save or share generated ideas
+## Future Improvements
+
 - Implement backend API to replace mock data
 - Add more categories or ideas to the generator
 - Implement user accounts and ability to save favorite combinations
 - Enhance the spinning animation with more advanced effects or transitions
+- Add sharing functionality for gallery items
+- Develop an invitation system for select users to contribute their own ideas or images
+- Create a user-friendly interface for invited users to submit and manage their contributions
+- Implement a moderation system for reviewing and approving user-submitted content
+- Add attribution features to credit users for their contributed ideas and images in the generator and gallery
 
 ## License
 

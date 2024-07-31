@@ -15,21 +15,20 @@ import { GalleryItem as GalleryItemType, Idea, Category } from '../types';
 interface GalleryItemProps {
   item: GalleryItemType;
   getIdeaById: (category: Category, id: string) => Idea | undefined;
+  onItemClick: (item: GalleryItemType) => void;
 }
 
-const GalleryItem: React.FC<GalleryItemProps> = ({ item, getIdeaById }) => {
+const GalleryItem: React.FC<GalleryItemProps> = ({ item, getIdeaById,onItemClick }) => {
   const { t, i18n } = useTranslation();
 
   return (
-    <IllustrationCard>
+    <IllustrationCard onClick={() => onItemClick(item)}>
       <IllustrationImage src={item.imageUrl} alt={`Illustration ${item.id}`} />
       <Overlay className="overlay">
         <AuthorInfo lang={i18n.language as 'en' | 'zh'}>{item.author.instagram}</AuthorInfo>
         <TagsContainer>
           {item.ideaReferences.map((ref, index) => {
             const idea = getIdeaById(ref.category, ref.id);
-
-            console.log(idea)
             if (!idea) return null;
             return (
               <Tag lang={i18n.language as 'en' | 'zh'} key={index} category={ref.category}>
