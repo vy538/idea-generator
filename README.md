@@ -25,8 +25,6 @@ illustration-idea-generator/
 │   │   ├── en.json
 │   │   └── zh.json
 │   └── assets/
-│       └── icons/
-│           └── close-icon.svg
 ├── src/
 │   ├── components/
 │   │   ├── Header.tsx
@@ -59,6 +57,8 @@ illustration-idea-generator/
 │   │   └── index.ts
 │   ├── utils/
 │   ├── assets/
+│   │   └── icons/
+│   │       └── close-icon.svg
 │   ├── i18n.ts
 │   ├── App.tsx
 │   └── index.tsx
