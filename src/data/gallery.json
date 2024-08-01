@@ -11,23 +11,19 @@
     "ideaReferences": [
       {
         "category": "adjective",
-        "id": "Mysterious"
+        "id": "Cheerful"
       },
       {
         "category": "character",
-        "id": "Wizard"
+        "id": "Gender Neutral"
       },
       {
         "category": "location",
-        "id": "Ancient Forest"
-      },
-      {
-        "category": "verb",
-        "id": "Conquer"
+        "id": "Fast Food Restaurant"
       },
       {
         "category": "element",
-        "id": "Time Machine"
+        "id": "Magic"
       }
     ]
   }
