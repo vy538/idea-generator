@@ -14,24 +14,42 @@ export const VideoBackground = styled.video`
   width: auto;
   height: auto;
   z-index: -1;
-  object-fit: fill;
+  object-fit: cover;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    object-fit: cover;
+  }
 `;
 
 export const MainPageWrapper = styled(PageWrapper)`
-  // Add any specific styles for the main page here
   position: relative;
   z-index: 1;
   height: 100vh;
   overflow-y: hidden;
   overflow-x: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    padding: 20px;
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto;
+  }
 `;
 
 export const GalleryPageWrapper = styled(PageWrapper)`
-  // Add any specific styles for the gallery page here
   background-color: ${({ theme }) => theme.colors.background};
   padding: 60px 0px;
   position: relative;
   z-index: 1;
   height: 100vh;
   overflow-x: hidden;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    padding: 80px 10px 20px;
+    height: auto;
+    min-height: 100vh;
+  }
 `;
