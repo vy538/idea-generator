@@ -7,9 +7,7 @@ This project is a web application that generates random illustration ideas using
 ## Features
 
 - Generates random ideas for illustrations across five categories: adjective, character, location, verb, and other element
-- Displays small illustrations representing each idea
 - Animated slot machine spinning effect
-- Responsive design that works on both desktop and mobile devices
 - Bilingual support (English and Chinese)
 - Gallery page to showcase created illustrations
 - Enlarged view for gallery items with interactive overlay
@@ -89,11 +87,11 @@ illustration-idea-generator/
 - React
 - TypeScript
 - react-i18next
-- styled-components
 - Netlify
 
 ## Future Improvements
 
+- Responsive design that works on both desktop and mobile devices
 - Implement backend API
 - Add more categories and ideas
 - User accounts with favorite combinations
