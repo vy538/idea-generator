@@ -1,8 +1,8 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/96c6f571-15ef-4cca-9b4e-9ce54f755992/deploy-status)](https://app.netlify.com/sites/idea-generator-vy538/deploys)
-
 # Illustration Idea Generator
 
-This project is a web application that generates random illustration ideas using a slot machine-like interface. It supports both English and Chinese languages and includes a gallery feature to showcase illustrations. This project was developed with assistance from Claude, an AI assistant created by Anthropic.
+[![Netlify Status](https://api.netlify.com/api/v1/badges/96c6f571-15ef-4cca-9b4e-9ce54f755992/deploy-status)](https://app.netlify.com/sites/idea-generator-vy538/deploys)
+
+This project is a responsive web application that generates random illustration ideas using a slot machine-like interface. It supports both English and Chinese languages and includes a gallery feature to showcase illustrations. This project was developed with assistance from Claude, an AI assistant created by Anthropic.
 
 ## Features
 
@@ -11,6 +11,8 @@ This project is a web application that generates random illustration ideas using
 - Bilingual support (English and Chinese)
 - Gallery page to showcase created illustrations
 - Enlarged view for gallery items with interactive overlay
+- Responsive design for desktop, tablet, and mobile devices
+- Mobile-friendly navigation with hamburger menu
 
 ## Project Structure
 
@@ -27,6 +29,8 @@ illustration-idea-generator/
 ├── src/
 │   ├── components/
 │   │   ├── Header.tsx
+│   │   ├── DesktopHeader.tsx
+│   │   ├── MobileHeader.tsx
 │   │   ├── SlotMachine.tsx
 │   │   ├── GenerateButton.tsx
 │   │   ├── Gallery.tsx
@@ -46,6 +50,7 @@ illustration-idea-generator/
 │   │   ├── theme.ts
 │   │   ├── Typography.ts
 │   │   ├── HeaderStyles.ts
+│   │   ├── MobileHeaderStyles.ts
 │   │   ├── GlobalStyles.ts
 │   │   ├── LayoutStyles.ts
 │   │   ├── SlotMachineStyles.ts
@@ -75,23 +80,25 @@ illustration-idea-generator/
 
 ## User Flow
 
-1. User visits the website
+1. User visits the website on desktop, tablet, or mobile device
 2. Main page displays a slot machine interface with five category slots
 3. User clicks "Generate" to spin for new random ideas
 4. User can switch between English and Chinese
 5. Gallery page showcases illustrations with generated idea tags
-6. Enlarged view available for illustrations in the gallery
+6. Enlarged view available for illustrations in the gallery on all devices
+7. Mobile users can access navigation options via a hamburger menu
 
 ## Technologies Used
 
 - React
 - TypeScript
 - react-i18next
+- styled-components
+- react-responsive
 - Netlify
 
 ## Future Improvements
 
-- Responsive design that works on both desktop and mobile devices
 - Implement backend API
 - Add more categories and ideas
 - User accounts with favorite combinations

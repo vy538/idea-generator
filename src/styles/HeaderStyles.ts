@@ -3,7 +3,6 @@ import { NavBarLink, SecondaryNavBarLink } from './Typography';
 
 export const HeaderWrapper = styled.header<{ lang: 'en' | 'zh' }>`
   height: 60px;
-  background-color: transparent;
   position: fixed;
   top: 0;
   left: 0;

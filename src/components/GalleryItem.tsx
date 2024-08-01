@@ -1,5 +1,3 @@
-// src/components/GalleryItem.tsx
-
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -11,6 +9,7 @@ import {
   Tag
 } from '../styles/GalleryStyles';
 import { GalleryItem as GalleryItemType, Idea, Category } from '../types';
+import { useMediaQuery } from 'react-responsive';
 
 interface GalleryItemProps {
   item: GalleryItemType;
@@ -18,8 +17,9 @@ interface GalleryItemProps {
   onItemClick: (item: GalleryItemType) => void;
 }
 
-const GalleryItem: React.FC<GalleryItemProps> = ({ item, getIdeaById,onItemClick }) => {
+const GalleryItem: React.FC<GalleryItemProps> = ({ item, getIdeaById, onItemClick }) => {
   const { t, i18n } = useTranslation();
+  const isMobile = useMediaQuery({ maxWidth: 768 });
 
   return (
     <IllustrationCard onClick={() => onItemClick(item)}>
@@ -32,7 +32,9 @@ const GalleryItem: React.FC<GalleryItemProps> = ({ item, getIdeaById,onItemClick
             if (!idea) return null;
             return (
               <Tag lang={i18n.language as 'en' | 'zh'} key={index} category={ref.category}>
-                {t(`categories.${ref.category}`)}: {i18n.language.startsWith('zh') ? idea.text.zh : idea.text.en}
+                {isMobile ? t(`categories.${ref.category}`).charAt(0) : t(`categories.${ref.category}`)}:
+                {' '}
+                {i18n.language.startsWith('zh') ? idea.text.zh : idea.text.en}
               </Tag>
             );
           })}
