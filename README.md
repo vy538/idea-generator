@@ -2,7 +2,7 @@
 
 # Illustration Idea Generator
 
-This project is a web application that generates random illustration ideas using a slot machine-like interface. It supports both English and Chinese languages and includes a gallery feature to showcase illustrations.
+This project is a web application that generates random illustration ideas using a slot machine-like interface. It supports both English and Chinese languages and includes a gallery feature to showcase illustrations. This project was developed with assistance from Claude, an AI assistant created by Anthropic.
 
 ## Features
 
