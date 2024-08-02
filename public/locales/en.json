@@ -1,7 +1,11 @@
 {
   "header": {
     "home": "Home",
-    "gallery": "Gallery"
+    "gallery": "Gallery",
+    "addIdea": "Add Idea",
+    "admin": "Admin",
+    "login": "Login",
+    "logout": "Logout"
   },
   "mainPage": {
     "generate": "Generate",

@@ -12,8 +12,6 @@ export const HeaderWrapper = styled.header<{ lang: 'en' | 'zh' }>`
   align-items: center;
   padding: 0 20px;
   font-family: ${({ theme, lang }) => {
-  
-    console.log('HeaderWrapper render. Theme:', theme, 'Lang:', lang);
   if (!theme || !theme.fonts || !theme.fonts[lang]) {
       console.error('Theme or fonts not available in HeaderWrapper');
       return 'Arial, sans-serif'; // Fallback
@@ -63,5 +61,22 @@ export const LogoWrapper = styled.div`
   img {
     width: 80px;
     height: 40px;
+  }
+`;
+
+export const AuthButton = styled.button`
+  background: none;
+  border: 2px solid ${({ theme }) => theme.colors.primaryAccent};
+  border-radius: 20px;
+  cursor: pointer;
+  padding: 8px 16px;
+  font-size: ${({ theme }) => theme.typography.body.fontSize};
+  color: ${({ theme }) => theme.colors.primaryText};
+  font-weight: ${({ theme }) => theme.fonts.en.weights.medium};
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.primaryAccent};
+    color: ${({ theme }) => theme.colors.background};
   }
 `;

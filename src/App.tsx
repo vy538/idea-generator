@@ -10,6 +10,8 @@ import { GlobalStyles } from './styles/GlobalStyles';
 
 import { theme } from './styles/theme';
 import { ThemeProvider } from 'styled-components';
+import AddIdeaPage from './pages/AddIdeaPage';
+import AdminPage from './pages/AdminPage';
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <>
@@ -19,7 +21,6 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
 );
 
 function App() {
-  console.log('App rendering. Theme:', JSON.stringify(theme, null, 2));
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles/>
@@ -29,6 +30,8 @@ function App() {
             <Routes>
               <Route path="/" element={<Layout><MainPage /></Layout>} />
               <Route path="/gallery" element={<Layout><GalleryPage /></Layout>} />
+              <Route path="/add-idea" element={<Layout><AddIdeaPage /></Layout>} />
+              <Route path="/admin" element={<Layout><AdminPage /></Layout>} />
             </Routes>
           </Suspense>
         </Router>

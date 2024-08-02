@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const PageWrapper = styled.div`
   min-height: 100vh;
   box-sizing: border-box;
+  background-color: ${({ theme }) => theme.colors.background};
 `;
 
 export const VideoBackground = styled.video`
@@ -34,15 +35,14 @@ export const MainPageWrapper = styled(PageWrapper)`
   display: flex;
   align-items: center;
   justify-content: center;
-    padding: 60px 20px;
-    height: auto;
-    min-height: 100vh;
-    overflow-y: auto;
+  padding: 60px 20px;
+  height: auto;
+  min-height: 100vh;
+  overflow-y: auto;
   }
 `;
 
 export const GalleryPageWrapper = styled(PageWrapper)`
-  background-color: ${({ theme }) => theme.colors.background};
   padding: 60px 0px;
   position: relative;
   z-index: 1;

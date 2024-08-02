@@ -1,7 +1,11 @@
 {
   "header": {
     "home": "首頁",
-    "gallery": "畫廊"
+    "gallery": "畫廊",
+    "addIdea": "增加選項",
+    "admin": "Admin",
+    "login": "登入",
+    "logout": "登出"
   },
   "mainPage": {
     "generate": "生成",
