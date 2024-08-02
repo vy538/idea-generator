@@ -53,6 +53,6 @@ export const theme = {
   },
   breakpoints: {
     mobile: '768px',
-    tablet: '1024px',
+    tablet: '1366px',
   },
 };

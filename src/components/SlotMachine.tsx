@@ -3,6 +3,7 @@ import { useMediaQuery } from 'react-responsive';
 import MobileSlotMachine from './MobileSlotMachine';
 import DesktopSlotMachine from './DesktopSlotMachine';
 import { Idea } from '../types';
+import { theme } from '../styles/theme';
 
 interface Props {
   ideas: Idea[];
@@ -11,7 +12,7 @@ interface Props {
 }
 
 const SlotMachine: React.FC<Props> = (props) => {
-  const isMobile = useMediaQuery({ maxWidth: 768 });
+  const isMobile = useMediaQuery({ maxWidth: theme.breakpoints.mobile });
 
   return isMobile ? <MobileSlotMachine {...props} /> : <DesktopSlotMachine {...props} />;
 };

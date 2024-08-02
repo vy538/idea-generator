@@ -26,9 +26,10 @@ export const StyledButton = styled.button<{ lang: 'en' | 'zh' }>`
   }
 
   /* Mobile styles */
-  @media (max-width: 768px) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     padding: 16px 36px;
     font-size: 36px;
+    width: 100%;
     border-width: 4px;
     border-radius: 75px;
     box-shadow: 5px 5px ${({ theme }) => theme.colors.primaryText};

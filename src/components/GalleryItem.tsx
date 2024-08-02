@@ -10,6 +10,7 @@ import {
 } from '../styles/GalleryStyles';
 import { GalleryItem as GalleryItemType, Idea, Category } from '../types';
 import { useMediaQuery } from 'react-responsive';
+import { theme } from '../styles/theme';
 
 interface GalleryItemProps {
   item: GalleryItemType;
@@ -19,7 +20,7 @@ interface GalleryItemProps {
 
 const GalleryItem: React.FC<GalleryItemProps> = ({ item, getIdeaById, onItemClick }) => {
   const { t, i18n } = useTranslation();
-  const isMobile = useMediaQuery({ maxWidth: 768 });
+  const isMobile = useMediaQuery({ maxWidth: theme.breakpoints.mobile });
 
   return (
     <IllustrationCard onClick={() => onItemClick(item)}>

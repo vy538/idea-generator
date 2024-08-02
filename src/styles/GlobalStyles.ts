@@ -4,18 +4,20 @@ export const GlobalStyles = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    overflow: hidden;
-    height: 100vh;
     width: 100vw;
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 
   #root {
-    height: 100%;
+    min-height: 100vh;
     width: 100%;
   }
 
-    @media (max-width: 768px) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     body {
       font-size: 14px;
     }
+  }
 `;

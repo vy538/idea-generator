@@ -18,6 +18,7 @@ export const VideoBackground = styled.video`
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     object-fit: cover;
+    right: -50wh;
   }
 `;
 
@@ -27,12 +28,13 @@ export const MainPageWrapper = styled(PageWrapper)`
   height: 100vh;
   overflow-y: hidden;
   overflow-x: hidden;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+
   display: flex;
   align-items: center;
   justify-content: center;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    padding: 20px;
+    padding: 60px 20px;
     height: auto;
     min-height: 100vh;
     overflow-y: auto;
