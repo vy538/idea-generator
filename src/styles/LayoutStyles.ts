@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const PageWrapper = styled.div`
   min-height: 100vh;
   box-sizing: border-box;
-  background-color: ${({ theme }) => theme.colors.background};
 `;
 
 export const VideoBackground = styled.video`
@@ -44,6 +43,8 @@ export const MainPageWrapper = styled(PageWrapper)`
 `;
 
 export const GalleryPageWrapper = styled(PageWrapper)`
+
+  background-color: ${({ theme }) => theme.colors.background};
   padding: 60px 20px;
   position: relative;
   z-index: 1;
@@ -59,5 +60,6 @@ export const GalleryPageWrapper = styled(PageWrapper)`
 
 export const AddIdeaPageWrapper = styled(PageWrapper)`
 
+  background-color: ${({ theme }) => theme.colors.background};
   padding: 60px 20px;
 `;
