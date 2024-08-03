@@ -29,7 +29,8 @@ export const MainPageWrapper = styled(PageWrapper)`
   height: 100vh;
   overflow-y: hidden;
   overflow-x: hidden;
-
+  padding: 60px 0px;
+  
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
 
   display: flex;
@@ -43,7 +44,7 @@ export const MainPageWrapper = styled(PageWrapper)`
 `;
 
 export const GalleryPageWrapper = styled(PageWrapper)`
-  padding: 60px 0px;
+  padding: 60px 20px;
   position: relative;
   z-index: 1;
   height: 100vh;
@@ -54,4 +55,9 @@ export const GalleryPageWrapper = styled(PageWrapper)`
     height: auto;
     min-height: 100vh;
   }
+`;
+
+export const AddIdeaPageWrapper = styled(PageWrapper)`
+
+  padding: 60px 20px;
 `;

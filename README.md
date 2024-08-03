@@ -13,6 +13,8 @@ This project is a responsive web application that generates random illustration 
 - Enlarged view for gallery items with interactive overlay
 - Responsive design for desktop, tablet, and mobile devices
 - Mobile-friendly navigation with hamburger menu
+- User authentication with Google Sign-In
+- Admin panel for managing ideas and gallery items
 
 ## Project Structure
 
@@ -32,17 +34,23 @@ illustration-idea-generator/
 │   │   ├── DesktopHeader.tsx
 │   │   ├── MobileHeader.tsx
 │   │   ├── SlotMachine.tsx
+│   │   ├── MobileSlotMachine.tsx
+│   │   ├── DesktopSlotMachine.tsx
 │   │   ├── GenerateButton.tsx
 │   │   ├── Gallery.tsx
 │   │   ├── GalleryItem.tsx
 │   │   └── EnlargedView.tsx
 │   ├── pages/
 │   │   ├── MainPage.tsx
+│   │   ├── AddIdeaPage.tsx
+│   │   ├── AdminPage.tsx
 │   │   └── GalleryPage.tsx
 │   ├── hooks/
+│   │   ├── useUserRole.ts
 │   │   └── useRandomIdeas.ts
 │   ├── services/
-│   │   └── api.ts
+│   │   ├── database.tsx
+│   │   └── firebase.ts
 │   ├── data/
 │   │   ├── gallery.json
 │   │   └── ideas.ts
@@ -54,6 +62,7 @@ illustration-idea-generator/
 │   │   ├── GlobalStyles.ts
 │   │   ├── LayoutStyles.ts
 │   │   ├── SlotMachineStyles.ts
+│   │   ├── MobileSlotMachineStyles.ts
 │   │   ├── GenerateButtonStyles.ts
 │   │   ├── GalleryStyles.ts
 │   │   └── EnlargedViewStyles.ts
@@ -76,22 +85,37 @@ illustration-idea-generator/
 
 1. Clone the repository
 2. Run `npm install` to install dependencies
-3. Run `npm start` to start the development server
+3. Set up a Firebase project and obtain the configuration
+4. Create a `.env` file in the root directory with the following variables:
+   REACT_APP_FIREBASE_API_KEY=your_api_key
+   REACT_APP_FIREBASE_AUTH_DOMAIN=your_auth_domain
+   REACT_APP_FIREBASE_PROJECT_ID=your_project_id
+   REACT_APP_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+   REACT_APP_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
+   REACT_APP_FIREBASE_APP_ID=your_app_id
+   REACT_APP_ADMIN_EMAIL=your_admin_email@example.com
+5. Place your Firebase service account key (serviceAccountKey.json) in the `scripts/` directory
+6. Run `npm run populate-db` to populate the initial data in Firebase
+7. Run `npm start` to start the development server
 
 ## User Flow
 
 1. User visits the website on desktop, tablet, or mobile device
 2. Main page displays a slot machine interface with five category slots
-3. User clicks "Generate" to spin for new random ideas
-4. User can switch between English and Chinese
-5. Gallery page showcases illustrations with generated idea tags
-6. Enlarged view available for illustrations in the gallery on all devices
-7. Mobile users can access navigation options via a hamburger menu
+3. User can log in using Google authentication
+4. User clicks "Generate" to spin for new random ideas
+5. User can switch between English and Chinese
+6. Gallery page showcases illustrations with generated idea tags
+7. Enlarged view available for illustrations in the gallery on all devices
+8. Mobile users can access navigation options via a hamburger menu
+9. Logged-in users can access the "Add Idea" page
+10. Admin users can access the admin panel for managing ideas and gallery items
 
 ## Technologies Used
 
 - React
 - TypeScript
+- Firebase (Authentication, Realtime Database)
 - react-i18next
 - styled-components
 - react-responsive
@@ -99,7 +123,7 @@ illustration-idea-generator/
 
 ## Future Improvements
 
-- Implement backend API
+- Implement more robust error handling
 - Add more categories and ideas
 - User accounts with favorite combinations
 - Enhanced animations

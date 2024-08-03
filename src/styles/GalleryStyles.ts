@@ -6,7 +6,6 @@ export const GalleryWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 32px;
-  padding: 20px;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     grid-template-columns: repeat(2, 1fr);
