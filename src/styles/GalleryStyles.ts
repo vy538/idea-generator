@@ -26,6 +26,10 @@ export const IllustrationCard = styled.div`
   aspect-ratio: 1 / 1;
   border: 4px solid ${({ theme }) => theme.colors.primaryText};
 
+  &:hover .overlay {
+    opacity: 1;
+  }
+
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     border-width: 2px;
   }
