@@ -21,6 +21,9 @@
     "location": "地點",
     "verb": "動詞",
     "element": "其他元素"
+  },  "inviteRequired": {
+    "title": "需要邀請碼",
+    "message": "您需要邀請碼才能訪問此頁面。請聯繫管理員獲取邀請碼。"
   },
   "generate": "開始！",
   "addIdea": {
