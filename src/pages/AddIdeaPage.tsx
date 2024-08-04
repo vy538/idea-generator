@@ -1,16 +1,35 @@
+// src/pages/AddIdeaPage.tsx
+
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Idea, Category, Language } from '../types';
+import AddIdeaForm from '../components/AddIdeaForm';
+import { H1 } from '../styles/Typography';
+import { addIdea } from '../services/database';
+import { AddIdeaPageWrapper } from '../styles/LayoutStyles';
+import { useAuth } from '../hooks/useAuth';
 
 const AddIdeaPage: React.FC = () => {
+  const { t, i18n } = useTranslation();
+  const { user } = useAuth();
   const [idea, setIdea] = useState<Partial<Idea>>({
     category: 'adjective',
     text: { en: '', zh: '' },
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement submission logic
-    console.log('Submitting idea:', idea);
+    if (idea.category && idea.text?.en && idea.text?.zh) {
+      try {
+        await addIdea(idea.category, idea as Idea);
+        // Reset form or show success message
+        setIdea({ category: 'adjective', text: { en: '', zh: '' } });
+        alert(t('addIdea.success'));
+      } catch (error) {
+        console.error('Error adding idea:', error);
+        alert(t('addIdea.error'));
+      }
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -26,30 +45,14 @@ const AddIdeaPage: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <select name="category" value={idea.category} onChange={handleChange}>
-        <option value="adjective">Adjective</option>
-        <option value="character">Character</option>
-        <option value="location">Location</option>
-        <option value="verb">Verb</option>
-        <option value="element">Element</option>
-      </select>
-      <input
-        type="text"
-        name="en"
-        value={idea.text!.en}
-        onChange={handleChange}
-        placeholder="English text"
-      />
-      <input
-        type="text"
-        name="zh"
-        value={idea.text!.zh}
-        onChange={handleChange}
-        placeholder="Chinese text"
-      />
-      <button type="submit">Add Idea</button>
-    </form>
+    <AddIdeaPageWrapper>
+      <H1 lang={i18n.language as 'en' | 'zh'}>{t('addIdea.title')}</H1>
+      {user ? (
+        <AddIdeaForm idea={idea} handleChange={handleChange} handleSubmit={handleSubmit} />
+      ) : (
+        <p>{t('addIdea.loginRequired')}</p>
+      )}
+    </AddIdeaPageWrapper>
   );
 };
 

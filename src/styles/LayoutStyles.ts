@@ -59,7 +59,9 @@ export const GalleryPageWrapper = styled(PageWrapper)`
 `;
 
 export const AddIdeaPageWrapper = styled(PageWrapper)`
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: ${({ theme }) => theme.colors.background};
   padding: 60px 20px;
 `;

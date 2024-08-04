@@ -21,6 +21,23 @@
     "location": "Location",
     "verb": "Verb",
     "element": "Other Element"
+  },
+  "generate": "Go!",
+  "addIdea": {
+    "title": "Add New Idea",
+    "categories": {
+      "adjective": "Adjective",
+      "character": "Character",
+      "location": "Location",
+      "verb": "Verb",
+      "element": "Other Element"
+    },
+    "placeholders": {
+      "english": "English text",
+      "chinese": "Chinese text"
+    },
+    "submit": "Submit",
+    "success": "New idea added successfully!",
+    "error": "Error adding idea. Please try again later."
   }
-  ,"generate": "Go!"
 }

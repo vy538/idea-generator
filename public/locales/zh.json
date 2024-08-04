@@ -21,5 +21,23 @@
     "location": "地點",
     "verb": "動詞",
     "element": "其他元素"
-  },"generate": "開始！"
+  },
+  "generate": "開始！",
+  "addIdea": {
+    "title": "增加新選項",
+    "categories": {
+      "adjective": "形容詞",
+      "character": "主角",
+      "location": "地點",
+      "verb": "動詞",
+      "element": "其他元素"
+    },
+    "placeholders": {
+      "english": "英文文字",
+      "chinese": "中文文字"
+    },
+    "submit": "提交",
+    "success": "成功添加新選項！",
+    "error": "添加選項時出錯，請稍後再試。"
+  }
 }
