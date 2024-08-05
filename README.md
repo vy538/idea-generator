@@ -16,7 +16,7 @@ This project is a responsive web application that generates random illustration 
 - User authentication with Google Sign-In
 - Role-based access control (Admin and User roles)
 - Invite code system for restricting access to idea submission
-- Admin panel for managing ideas, gallery items, and invite codes
+- Admin panel for managing ideas, gallery items, and users
 
 ## Project Structure
 
@@ -43,7 +43,10 @@ illustration-idea-generator/
 │   │   ├── GalleryItem.tsx
 │   │   ├── EnlargedView.tsx
 │   │   ├── PrivateRoute.tsx
-│   │   └── AddIdeaForm.tsx
+│   │   └── admin/
+│   │       ├── AdminIdeaItem.tsx
+│   │       ├── ManageIdeasSection.tsx
+│   │       └── ManageUsersSection.tsx
 │   ├── pages/
 │   │   ├── MainPage.tsx
 │   │   ├── AddIdeaPage.tsx
@@ -57,9 +60,8 @@ illustration-idea-generator/
 │   ├── services/
 │   │   ├── database.tsx
 │   │   └── firebase.ts
-│   ├── data/
-│   │   ├── gallery.json
-│   │   └── ideas.ts
+│   ├── utils/
+│   │   └── ideaUtils.ts
 │   ├── styles/
 │   │   ├── theme.ts
 │   │   ├── Typography.ts
@@ -72,10 +74,9 @@ illustration-idea-generator/
 │   │   ├── GenerateButtonStyles.ts
 │   │   ├── GalleryStyles.ts
 │   │   ├── EnlargedViewStyles.ts
-│   │   └── AddIdeaStyles.ts
+│   │   └── AdminPageStyles.ts
 │   ├── types/
 │   │   └── index.ts
-│   ├── utils/
 │   ├── assets/
 │   │   └── icons/
 │   │       └── close-icon.svg
@@ -116,7 +117,7 @@ illustration-idea-generator/
 7. Enlarged view available for illustrations in the gallery on all devices
 8. Mobile users can access navigation options via a hamburger menu
 9. Logged-in users with invite codes or admin status can access the "Add Idea" page
-10. Admin users can access the admin panel for managing ideas, gallery items, and invite codes
+10. Admin users can access the admin panel for managing ideas and users
 
 ## Technologies Used
 
@@ -126,6 +127,8 @@ illustration-idea-generator/
 - react-i18next
 - styled-components
 - react-responsive
+- react-tabs
+- react-table
 - Netlify
 
 ## Future Improvements
