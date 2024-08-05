@@ -7,11 +7,11 @@ import AddIdeaForm from '../components/AddIdeaForm';
 import { H1, Body } from '../styles/Typography';
 import { addIdea } from '../services/database';
 import { AddIdeaPageWrapper } from '../styles/LayoutStyles';
-import { useAuth } from '../hooks/useAuth';
+import { useAuthContext } from '../hooks/AuthContext';
 
 const AddIdeaPage: React.FC = () => {
   const { t, i18n } = useTranslation();
-  const { user, hasInviteCode, userRole } = useAuth();
+  const { user, hasInviteCode, userRole } = useAuthContext();
   const [idea, setIdea] = useState<Partial<Idea>>({
     category: 'adjective',
     text: { en: '', zh: '' },

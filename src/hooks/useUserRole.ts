@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { auth } from '../services/firebase';
-import { getDatabase, ref, onValue } from 'firebase/database';
+import { getDatabase, ref, onValue, set } from 'firebase/database';
 
 export const useUserRole = () => {
   const [role, setRole] = useState<string | null>(null);
@@ -19,8 +19,19 @@ export const useUserRole = () => {
           const db = getDatabase();
           const userRef = ref(db, `users/${user.uid}/role`);
           onValue(userRef, (snapshot) => {
-            console.log("Database role:", snapshot.val());
-            setRole(snapshot.val());
+            let userRole = snapshot.val();
+            console.log("Database role:", userRole);
+            if (userRole === null) {
+              // If the role is not set in the database, set it to 'user'
+              userRole = 'user';
+              set(userRef, userRole)
+                .then(() => console.log("Default role 'user' set in database"))
+                .catch((error) => console.error("Error setting default role:", error));
+            }
+            setRole(userRole);
+          }, (error) => {
+            console.error("Error fetching user role:", error);
+            setRole('user'); // Set a default role in case of error
           });
         }
       } else {

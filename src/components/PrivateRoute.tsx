@@ -15,14 +15,13 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({ children, requireInviteCode
 
   console.log("PrivateRoute:", { user: user?.email, hasInviteCode, userRole, requireInviteCode });
 
-  if (user === null) {
-    console.log("Redirecting to home: No user");
-    return <Navigate to="/" state={{ from: location }} replace />;
-  }
-
-  // If we're still loading the user data, show a loading indicator
   if (user === undefined || userRole === null) {
     return <div>Loading...</div>;
+  }
+
+  if (!user) {
+    console.log("Redirecting to home: No user");
+    return <Navigate to="/" state={{ from: location }} replace />;
   }
 
   if (requireInviteCode && !hasInviteCode && userRole !== 'admin') {
