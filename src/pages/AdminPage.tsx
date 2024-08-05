@@ -1,56 +1,76 @@
+// src/pages/AdminPage.tsx
+
 import React, { useState, useEffect } from 'react';
-import { Idea } from '../types';
-import { getDatabase, ref, onValue, push, remove } from 'firebase/database';
-import { useUserRole } from '../hooks/useUserRole';
+import { useTranslation } from 'react-i18next';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import { fetchIdeas, fetchUsers } from '../services/database';
+import { Idea, User } from '../types';
+import { AdminPageWrapper } from '../styles/AdminPageStyles';
+import ManageIdeasSection from '../components/admin/ManageIdeasSection';
+import ManageUsersSection from '../components/admin/ManageUsersSection';
+import { Body, H1 } from '../styles/Typography';
 
 const AdminPage: React.FC = () => {
-  const [ideas, setIdeas] = useState<Idea[]>([]);
-  const userRole = useUserRole();
+  const { t, i18n } = useTranslation();
+  const [ideas, setIdeas] = useState<Record<string, Idea[]>>({});
+  const [users, setUsers] = useState<User[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (userRole !== 'admin') return;
+    const loadData = async () => {
+      try {
+        const [ideasData, usersData] = await Promise.all([fetchIdeas(), fetchUsers()]);
+        const categorizedIdeas = Object.entries(ideasData).reduce((acc, [category, categoryIdeas]) => {
+          acc[category] = Object.values(categoryIdeas).map(idea => ({
+            ...idea,
+            category: category as Idea['category']
+          }));
+          return acc;
+        }, {} as Record<string, Idea[]>);
+        setIdeas(categorizedIdeas);
+        setUsers(usersData);
+      } catch (err) {
+        console.error("Error loading data:", err);
+        setError(t('admin.error.loading'));
+      } finally {
+        setLoading(false);
+      }
+    };
 
-    const db = getDatabase();
-    const ideasRef = ref(db, 'ideas');
-    onValue(ideasRef, (snapshot) => {
-      const data = snapshot.val();
-      const loadedIdeas = Object.values(data) as Idea[];
-      setIdeas(loadedIdeas);
-    });
-  }, [userRole]);
+    loadData();
+  }, [t]);
 
-  const handleAddImage = (ideaEn: string, imageUrl: string) => {
-    const db = getDatabase();
-    const ideaRef = ref(db, `ideas/${ideaEn}/image`);
-    push(ideaRef, imageUrl);
+  const onAddImage = (ideaEn: string, imageUrl: string) => {
+    // Implement this function
+    console.log('Add image', ideaEn, imageUrl);
   };
 
-  const handleDeleteIdea = (ideaEn: string) => {
-    const db = getDatabase();
-    const ideaRef = ref(db, `ideas/${ideaEn}`);
-    remove(ideaRef);
+  const onDeleteIdea = (ideaEn: string, category: string) => {
+    // Implement this function
+    console.log('Delete idea', ideaEn, category);
   };
 
-  if (userRole !== 'admin') {
-    return <div>You do not have permission to access this page.</div>;
-  }
+  if (loading) return <Body lang={i18n.language as 'en' | 'zh'}>{t('admin.loading')}</Body>;
+  if (error) return <Body lang={i18n.language as 'en' | 'zh'}>{error}</Body>;
 
   return (
-    <div>
-      <h1>Admin Page</h1>
-      {ideas.map((idea) => (
-        <div key={idea.text.en}>
-          <h2>{idea.text.en} / {idea.text.zh}</h2>
-          <p>Category: {idea.category}</p>
-          <input
-            type="text"
-            placeholder="Image URL"
-            onBlur={(e) => handleAddImage(idea.text.en, e.target.value)}
-          />
-          <button onClick={() => handleDeleteIdea(idea.text.en)}>Delete</button>
-        </div>
-      ))}
-    </div>
+    <AdminPageWrapper>
+      <H1 lang={i18n.language as 'en' | 'zh'}>{t('admin.title')}</H1>
+      <Tabs>
+        <TabList>
+          <Tab>{t('admin.tabs.manageIdeas')}</Tab>
+          <Tab>{t('admin.tabs.manageUsers')}</Tab>
+        </TabList>
+
+        <TabPanel>
+          <ManageIdeasSection ideas={ideas} onAddImage={onAddImage} onDeleteIdea={onDeleteIdea} />
+        </TabPanel>
+        <TabPanel>
+          <ManageUsersSection users={users} />
+        </TabPanel>
+      </Tabs>
+    </AdminPageWrapper>
   );
 };
 

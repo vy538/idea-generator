@@ -1,5 +1,5 @@
-import { getDatabase, ref, get, set, push, remove } from 'firebase/database';
-import { Idea, GalleryItem } from '../types';
+import { getDatabase, ref, get, push } from 'firebase/database';
+import { Idea, GalleryItem, User } from '../types';
 
 const db = getDatabase();
 
@@ -35,4 +35,9 @@ export const checkInviteCode = async (code: string): Promise<boolean> => {
 export const addInviteCode = async (code: string): Promise<void> => {
   const inviteCodesRef = ref(db, 'inviteCodes');
   await push(inviteCodesRef, code);
+};
+export const fetchUsers = async (): Promise<User[]> => {
+  const usersRef = ref(db, 'users');
+  const snapshot = await get(usersRef);
+  return Object.values(snapshot.val() || {});
 };

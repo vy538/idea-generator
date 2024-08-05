@@ -43,5 +43,28 @@
     "submit": "Submit",
     "success": "New idea added successfully!",
     "error": "Error adding idea. Please try again later."
+  },
+  "admin": {
+    "title": "Admin Panel",
+    "loading": "Loading admin data...",
+    "noPermission": "You do not have permission to access this page.",
+    "noIdeas": "No ideas found. Add some ideas to get started.",
+    "category": "Category",
+    "imageUrlPlaceholder": "Enter image URL",
+    "addImageButton": "Add Image",
+    "deleteButton": "Delete Idea",
+    "tabs": {
+      "manageIdeas": "Manage Ideas",
+      "manageUsers": "Manage Users"
+    },
+    "users": {
+      "email": "Email",
+      "hasInviteCode": "Has Invite Code",
+      "inviteCodeProvided": "Invite Code Provided"
+    },
+    "error": {
+      "loading": "Error loading admin data. Please check the console for details.",
+      "connection": "Error connecting to the database. Please try again later."
+    }
   }
 }

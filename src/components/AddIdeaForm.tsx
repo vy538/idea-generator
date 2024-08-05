@@ -1,7 +1,7 @@
 // src/components/AddIdeaForm.tsx
 
 import React from 'react';
-import { Idea, Category, Language } from '../types';
+import { Idea } from '../types';
 import { FormWrapper, StyledSelect, StyledInput, SubmitButton } from '../styles/AddIdeaStyles';
 import { useTranslation } from 'react-i18next';
 

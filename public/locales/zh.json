@@ -3,7 +3,7 @@
     "home": "首頁",
     "gallery": "畫廊",
     "addIdea": "增加選項",
-    "admin": "Admin",
+    "admin": "管理員",
     "login": "登入",
     "logout": "登出"
   },
@@ -21,11 +21,12 @@
     "location": "地點",
     "verb": "動詞",
     "element": "其他元素"
-  },  "inviteRequired": {
+  },
+  "generate": "開始！",
+  "inviteRequired": {
     "title": "需要邀請碼",
     "message": "您需要邀請碼才能訪問此頁面。請聯繫管理員獲取邀請碼。"
   },
-  "generate": "開始！",
   "addIdea": {
     "title": "增加新選項",
     "categories": {
@@ -42,5 +43,28 @@
     "submit": "提交",
     "success": "成功添加新選項！",
     "error": "添加選項時出錯，請稍後再試。"
+  },
+  "admin": {
+    "title": "管理員面板",
+    "loading": "加載管理員數據中...",
+    "noPermission": "您沒有權限訪問此頁面。",
+    "noIdeas": "沒有找到任何選項。請添加一些選項以開始。",
+    "category": "類別",
+    "imageUrlPlaceholder": "輸入圖片網址",
+    "addImageButton": "添加圖片",
+    "deleteButton": "刪除選項",
+    "tabs": {
+      "manageIdeas": "管理選項",
+      "manageUsers": "管理用戶"
+    },
+    "users": {
+      "email": "電子郵件",
+      "hasInviteCode": "有邀請碼",
+      "inviteCodeProvided": "已提供邀請碼"
+    },
+    "error": {
+      "loading": "加載管理員數據時出錯。請查看控制台以獲取詳細信息。",
+      "connection": "連接數據庫時出錯。請稍後再試。"
+    }
   }
 }

@@ -31,3 +31,8 @@ export interface IdeaReference {
   category: Category;
   id: string;
 }
+export interface User {
+  email: string;
+  hasInviteCode: boolean;
+  inviteCodeProvided: boolean;
+}
