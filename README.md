@@ -14,7 +14,9 @@ This project is a responsive web application that generates random illustration 
 - Responsive design for desktop, tablet, and mobile devices
 - Mobile-friendly navigation with hamburger menu
 - User authentication with Google Sign-In
-- Admin panel for managing ideas and gallery items
+- Role-based access control (Admin and User roles)
+- Invite code system for restricting access to idea submission
+- Admin panel for managing ideas, gallery items, and invite codes
 
 ## Project Structure
 
@@ -39,15 +41,19 @@ illustration-idea-generator/
 │   │   ├── GenerateButton.tsx
 │   │   ├── Gallery.tsx
 │   │   ├── GalleryItem.tsx
-│   │   └── EnlargedView.tsx
+│   │   ├── EnlargedView.tsx
+│   │   ├── PrivateRoute.tsx
+│   │   └── AddIdeaForm.tsx
 │   ├── pages/
 │   │   ├── MainPage.tsx
 │   │   ├── AddIdeaPage.tsx
 │   │   ├── AdminPage.tsx
-│   │   └── GalleryPage.tsx
+│   │   ├── GalleryPage.tsx
+│   │   └── InviteRequiredPage.tsx
 │   ├── hooks/
 │   │   ├── useUserRole.ts
-│   │   └── useRandomIdeas.ts
+│   │   ├── useAuth.ts
+│   │   └── AuthContext.tsx
 │   ├── services/
 │   │   ├── database.tsx
 │   │   └── firebase.ts
@@ -65,7 +71,8 @@ illustration-idea-generator/
 │   │   ├── MobileSlotMachineStyles.ts
 │   │   ├── GenerateButtonStyles.ts
 │   │   ├── GalleryStyles.ts
-│   │   └── EnlargedViewStyles.ts
+│   │   ├── EnlargedViewStyles.ts
+│   │   └── AddIdeaStyles.ts
 │   ├── types/
 │   │   └── index.ts
 │   ├── utils/
@@ -108,8 +115,8 @@ illustration-idea-generator/
 6. Gallery page showcases illustrations with generated idea tags
 7. Enlarged view available for illustrations in the gallery on all devices
 8. Mobile users can access navigation options via a hamburger menu
-9. Logged-in users can access the "Add Idea" page
-10. Admin users can access the admin panel for managing ideas and gallery items
+9. Logged-in users with invite codes or admin status can access the "Add Idea" page
+10. Admin users can access the admin panel for managing ideas, gallery items, and invite codes
 
 ## Technologies Used
 
@@ -130,6 +137,7 @@ illustration-idea-generator/
 - Sharing functionality
 - User contribution system
 - Moderation system for user-submitted content
+- Improved invite code management system
 
 ## License
 
