@@ -7,13 +7,15 @@ import i18n from './i18n';
 import Header from './components/Header';
 import MainPage from './pages/MainPage';
 import GalleryPage from './pages/GalleryPage';
+import AddIdeaPage from './pages/AddIdeaPage';
+import AdminPage from './pages/AdminPage';
+import InviteRequiredPage from './pages/InviteRequiredPage';
 import { PageWrapper } from './styles/LayoutStyles';
 import { GlobalStyles } from './styles/GlobalStyles';
 import { theme } from './styles/theme';
 import { ThemeProvider } from 'styled-components';
-import AddIdeaPage from './pages/AddIdeaPage';
-import AdminPage from './pages/AdminPage';
 import PrivateRoute from './components/PrivateRoute';
+import { AuthProvider } from './hooks/AuthContext';
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <>
@@ -27,28 +29,31 @@ function App() {
     <ThemeProvider theme={theme}>
       <GlobalStyles/>
       <I18nextProvider i18n={i18n}>
-        <Router>
-          <Suspense fallback="Loading...">
-            <Routes>
-              <Route path="/" element={<Layout><MainPage /></Layout>} />
-              <Route path="/gallery" element={<Layout><GalleryPage /></Layout>} />
-              <Route path="/add-idea" element={
-                <Layout>
-                  <PrivateRoute>
-                    <AddIdeaPage />
-                  </PrivateRoute>
-                </Layout>
-              } />
-              <Route path="/admin" element={
-                <Layout>
-                  <PrivateRoute>
-                    <AdminPage />
-                  </PrivateRoute>
-                </Layout>
-              } />
-            </Routes>
-          </Suspense>
-        </Router>
+        <AuthProvider>
+          <Router>
+            <Suspense fallback="Loading...">
+              <Routes>
+                <Route path="/" element={<Layout><MainPage /></Layout>} />
+                <Route path="/gallery" element={<Layout><GalleryPage /></Layout>} />
+                <Route path="/add-idea" element={
+                  <Layout>
+                    <PrivateRoute requireInviteCode>
+                      <AddIdeaPage />
+                    </PrivateRoute>
+                  </Layout>
+                } />
+                <Route path="/admin" element={
+                  <Layout>
+                    <PrivateRoute>
+                      <AdminPage />
+                    </PrivateRoute>
+                  </Layout>
+                } />
+                <Route path="/invite-required" element={<Layout><InviteRequiredPage /></Layout>} />
+              </Routes>
+            </Suspense>
+          </Router>
+        </AuthProvider>
       </I18nextProvider>
     </ThemeProvider> 
   );

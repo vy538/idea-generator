@@ -24,3 +24,15 @@ export const addGalleryItem = async (item: GalleryItem): Promise<void> => {
   const galleryRef = ref(db, 'gallery');
   await push(galleryRef, item);
 };
+
+export const checkInviteCode = async (code: string): Promise<boolean> => {
+  const inviteCodesRef = ref(db, 'inviteCodes');
+  const snapshot = await get(inviteCodesRef);
+  const inviteCodes = snapshot.val() || {};
+  return Object.values(inviteCodes).includes(code);
+};
+
+export const addInviteCode = async (code: string): Promise<void> => {
+  const inviteCodesRef = ref(db, 'inviteCodes');
+  await push(inviteCodesRef, code);
+};

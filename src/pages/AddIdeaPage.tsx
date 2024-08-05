@@ -4,14 +4,14 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Idea, Category, Language } from '../types';
 import AddIdeaForm from '../components/AddIdeaForm';
-import { H1 } from '../styles/Typography';
+import { H1, Body } from '../styles/Typography';
 import { addIdea } from '../services/database';
 import { AddIdeaPageWrapper } from '../styles/LayoutStyles';
 import { useAuth } from '../hooks/useAuth';
 
 const AddIdeaPage: React.FC = () => {
   const { t, i18n } = useTranslation();
-  const { user } = useAuth();
+  const { user, hasInviteCode, userRole } = useAuth();
   const [idea, setIdea] = useState<Partial<Idea>>({
     category: 'adjective',
     text: { en: '', zh: '' },
@@ -44,14 +44,26 @@ const AddIdeaPage: React.FC = () => {
     }
   };
 
+  if (!user) {
+    return (
+      <AddIdeaPageWrapper>
+        <Body lang={i18n.language as 'en' | 'zh'}>{t('addIdea.loginRequired')}</Body>
+      </AddIdeaPageWrapper>
+    );
+  }
+
+  if (!hasInviteCode && userRole !== 'admin') {
+    return (
+      <AddIdeaPageWrapper>
+        <Body lang={i18n.language as 'en' | 'zh'}>{t('addIdea.inviteRequired')}</Body>
+      </AddIdeaPageWrapper>
+    );
+  }
+
   return (
     <AddIdeaPageWrapper>
       <H1 lang={i18n.language as 'en' | 'zh'}>{t('addIdea.title')}</H1>
-      {user ? (
-        <AddIdeaForm idea={idea} handleChange={handleChange} handleSubmit={handleSubmit} />
-      ) : (
-        <p>{t('addIdea.loginRequired')}</p>
-      )}
+      <AddIdeaForm idea={idea} handleChange={handleChange} handleSubmit={handleSubmit} />
     </AddIdeaPageWrapper>
   );
 };
