@@ -53,6 +53,7 @@ const SlotMachine: React.FC<Props> = ({ ideas, spinning, onGenerate }) => {
 
   useEffect(() => {
     setDisplayedIdeas(initializeDisplayedIdeas(ideas));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ideas]);
 
   useEffect(() => {
@@ -83,6 +84,7 @@ const SlotMachine: React.FC<Props> = ({ ideas, spinning, onGenerate }) => {
 
       return () => clearInterval(interval);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [spinning, ideas]);
 
   if (displayedIdeas.length === 0) {

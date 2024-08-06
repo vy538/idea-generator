@@ -1,24 +1,8 @@
 import { getDatabase, ref, get, push, set } from 'firebase/database';
 import { Idea, GalleryItem, User, Category } from '../types';
+import { getDefaultImage } from '../utils/ideaUtils';
 
 const db = getDatabase();
-
-const getDefaultImage = (category: Category): string => {
-  switch (category) {
-    case 'character':
-      return '/assets/images/ideas/char.png';
-    case 'adjective':
-      return '/assets/images/ideas/adj.png';
-    case 'location':
-      return '/assets/images/ideas/loc.png';
-    case 'verb':
-      return '/assets/images/ideas/verb.png';
-    case 'element':
-      return '/assets/images/ideas/elem.png';
-    default:
-      return '/assets/images/ideas/default.png';
-  }
-};
 
 export const addIdea = async (category: Category, idea: Omit<Idea, 'image'>): Promise<void> => {
   const ideasRef = ref(db, `ideas/${category}`);
