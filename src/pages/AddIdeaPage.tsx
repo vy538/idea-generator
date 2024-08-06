@@ -1,4 +1,4 @@
-// src/pages/AddIdeaPage.tsx
+// In AddIdeaPage.tsx
 
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -12,7 +12,7 @@ import { useAuthContext } from '../hooks/AuthContext';
 const AddIdeaPage: React.FC = () => {
   const { t, i18n } = useTranslation();
   const { user, hasInviteCode, userRole } = useAuthContext();
-  const [idea, setIdea] = useState<Partial<Idea>>({
+  const [idea, setIdea] = useState<Omit<Idea, 'image'>>({
     category: 'adjective',
     text: { en: '', zh: '' },
   });
@@ -21,8 +21,7 @@ const AddIdeaPage: React.FC = () => {
     e.preventDefault();
     if (idea.category && idea.text?.en && idea.text?.zh) {
       try {
-        await addIdea(idea.category, idea as Idea);
-        // Reset form or show success message
+        await addIdea(idea.category, idea);
         setIdea({ category: 'adjective', text: { en: '', zh: '' } });
         alert(t('addIdea.success'));
       } catch (error) {

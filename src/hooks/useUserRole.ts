@@ -10,22 +10,17 @@ export const useUserRole = () => {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
-        console.log("User email:", user.email);
-        console.log("Admin email:", process.env.REACT_APP_ADMIN_EMAIL);
         if (user.email === process.env.REACT_APP_ADMIN_EMAIL) {
-          console.log("Setting role to admin");
           setRole('admin');
         } else {
           const db = getDatabase();
           const userRef = ref(db, `users/${user.uid}/role`);
           onValue(userRef, (snapshot) => {
             let userRole = snapshot.val();
-            console.log("Database role:", userRole);
             if (userRole === null) {
               // If the role is not set in the database, set it to 'user'
               userRole = 'user';
               set(userRef, userRole)
-                .then(() => console.log("Default role 'user' set in database"))
                 .catch((error) => console.error("Error setting default role:", error));
             }
             setRole(userRole);
@@ -42,6 +37,5 @@ export const useUserRole = () => {
     return () => unsubscribe();
   }, []);
 
-  console.log("Current role:", role);
   return role;
 };

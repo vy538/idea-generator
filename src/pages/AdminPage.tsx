@@ -2,10 +2,10 @@
 
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import { TabList } from 'react-tabs';
 import { fetchIdeas, fetchUsers } from '../services/database';
 import { Idea, User } from '../types';
-import { AdminPageWrapper } from '../styles/AdminPageStyles';
+import { AdminPageWrapper, TabContent, TabItem } from '../styles/AdminPageStyles';
 import ManageIdeasSection from '../components/admin/ManageIdeasSection';
 import ManageUsersSection from '../components/admin/ManageUsersSection';
 import { Body, H1 } from '../styles/Typography';
@@ -41,6 +41,8 @@ const AdminPage: React.FC = () => {
     loadData();
   }, [t]);
 
+  const [activeTab, setActiveTab] = useState('ideas');
+
   const onAddImage = (ideaEn: string, imageUrl: string) => {
     // Implement this function
     console.log('Add image', ideaEn, imageUrl);
@@ -54,22 +56,27 @@ const AdminPage: React.FC = () => {
   if (loading) return <Body lang={i18n.language as 'en' | 'zh'}>{t('admin.loading')}</Body>;
   if (error) return <Body lang={i18n.language as 'en' | 'zh'}>{error}</Body>;
 
-  return (
+ return (
     <AdminPageWrapper>
       <H1 lang={i18n.language as 'en' | 'zh'}>{t('admin.title')}</H1>
-      <Tabs>
-        <TabList>
-          <Tab>{t('admin.tabs.manageIdeas')}</Tab>
-          <Tab>{t('admin.tabs.manageUsers')}</Tab>
-        </TabList>
-
-        <TabPanel>
-          <ManageIdeasSection ideas={ideas} onAddImage={onAddImage} onDeleteIdea={onDeleteIdea} />
-        </TabPanel>
-        <TabPanel>
-          <ManageUsersSection users={users} />
-        </TabPanel>
-      </Tabs>
+      <TabList>
+        <TabItem 
+          active={activeTab === 'ideas'} 
+          onClick={() => setActiveTab('ideas')}
+        >
+          {t('admin.tabs.manageIdeas')}
+        </TabItem>
+        <TabItem 
+          active={activeTab === 'users'} 
+          onClick={() => setActiveTab('users')}
+        >
+          {t('admin.tabs.manageUsers')}
+        </TabItem>
+      </TabList>
+      <TabContent>
+        {activeTab === 'ideas' && <ManageIdeasSection ideas={ideas} onAddImage={onAddImage} onDeleteIdea={onDeleteIdea} />}
+        {activeTab === 'users' && <ManageUsersSection users={users} />}
+      </TabContent>
     </AdminPageWrapper>
   );
 };

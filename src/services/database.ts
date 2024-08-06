@@ -1,17 +1,53 @@
-import { getDatabase, ref, get, push } from 'firebase/database';
-import { Idea, GalleryItem, User } from '../types';
+import { getDatabase, ref, get, push, set } from 'firebase/database';
+import { Idea, GalleryItem, User, Category } from '../types';
 
 const db = getDatabase();
 
-export const fetchIdeas = async (): Promise<Record<string, Idea[]>> => {
-  const ideasRef = ref(db, 'ideas');
-  const snapshot = await get(ideasRef);
-  return snapshot.val() || {};
+const getDefaultImage = (category: Category): string => {
+  switch (category) {
+    case 'character':
+      return '/assets/images/ideas/char.png';
+    case 'adjective':
+      return '/assets/images/ideas/adj.png';
+    case 'location':
+      return '/assets/images/ideas/loc.png';
+    case 'verb':
+      return '/assets/images/ideas/verb.png';
+    case 'element':
+      return '/assets/images/ideas/elem.png';
+    default:
+      return '/assets/images/ideas/default.png';
+  }
 };
 
-export const addIdea = async (category: string, idea: Idea): Promise<void> => {
+export const addIdea = async (category: Category, idea: Omit<Idea, 'image'>): Promise<void> => {
   const ideasRef = ref(db, `ideas/${category}`);
-  await push(ideasRef, idea);
+  const newIdeaRef = push(ideasRef);
+  const newIdea: Idea = {
+    ...idea,
+    image: getDefaultImage(category),
+  };
+  await set(newIdeaRef, newIdea);
+};
+
+// Update fetchIdeas to ensure consistent structure
+export const fetchIdeas = async (): Promise<Record<Category, Idea[]>> => {
+  const ideasRef = ref(db, 'ideas');
+  const snapshot = await get(ideasRef);
+  const rawData = snapshot.val() || {};
+  
+  const categories: Category[] = ['adjective', 'character', 'location', 'verb', 'element'];
+  const structuredData: Record<Category, Idea[]> = {} as Record<Category, Idea[]>;
+
+  categories.forEach(category => {
+    structuredData[category] = Object.values(rawData[category] || {}).map((idea: any) => ({
+      category,
+      text: idea.text,
+      image: idea.image || getDefaultImage(category),
+    }));
+  });
+
+  return structuredData;
 };
 
 export const fetchGalleryItems = async (): Promise<GalleryItem[]> => {

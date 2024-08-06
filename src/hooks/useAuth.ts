@@ -15,16 +15,12 @@ export const useAuth = () => {
   const userRole = useUserRole();
 
   const checkUserStatus = useCallback(async (user: User | null) => {
-    console.log("Checking user status. User:", user?.email);
-    console.log("User role:", userRole);
     
     if (user) {
       if (userRole === 'admin') {
-        console.log("Setting hasInviteCode to true for admin");
         setHasInviteCode(true);
       } else {
         const inviteCode = await checkInviteCode(user.uid);
-        console.log("Invite code check result:", inviteCode);
         setHasInviteCode(inviteCode);
       }
     } else {
@@ -34,7 +30,6 @@ export const useAuth = () => {
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      console.log("Auth state changed. User:", user?.email);
       if (user) {
         const serializedUser = JSON.stringify(user);
         localStorage.setItem('authUser', serializedUser);
@@ -55,6 +50,5 @@ export const useAuth = () => {
     }
   }, [user, userRole, checkUserStatus]);
 
-  console.log("useAuth state:", { user: user?.email, hasInviteCode, userRole });
   return { user, hasInviteCode, userRole };
 };

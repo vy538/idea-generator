@@ -13,23 +13,19 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({ children, requireInviteCode
   const { user, hasInviteCode, userRole } = useAuthContext();
   const location = useLocation();
 
-  console.log("PrivateRoute:", { user: user?.email, hasInviteCode, userRole, requireInviteCode });
 
   if (user === undefined || userRole === null) {
     return <div>Loading...</div>;
   }
 
   if (!user) {
-    console.log("Redirecting to home: No user");
     return <Navigate to="/" state={{ from: location }} replace />;
   }
 
   if (requireInviteCode && !hasInviteCode && userRole !== 'admin') {
-    console.log("Redirecting to invite-required: No invite code and not admin");
     return <Navigate to="/invite-required" state={{ from: location }} replace />;
   }
 
-  console.log("Rendering children");
   return <>{children}</>;
 };
 

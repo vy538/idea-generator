@@ -4,40 +4,89 @@ import styled from 'styled-components';
 import { PageWrapper } from './LayoutStyles';
 
 export const AdminPageWrapper = styled(PageWrapper)`
-  padding: 60px 20px;
-  max-width: 800px;
+  padding: 2rem;
+  max-width: 1200px;
   margin: 0 auto;
 `;
 
-export const IdeaWrapper = styled.div`
-  margin-bottom: 20px;
-  padding: 20px;
-  border: 1px solid ${({ theme }) => theme.colors.primaryAccent};
-  border-radius: 8px;
-  background-color: ${({ theme }) => theme.colors.secondaryAccent};
+export const TabList = styled.ul`
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  border-bottom: 2px solid ${({ theme }) => theme.colors.primaryAccent};
+`;
+
+export const TabItem = styled.li<{ active: boolean }>`
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  background-color: ${({ active, theme }) => 
+    active ? theme.colors.primaryAccent : theme.colors.background};
+  color: ${({ active, theme }) => 
+    active ? theme.colors.primaryText : theme.colors.secondaryText};
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border: 2px solid ${({ theme }) => theme.colors.primaryAccent};
+  border-bottom: none;
+  margin-right: 0.5rem;
+  font-weight: ${({ active }) => (active ? 'bold' : 'normal')};
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.secondaryAccent};
+  }
+`;
+
+export const TabContent = styled.div`
+  background-color: ${({ theme }) => theme.colors.background};
+  border: 2px solid ${({ theme }) => theme.colors.primaryAccent};
+  border-top: none;
+  padding: 1.5rem;
+`;
+
+export const Table = styled.table`
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+`;
+
+export const TableHeader = styled.th`
+  text-align: left;
+  padding: 0.75rem;
+  background-color: ${({ theme }) => theme.colors.primaryAccent};
+  color: ${({ theme }) => theme.colors.primaryText};
+`;
+
+export const TableRow = styled.tr`
+  &:nth-child(even) {
+    background-color: ${({ theme }) => theme.colors.secondaryAccent};
+  }
+`;
+
+export const TableCell = styled.td`
+  padding: 0.75rem;
 `;
 
 export const InputWrapper = styled.div`
   display: flex;
-  gap: 10px;
-  margin-top: 10px;
+  margin-bottom: 1rem;
 `;
 
 export const Input = styled.input`
-  flex-grow: 1;
-  padding: 8px;
-  border: 1px solid ${({ theme }) => theme.colors.primaryAccent};
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid ${({ theme }) => theme.colors.secondaryText};
   border-radius: 4px;
+  margin-right: 0.5rem;
 `;
 
 export const Button = styled.button`
-  padding: 8px 16px;
   background-color: ${({ theme }) => theme.colors.primaryAccent};
   color: ${({ theme }) => theme.colors.primaryText};
   border: none;
+  padding: 0.5rem 1rem;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s;
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.buttonHover};
@@ -53,53 +102,9 @@ export const DeleteButton = styled(Button)`
   }
 `;
 
-export const TabsContainer = styled.div`
-  display: flex;
-  margin-bottom: 20px;
-`;
-
-export const Tab = styled.button<{ active: boolean }>`
-  padding: 10px 20px;
-  background-color: ${({ active, theme }) => active ? theme.colors.primaryAccent : theme.colors.background};
-  border: 1px solid ${({ theme }) => theme.colors.primaryAccent};
-  cursor: pointer;
-  
-  &:not(:last-child) {
-    border-right: none;
-  }
-  
-  &:first-child {
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
-  }
-  
-  &:last-child {
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
-  }
-`;
-
-export const TabContent = styled.div`
-  margin-top: 20px;
-`;
-
-export const Table = styled.table`
-  width: 100%;
-  border-collapse: collapse;
-`;
-
-export const TableHeader = styled.th`
-  text-align: left;
-  padding: 10px;
-  background-color: ${({ theme }) => theme.colors.primaryAccent};
-`;
-
-export const TableRow = styled.tr`
-  &:nth-child(even) {
-    background-color: ${({ theme }) => theme.colors.secondaryAccent};
-  }
-`;
-
-export const TableCell = styled.td`
-  padding: 10px;
+export const CategorySelect = styled.select`
+  padding: 0.5rem;
+  border: 1px solid ${({ theme }) => theme.colors.secondaryText};
+  border-radius: 4px;
+  margin-right: 0.5rem;
 `;
