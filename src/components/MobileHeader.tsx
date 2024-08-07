@@ -16,12 +16,14 @@ import {
   Divider,
   AuthButton
 } from '../styles/MobileHeaderStyles';
+import { useNavigate } from 'react-router-dom';
 
 const MobileHeader: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { t, i18n } = useTranslation();
   const [user] = useAuthState(auth);
   const currentLang = i18n.language as 'en' | 'zh';
+  const navigate = useNavigate();
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
@@ -44,6 +46,7 @@ const MobileHeader: React.FC = () => {
     try {
       await signOut(auth);
       setIsMenuOpen(false);
+      navigate('/');
     } catch (error) {
       console.error('Error signing out', error);
     }

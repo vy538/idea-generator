@@ -6,11 +6,13 @@ import { auth, googleProvider } from '../services/firebase';
 import { signInWithPopup, signOut } from 'firebase/auth';
 import { HeaderWrapper, Nav, LanguageButton, LanguageSelector, LogoWrapper, AuthButton } from '../styles/HeaderStyles';
 import { NavBarLink } from '../styles/Typography';
+import { useNavigate } from 'react-router-dom';
 
 const DesktopHeader: React.FC = () => {
   const { t, i18n } = useTranslation();
   const [user] = useAuthState(auth);
   const currentLang = i18n.language as 'en' | 'zh';
+  const navigate = useNavigate();
 
   const isAdmin = user?.email === process.env.REACT_APP_ADMIN_EMAIL;
 
@@ -29,6 +31,7 @@ const DesktopHeader: React.FC = () => {
   const handleLogout = async () => {
     try {
       await signOut(auth);
+      navigate('/'); // Add this line to redirect to home
     } catch (error) {
       console.error('Error signing out', error);
     }
