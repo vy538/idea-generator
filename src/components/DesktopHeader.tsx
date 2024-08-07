@@ -43,6 +43,7 @@ const DesktopHeader: React.FC = () => {
         <NavBarLink to="/" lang={currentLang}>{t('header.home')}</NavBarLink>
         <NavBarLink to="/gallery" lang={currentLang}>{t('header.gallery')}</NavBarLink>
         {user && <NavBarLink to="/add-idea" lang={currentLang}>{t('header.addIdea')}</NavBarLink>}
+        {user && <NavBarLink to="/upload-creation" lang={currentLang}>{t('header.uploadCreation')}</NavBarLink>}
         {isAdmin && (
           <NavBarLink to="/admin" lang={currentLang}>{t('header.admin')}</NavBarLink>
         )}

@@ -22,13 +22,28 @@ const GalleryItem: React.FC<GalleryItemProps> = ({ item, getIdeaById, onItemClic
   const { t, i18n } = useTranslation();
   const isMobile = useMediaQuery({ maxWidth: theme.breakpoints.mobile });
 
+  const getPreferredSocialMedia = () => {
+    if (!item.author || !item.author.socialMedia) {
+      return item.author?.name || 'Unknown';
+    }
+
+    const platforms = ['instagram', 'twitter', 'threads', 'github'];
+    for (const platform of platforms) {
+      const socialMedia = item.author.socialMedia.find(sm => sm.platform === platform);
+      if (socialMedia && socialMedia.handle) {
+        return `${platform}: ${socialMedia.handle}`;
+      }
+    }
+    return item.author.name || 'Unknown';
+  };
+
   return (
     <IllustrationCard onClick={() => onItemClick(item)}>
       <IllustrationImage src={item.imageUrl} alt={`Illustration ${item.id}`} />
       <Overlay className="overlay">
-        <AuthorInfo lang={i18n.language as 'en' | 'zh'}>{item.author.instagram}</AuthorInfo>
+        <AuthorInfo lang={i18n.language as 'en' | 'zh'}>{getPreferredSocialMedia()}</AuthorInfo>
         <TagsContainer>
-          {item.ideaReferences.map((ref, index) => {
+          {item.ideaReferences && item.ideaReferences.map((ref, index) => {
             const idea = getIdeaById(ref.category, ref.id);
             if (!idea) return null;
             return (

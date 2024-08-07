@@ -20,11 +20,15 @@ export interface GalleryItem {
   ideaReferences: IdeaReference[];
 }
 
+export interface SocialMedia {
+  platform: string;
+  handle: string;
+}
+
 export interface Author {
   name: string;
   email: string;
-  instagram: string;
-  github: string;
+  socialMedia: SocialMedia[];
 }
 
 export interface IdeaReference {

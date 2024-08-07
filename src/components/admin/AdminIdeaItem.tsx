@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Box, Typography, TextField, Button, Card, CardContent, CardActions } from '@mui/material';
+import { Typography, TextField, Button, Card, CardContent, CardActions } from '@mui/material';
 import { Idea } from '../../types';
 
 interface Props {

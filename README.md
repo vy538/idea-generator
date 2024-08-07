@@ -35,6 +35,7 @@ illustration-idea-generator/
 ├── src/
 │   ├── components/
 │   │   ├── Header.tsx
+│   │   ├── UploadCreationForm.tsx
 │   │   ├── DesktopHeader.tsx
 │   │   ├── MobileHeader.tsx
 │   │   ├── SlotMachine.tsx
@@ -54,6 +55,7 @@ illustration-idea-generator/
 │   │   ├── AddIdeaPage.tsx
 │   │   ├── AdminPage.tsx
 │   │   ├── GalleryPage.tsx
+│   │   ├── UploadCreationPage.tsx
 │   │   └── InviteRequiredPage.tsx
 │   ├── hooks/
 │   │   ├── useUserRole.ts
