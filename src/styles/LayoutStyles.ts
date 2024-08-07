@@ -75,3 +75,12 @@ export const InvitePageWrapper = styled(PageWrapper)`
   background-color: ${({ theme }) => theme.colors.background};
   padding: 60px 20px;
 `;
+
+export const UploadCreationPageWrapper = styled(PageWrapper)`
+  background-color: ${({ theme }) => theme.colors.background};
+  padding: 80px 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;

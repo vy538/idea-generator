@@ -66,6 +66,7 @@ const MobileHeader: React.FC = () => {
             <MobileNavLink to="/" onClick={toggleMenu}>{t('header.home')}</MobileNavLink>
             <MobileNavLink to="/gallery" onClick={toggleMenu}>{t('header.gallery')}</MobileNavLink>
             {user && <MobileNavLink to="/add-idea" onClick={toggleMenu}>{t('header.addIdea')}</MobileNavLink>}
+            {user && <MobileNavLink to="/upload-creation" onClick={toggleMenu}>{t('header.uploadCreation')}</MobileNavLink>}
             {isAdmin && (
               <MobileNavLink to="/admin" onClick={toggleMenu}>{t('header.admin')}</MobileNavLink>
             )}

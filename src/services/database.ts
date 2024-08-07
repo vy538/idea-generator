@@ -1,5 +1,6 @@
 import { getDatabase, ref, get, push, set, update } from 'firebase/database';
 import { Idea, GalleryItem, User, Category } from '../types';
+import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { getDefaultImage } from '../utils/ideaUtils';
 
 const db = getDatabase();
@@ -98,4 +99,12 @@ export const setInviteCode = async (uid: string, inviteCode: string): Promise<vo
     inviteCode, 
     hasInviteCode: inviteCode !== '' 
   });
+};
+
+const storage = getStorage();
+
+export const uploadImage = async (file: File): Promise<string> => {
+  const fileRef = storageRef(storage, `gallery/${Date.now()}_${file.name}`);
+  await uploadBytes(fileRef, file);
+  return getDownloadURL(fileRef);
 };

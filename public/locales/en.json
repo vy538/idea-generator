@@ -5,7 +5,8 @@
     "addIdea": "Add Idea",
     "admin": "Admin",
     "login": "Login",
-    "logout": "Logout"
+    "logout": "Logout",
+    "uploadCreation": "Upload Creation"
   },
   "mainPage": {
     "generate": "Generate",
@@ -71,5 +72,19 @@
       "loading": "Error loading admin data. Please check the console for details.",
       "connection": "Error connecting to the database. Please try again later."
     }
+  },
+  "uploadCreation": {
+    "title": "Upload Your Creation",
+    "loginRequired": "Please log in to upload your creation.",
+    "inviteRequired": "You need an invite code to upload your creation.",
+    "error": "An error occurred while uploading your creation. Please try again.",
+    "addIdeaReference": "Add Idea Reference",
+    "submit": "Upload Creation",
+    "uploading": "Uploading...",
+    "selectIdea": "Select an idea",
+    "instagramPlaceholder": "Instagram handle (optional)",
+    "githubPlaceholder": "GitHub handle (optional)",
+    "twitterPlaceholder": "Twitter (X) handle (optional)",
+    "threadsPlaceholder": "Threads handle (optional)"
   }
 }

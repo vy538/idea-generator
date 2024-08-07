@@ -5,7 +5,8 @@
     "addIdea": "增加選項",
     "admin": "管理員",
     "login": "登入",
-    "logout": "登出"
+    "logout": "登出",
+    "uploadCreation": "上傳作品"
   },
   "mainPage": {
     "generate": "生成",
@@ -71,5 +72,19 @@
       "loading": "載入管理員資料時出錯。請查看控制台以取得詳細資訊。",
       "connection": "連接資料庫時出錯。請稍後再試。"
     }
+  },
+  "uploadCreation": {
+    "title": "上傳您的作品",
+    "loginRequired": "請登入以上傳您的作品。",
+    "inviteRequired": "您需要邀請碼才能上傳作品。",
+    "error": "上傳作品時發生錯誤。請再試一次。",
+    "addIdeaReference": "新增想法參考",
+    "submit": "上傳作品",
+    "uploading": "上傳中...",
+    "selectIdea": "選擇一個想法",
+    "instagramPlaceholder": "Instagram 帳號（選填）",
+    "githubPlaceholder": "GitHub 帳號（選填）",
+    "twitterPlaceholder": "Twitter (X) 帳號（選填）",
+    "threadsPlaceholder": "Threads 帳號（選填）"
   }
 }

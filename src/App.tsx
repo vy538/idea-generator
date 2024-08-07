@@ -16,6 +16,7 @@ import { theme } from './styles/theme';
 import { ThemeProvider } from 'styled-components';
 import PrivateRoute from './components/PrivateRoute';
 import { AuthProvider } from './hooks/AuthContext';
+import UploadCreationPage from './pages/UploadCreationPage';
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <>
@@ -50,6 +51,13 @@ function App() {
                   </Layout>
                 } />
                 <Route path="/invite-required" element={<Layout><InviteRequiredPage /></Layout>} />
+                <Route path="/upload-creation" element={
+                  <Layout>
+                    <PrivateRoute requireInviteCode>
+                      <UploadCreationPage />
+                    </PrivateRoute>
+                  </Layout>
+                } />
               </Routes>
             </Suspense>
           </Router>
