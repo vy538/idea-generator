@@ -58,6 +58,8 @@
       "manageUsers": "管理用戶"
     },
     "users": {
+      "name": "姓名",
+      "role":"職位",
       "email": "電子郵件",
       "hasInviteCode": "有邀請碼",
       "inviteCodeProvided": "已提供邀請碼"

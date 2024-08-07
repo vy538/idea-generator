@@ -12,26 +12,30 @@ interface Props {
 const ManageUsersSection: React.FC<Props> = ({ users }) => {
   const { t } = useTranslation();
 
-const columns = React.useMemo<Column<User>[]>(
-  () => [
-    {
-      Header: t('admin.users.email'),
-      accessor: 'email',
-    },
-    {
-      Header: t('admin.users.hasInviteCode'),
-      accessor: 'hasInviteCode',
-      Cell: ({ value }: { value: boolean }) => (value ? <span>✅</span> : <span>❌</span>),
-    },
-    {
-      Header: t('admin.users.inviteCodeProvided'),
-      accessor: 'inviteCodeProvided',
-      Cell: ({ value }: { value: boolean }) => (value ? <span>✅</span> : <span>❌</span>),
-    },
-  ],
-  [t]
-);
-
+  const columns = React.useMemo<Column<User>[]>(
+    () => [
+      {
+        Header: t('admin.users.name'),
+        accessor: 'name',
+      },
+      {
+        Header: t('admin.users.email'),
+        accessor: 'email',
+      },
+      {
+        Header: t('admin.users.role'),
+        accessor: 'role',
+      },
+      {
+        Header: t('admin.users.hasInviteCode'),
+        accessor: 'hasInviteCode',
+        Cell: ({ value }: { value: boolean }) => (
+          <span>{value ? '✅' : '❌'}</span>
+        ),
+      },
+    ],
+    [t]
+  );
 
   const {
     getTableProps,

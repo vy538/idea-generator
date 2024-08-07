@@ -70,3 +70,8 @@ export const AdminPageWrapper = styled(PageWrapper)`
   background-color: ${({ theme }) => theme.colors.background};
   padding: 60px 20px;
 `;
+
+export const InvitePageWrapper = styled(PageWrapper)`
+  background-color: ${({ theme }) => theme.colors.background};
+  padding: 60px 20px;
+`;

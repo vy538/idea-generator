@@ -32,7 +32,11 @@ export interface IdeaReference {
   id: string;
 }
 export interface User {
+  uid: string;
   email: string;
+  name: string;
+  role: 'user' | 'admin';
+  inviteCode?: string;
   hasInviteCode: boolean;
-  inviteCodeProvided: boolean;
+  storedIdeas?: string[];
 }

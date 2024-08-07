@@ -2,27 +2,34 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { auth } from '../services/firebase';
-import { User } from 'firebase/auth';
-import { checkInviteCode } from '../services/database';
+import { User as FirebaseUser } from 'firebase/auth';
+import { checkInviteCode, storeUserData, setInviteCode } from '../services/database';
 import { useUserRole } from './useUserRole';
 
 export const useAuth = () => {
-  const [user, setUser] = useState<User | null>(() => {
+  const [user, setUser] = useState<FirebaseUser | null>(() => {
     const savedUser = localStorage.getItem('authUser');
     return savedUser ? JSON.parse(savedUser) : null;
   });
   const [hasInviteCode, setHasInviteCode] = useState<boolean>(false);
   const userRole = useUserRole();
 
-  const checkUserStatus = useCallback(async (user: User | null) => {
-    
+  const checkUserStatus = useCallback(async (user: FirebaseUser | null) => {
     if (user) {
       if (userRole === 'admin') {
         setHasInviteCode(true);
       } else {
-        const inviteCode = await checkInviteCode(user.uid);
-        setHasInviteCode(inviteCode);
+        const hasInvite = await checkInviteCode(user.uid);
+        setHasInviteCode(hasInvite);
       }
+      
+      // Store user data in the database
+      await storeUserData({
+        uid: user.uid,
+        email: user.email || '',
+        name: user.displayName || '',
+        role: userRole || 'user',
+      });
     } else {
       setHasInviteCode(false);
     }
@@ -50,5 +57,12 @@ export const useAuth = () => {
     }
   }, [user, userRole, checkUserStatus]);
 
-  return { user, hasInviteCode, userRole };
+  const addInviteCode = useCallback(async (inviteCode: string) => {
+    if (user) {
+      await setInviteCode(user.uid, inviteCode);
+      setHasInviteCode(true);
+    }
+  }, [user]);
+
+  return { user, hasInviteCode, userRole, addInviteCode };
 };

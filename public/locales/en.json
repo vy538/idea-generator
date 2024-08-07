@@ -58,6 +58,8 @@
       "manageUsers": "Manage Users"
     },
     "users": {
+      "name": "Name",
+      "role":"Role",
       "email": "Email",
       "hasInviteCode": "Has Invite Code",
       "inviteCodeProvided": "Invite Code Provided"
