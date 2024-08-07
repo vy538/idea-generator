@@ -18,6 +18,7 @@ This project is a responsive web application that generates random illustration 
 - Invite code system for restricting access to idea submission
 - Admin panel for managing ideas, gallery items, and users
 - Ability for admins to generate and manage invite codes for users
+- Upload creation feature for users to share their illustrations
 - Material-UI components for a consistent and modern UI
 
 ## Project Structure
@@ -80,7 +81,8 @@ illustration-idea-generator/
 │   │   ├── GenerateButtonStyles.ts
 │   │   ├── GalleryStyles.ts
 │   │   ├── EnlargedViewStyles.ts
-│   │   └── AdminPageStyles.ts
+│   │   ├── AdminPageStyles.ts
+│   │   └── UploadCreationStyles.ts
 │   ├── types/
 │   │   └── index.ts
 │   ├── assets/
@@ -114,8 +116,6 @@ illustration-idea-generator/
 
 ## User Flow
 
-## User Flow
-
 1. User visits the website on desktop, tablet, or mobile device
 2. Main page displays a slot machine interface with five category slots
 3. User can log in using Google authentication
@@ -125,14 +125,15 @@ illustration-idea-generator/
 7. Enlarged view available for illustrations in the gallery on all devices
 8. Mobile users can access navigation options via a hamburger menu
 9. Logged-in users with invite codes or admin status can access the "Add Idea" page
-10. Admin users can access the admin panel for managing ideas and users
-11. Admins can generate, copy, and cancel invite codes for users
+10. Logged-in users can upload their own creations based on generated ideas
+11. Admin users can access the admin panel for managing ideas and users
+12. Admins can generate, copy, and cancel invite codes for users
 
 ## Technologies Used
 
 - React
 - TypeScript
-- Firebase (Authentication, Realtime Database)
+- Firebase (Authentication, Realtime Database, Storage)
 - react-i18next
 - styled-components
 - Material-UI
