@@ -1,15 +1,9 @@
-// src/components/AdminIdeaItem.tsx
+// src/components/admin/AdminIdeaItem.tsx
 
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { Box, Typography, TextField, Button } from '@mui/material';
 import { Idea } from '../../types';
-import {
-  InputWrapper,
-  Input,
-  Button,
-  DeleteButton
-} from '../../styles/AdminPageStyles';
-import { Body, H2 } from '../../styles/Typography';
 
 interface Props {
   idea: Idea;
@@ -18,26 +12,43 @@ interface Props {
 }
 
 const AdminIdeaItem: React.FC<Props> = ({ idea, onAddImage, onDeleteIdea }) => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
+  const [imageUrl, setImageUrl] = React.useState('');
+
+  const handleAddImage = () => {
+    onAddImage(idea.text.en, imageUrl);
+    setImageUrl('');
+  };
 
   return (
-    <>
-      <H2 lang={i18n.language as 'en' | 'zh'}>{idea.text.en} / {idea.text.zh}</H2>
-      <Body lang={i18n.language as 'en' | 'zh'}>{t('admin.category')}: {t(`categories.${idea.category}`)}</Body>
-      <InputWrapper>
-        <Input
-          type="text"
+    <Box sx={{ mb: 3, p: 2, border: '1px solid', borderColor: 'divider', borderRadius: 1 }}>
+      <Typography variant="h6" sx={{ mb: 1 }}>
+        {idea.text.en} / {idea.text.zh}
+      </Typography>
+      <Typography variant="body2" sx={{ mb: 2 }}>
+        {t('admin.category')}: {t(`categories.${idea.category}`)}
+      </Typography>
+      <Box sx={{ display: 'flex', mb: 2 }}>
+        <TextField
+          fullWidth
+          size="small"
+          value={imageUrl}
+          onChange={(e) => setImageUrl(e.target.value)}
           placeholder={t('admin.imageUrlPlaceholder')}
-          onBlur={(e) => onAddImage(idea.text.en, e.target.value)}
+          sx={{ mr: 1 }}
         />
-        <Button onClick={() => onAddImage(idea.text.en, (document.querySelector('input') as HTMLInputElement).value)}>
+        <Button variant="contained" onClick={handleAddImage} disabled={!imageUrl}>
           {t('admin.addImageButton')}
         </Button>
-      </InputWrapper>
-      <DeleteButton onClick={() => onDeleteIdea(idea.text.en, idea.category)}>
+      </Box>
+      <Button 
+        variant="contained" 
+        color="error" 
+        onClick={() => onDeleteIdea(idea.text.en, idea.category)}
+      >
         {t('admin.deleteButton')}
-      </DeleteButton>
-    </>
+      </Button>
+    </Box>
   );
 };
 

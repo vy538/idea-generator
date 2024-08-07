@@ -2,14 +2,15 @@
 
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { TabList } from 'react-tabs';
+import { Tabs, Tab, Box } from '@mui/material';
+import { ThemeProvider } from '@mui/material/styles';
 import { fetchIdeas, fetchUsers } from '../services/database';
 import { Idea, User } from '../types';
-import {  TabContent, TabItem } from '../styles/AdminPageStyles';
 import ManageIdeasSection from '../components/admin/ManageIdeasSection';
 import ManageUsersSection from '../components/admin/ManageUsersSection';
 import { Body, H1 } from '../styles/Typography';
 import { AdminPageWrapper } from '../styles/LayoutStyles';
+import { muiTheme } from '../styles/muiTheme';
 
 const AdminPage: React.FC = () => {
   const { t, i18n } = useTranslation();
@@ -17,6 +18,7 @@ const AdminPage: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState(0);
 
   useEffect(() => {
     const loadData = async () => {
@@ -42,7 +44,9 @@ const AdminPage: React.FC = () => {
     loadData();
   }, [t]);
 
-  const [activeTab, setActiveTab] = useState('ideas');
+  const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
+    setActiveTab(newValue);
+  };
 
   const onAddImage = (ideaEn: string, imageUrl: string) => {
     // Implement this function
@@ -64,27 +68,30 @@ const AdminPage: React.FC = () => {
   if (error) return <Body lang={i18n.language as 'en' | 'zh'}>{error}</Body>;
 
   return (
-    <AdminPageWrapper>
-      <H1 lang={i18n.language as 'en' | 'zh'}>{t('admin.title')}</H1>
-      <TabList>
-        <TabItem 
-          active={activeTab === 'ideas'} 
-          onClick={() => setActiveTab('ideas')}
-        >
-          {t('admin.tabs.manageIdeas')}
-        </TabItem>
-        <TabItem 
-          active={activeTab === 'users'} 
-          onClick={() => setActiveTab('users')}
-        >
-          {t('admin.tabs.manageUsers')}
-        </TabItem>
-      </TabList>
-      <TabContent>
-        {activeTab === 'ideas' && <ManageIdeasSection ideas={ideas} onAddImage={onAddImage} onDeleteIdea={onDeleteIdea} />}
-        {activeTab === 'users' && <ManageUsersSection users={users} onUpdateUser={onUpdateUser} />}
-      </TabContent>
-    </AdminPageWrapper>
+    <ThemeProvider theme={muiTheme}>
+      <AdminPageWrapper>
+        <H1 lang={i18n.language as 'en' | 'zh'}>{t('admin.title')}</H1>
+        <Box sx={{ borderBottom: 1, borderColor: 'divider', mb: 2 }}>
+          <Tabs value={activeTab} onChange={handleTabChange} aria-label="admin tabs">
+            <Tab label={t('admin.tabs.manageIdeas')} />
+            <Tab label={t('admin.tabs.manageUsers')} />
+          </Tabs>
+        </Box>
+        {activeTab === 0 && (
+          <ManageIdeasSection 
+            ideas={ideas} 
+            onAddImage={onAddImage} 
+            onDeleteIdea={onDeleteIdea} 
+          />
+        )}
+        {activeTab === 1 && (
+          <ManageUsersSection 
+            users={users} 
+            onUpdateUser={onUpdateUser} 
+          />
+        )}
+      </AdminPageWrapper>
+    </ThemeProvider>
   );
 };
 

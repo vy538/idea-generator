@@ -20,7 +20,7 @@ export const StyledButton = styled.button<{ lang: 'en' | 'zh' }>`
   font-family: ${({ theme, lang }) => theme.fonts[lang].family};
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.buttonHover};
+    background-color: ${({ theme }) => theme.colors.secondaryAccent};
     transform: translate(10px,10px);
     box-shadow: 0px 0px ${({ theme }) => theme.colors.primaryText};
   }

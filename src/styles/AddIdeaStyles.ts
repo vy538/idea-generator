@@ -34,6 +34,6 @@ export const SubmitButton = styled.button`
   transition: background-color 0.3s;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.buttonHover};
+    background-color: ${({ theme }) => theme.colors.secondaryAccent};
   }
 `;

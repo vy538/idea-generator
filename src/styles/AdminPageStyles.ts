@@ -1,7 +1,14 @@
 // src/styles/AdminPageStyles.ts
 
 import styled from 'styled-components';
-import { PageWrapper } from './LayoutStyles';
+
+export const AdminPageContainer = styled.div`
+  padding: 20px;
+`;
+
+export const TabContainer = styled.div`
+  margin-bottom: 20px;
+`;
 
 export const TabList = styled.ul`
   display: flex;
@@ -83,7 +90,7 @@ export const Button = styled.button`
   transition: background-color 0.3s;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.buttonHover};
+    background-color: ${({ theme }) => theme.colors.secondaryAccent};
   }
 `;
 
