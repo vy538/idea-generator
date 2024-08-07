@@ -2,13 +2,13 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/96c6f571-15ef-4cca-9b4e-9ce54f755992/deploy-status)](https://app.netlify.com/sites/idea-generator-vy538/deploys)
 
-This project is a responsive web application that generates random illustration ideas using a slot machine-like interface. It supports both English and Chinese languages and includes a gallery feature to showcase illustrations. This project was developed with assistance from Claude, an AI assistant created by Anthropic.
+This project is a responsive web application that generates random illustration ideas using a slot machine-like interface. It supports both English and Traditional Chinese languages and includes a gallery feature to showcase illustrations. This project was developed with assistance from Claude, an AI assistant created by Anthropic.
 
 ## Features
 
 - Generates random ideas for illustrations across five categories: adjective, character, location, verb, and other element
 - Animated slot machine spinning effect
-- Bilingual support (English and Chinese)
+- Bilingual support (English and Traditional Chinese)
 - Gallery page to showcase created illustrations
 - Enlarged view for gallery items with interactive overlay
 - Responsive design for desktop, tablet, and mobile devices
@@ -18,6 +18,7 @@ This project is a responsive web application that generates random illustration 
 - Invite code system for restricting access to idea submission
 - Admin panel for managing ideas, gallery items, and users
 - Ability for admins to generate and manage invite codes for users
+- Material-UI components for a consistent and modern UI
 
 ## Project Structure
 
@@ -66,6 +67,7 @@ illustration-idea-generator/
 │   │   └── clipboard.ts
 │   ├── styles/
 │   │   ├── theme.ts
+│   │   ├── muiTheme.ts
 │   │   ├── Typography.ts
 │   │   ├── HeaderStyles.ts
 │   │   ├── MobileHeaderStyles.ts
@@ -110,11 +112,13 @@ illustration-idea-generator/
 
 ## User Flow
 
+## User Flow
+
 1. User visits the website on desktop, tablet, or mobile device
 2. Main page displays a slot machine interface with five category slots
 3. User can log in using Google authentication
 4. User clicks "Generate" to spin for new random ideas
-5. User can switch between English and Chinese
+5. User can switch between English and Traditional Chinese
 6. Gallery page showcases illustrations with generated idea tags
 7. Enlarged view available for illustrations in the gallery on all devices
 8. Mobile users can access navigation options via a hamburger menu
@@ -129,9 +133,9 @@ illustration-idea-generator/
 - Firebase (Authentication, Realtime Database)
 - react-i18next
 - styled-components
+- Material-UI
 - react-responsive
 - react-tabs
-- react-table
 - Netlify
 
 ## Future Improvements
@@ -144,7 +148,6 @@ illustration-idea-generator/
 - User contribution system
 - Moderation system for user-submitted content
 - Improved invite code management system
-- Email notifications for invite code recipients
 
 ## License
 
