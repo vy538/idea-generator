@@ -7,7 +7,7 @@ import { H1, Body } from '../styles/Typography';
 import { UploadCreationPageWrapper } from '../styles/LayoutStyles';
 import { UploadCreationWrapper } from '../styles/UploadCreationStyles';
 import { useAuthContext } from '../hooks/AuthContext';
-import { addGalleryItem, fetchIdeas } from '../services/database';
+import { addGalleryItem, fetchIdeas, uploadImage } from '../services/database';
 import { GalleryItem, IdeaReference, Idea, Category, SocialMedia } from '../types';
 import UploadCreationForm from '../components/UploadCreationForm';
 
@@ -26,33 +26,33 @@ const UploadCreationPage: React.FC = () => {
     loadIdeas();
   }, []);
 
-  const handleSubmit = async (imageFile: File, ideaReferences: IdeaReference[], socialMedia: SocialMedia[]) => {
-    if (!user) return;
+const handleSubmit = async (imageFile: File, ideaReferences: IdeaReference[], socialMedia: SocialMedia[]) => {
+  if (!user) return;
 
-    setIsUploading(true);
-    try {
-      const imageUrl = URL.createObjectURL(imageFile);
+  setIsUploading(true);
+  try {
+    const imageUrl = await uploadImage(imageFile);
 
-      const newGalleryItem: GalleryItem = {
-        id: Date.now(),
-        imageUrl,
-        author: {
-          name: user.displayName || '',
-          email: user.email || '',
-          socialMedia,
-        },
-        ideaReferences,
-      };
+    const newGalleryItem: GalleryItem = {
+      id: Date.now(),
+      imageUrl,
+      author: {
+        name: user.displayName || '',
+        email: user.email || '',
+        socialMedia,
+      },
+      ideaReferences,
+    };
 
-      await addGalleryItem(newGalleryItem);
-      navigate('/gallery');
-    } catch (error) {
-      console.error('Error uploading creation:', error);
-      alert(t('uploadCreation.error'));
-    } finally {
-      setIsUploading(false);
-    }
-  };
+    await addGalleryItem(newGalleryItem);
+    navigate('/gallery');
+  } catch (error) {
+    console.error('Error uploading creation:', error);
+    alert(t('uploadCreation.error'));
+  } finally {
+    setIsUploading(false);
+  }
+};
 
   if (!user) {
     return (
