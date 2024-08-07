@@ -62,7 +62,10 @@
       "role":"Role",
       "email": "Email",
       "hasInviteCode": "Has Invite Code",
-      "inviteCodeProvided": "Invite Code Provided"
+      "inviteCode": "Invite Code",
+      "sendInvite": "Send Invite",
+      "cancelInvite": "Cancel Invite",
+      "copyInvite": "Copy"
     },
     "error": {
       "loading": "Error loading admin data. Please check the console for details.",

@@ -5,10 +5,11 @@ import { useTranslation } from 'react-i18next';
 import { TabList } from 'react-tabs';
 import { fetchIdeas, fetchUsers } from '../services/database';
 import { Idea, User } from '../types';
-import { AdminPageWrapper, TabContent, TabItem } from '../styles/AdminPageStyles';
+import {  TabContent, TabItem } from '../styles/AdminPageStyles';
 import ManageIdeasSection from '../components/admin/ManageIdeasSection';
 import ManageUsersSection from '../components/admin/ManageUsersSection';
 import { Body, H1 } from '../styles/Typography';
+import { AdminPageWrapper } from '../styles/LayoutStyles';
 
 const AdminPage: React.FC = () => {
   const { t, i18n } = useTranslation();
@@ -53,10 +54,16 @@ const AdminPage: React.FC = () => {
     console.log('Delete idea', ideaEn, category);
   };
 
+  const onUpdateUser = (updatedUser: User) => {
+    setUsers(prevUsers => prevUsers.map(user => 
+      user.uid === updatedUser.uid ? updatedUser : user
+    ));
+  };
+
   if (loading) return <Body lang={i18n.language as 'en' | 'zh'}>{t('admin.loading')}</Body>;
   if (error) return <Body lang={i18n.language as 'en' | 'zh'}>{error}</Body>;
 
- return (
+  return (
     <AdminPageWrapper>
       <H1 lang={i18n.language as 'en' | 'zh'}>{t('admin.title')}</H1>
       <TabList>
@@ -75,7 +82,7 @@ const AdminPage: React.FC = () => {
       </TabList>
       <TabContent>
         {activeTab === 'ideas' && <ManageIdeasSection ideas={ideas} onAddImage={onAddImage} onDeleteIdea={onDeleteIdea} />}
-        {activeTab === 'users' && <ManageUsersSection users={users} />}
+        {activeTab === 'users' && <ManageUsersSection users={users} onUpdateUser={onUpdateUser} />}
       </TabContent>
     </AdminPageWrapper>
   );

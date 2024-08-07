@@ -4,13 +4,31 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Column, useTable } from 'react-table';
 import { User } from '../../types';
+import { setInviteCode } from '../../services/database';
+import { copyToClipboard } from '../../utils/clipboard';
 
 interface Props {
   users: User[];
+  onUpdateUser: (updatedUser: User) => void;
 }
 
-const ManageUsersSection: React.FC<Props> = ({ users }) => {
+const ManageUsersSection: React.FC<Props> = ({ users, onUpdateUser }) => {
   const { t } = useTranslation();
+
+  const generateInviteCode = () => {
+    return Math.random().toString(36).substring(2, 8).toUpperCase();
+  };
+
+  const handleSendInvite = async (user: User) => {
+    const inviteCode = generateInviteCode();
+    await setInviteCode(user.uid, inviteCode);
+    onUpdateUser({ ...user, inviteCode, hasInviteCode: true });
+  };
+
+  const handleCancelInvite = async (user: User) => {
+    await setInviteCode(user.uid, '');
+    onUpdateUser({ ...user, inviteCode: undefined, hasInviteCode: false });
+  };
 
   const columns = React.useMemo<Column<User>[]>(
     () => [
@@ -27,15 +45,31 @@ const ManageUsersSection: React.FC<Props> = ({ users }) => {
         accessor: 'role',
       },
       {
-        Header: t('admin.users.hasInviteCode'),
-        accessor: 'hasInviteCode',
-        Cell: ({ value }: { value: boolean }) => (
-          <span>{value ? '✅' : '❌'}</span>
+        Header: t('admin.users.inviteCode'),
+        accessor: 'inviteCode',
+        Cell: ({ row }: { row: { original: User } }) => (
+        <div>
+          {row.original.hasInviteCode && row.original.inviteCode ? (
+            <>
+              <span>{row.original.inviteCode}</span>
+              <button onClick={() => copyToClipboard(row.original.inviteCode!)}>
+                {t('admin.users.copyInvite')}
+              </button>
+              <button onClick={() => handleCancelInvite(row.original)}>
+                {t('admin.users.cancelInvite')}
+              </button>
+            </>
+          ) : (
+            <button onClick={() => handleSendInvite(row.original)}>
+              {t('admin.users.sendInvite')}
+            </button>
+          )}
+        </div>
         ),
       },
     ],
-    [t]
-  );
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  [t]);
 
   const {
     getTableProps,

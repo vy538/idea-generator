@@ -62,7 +62,10 @@
       "role":"職位",
       "email": "電子郵件",
       "hasInviteCode": "有邀請碼",
-      "inviteCodeProvided": "已提供邀請碼"
+      "inviteCode": "邀请碼",
+      "sendInvite": "發送邀请",
+      "cancelInvite": "取消邀请",
+      "copyInvite": "複製"
     },
     "error": {
       "loading": "加載管理員數據時出錯。請查看控制台以獲取詳細信息。",

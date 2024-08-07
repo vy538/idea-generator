@@ -3,12 +3,6 @@
 import styled from 'styled-components';
 import { PageWrapper } from './LayoutStyles';
 
-export const AdminPageWrapper = styled(PageWrapper)`
-  padding: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-`;
-
 export const TabList = styled.ul`
   display: flex;
   list-style-type: none;

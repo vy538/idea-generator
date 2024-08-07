@@ -94,5 +94,8 @@ export const checkInviteCode = async (uid: string): Promise<boolean> => {
 export const setInviteCode = async (uid: string, inviteCode: string): Promise<void> => {
   const db = getDatabase();
   const userRef = ref(db, `users/${uid}`);
-  await update(userRef, { inviteCode, hasInviteCode: true });
+  await update(userRef, { 
+    inviteCode, 
+    hasInviteCode: inviteCode !== '' 
+  });
 };
