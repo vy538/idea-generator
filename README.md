@@ -17,6 +17,7 @@ This project is a responsive web application that generates random illustration 
 - Role-based access control (Admin and User roles)
 - Invite code system for restricting access to idea submission
 - Admin panel for managing ideas, gallery items, and users
+- Ability for admins to generate and manage invite codes for users
 
 ## Project Structure
 
@@ -61,7 +62,8 @@ illustration-idea-generator/
 │   │   ├── database.tsx
 │   │   └── firebase.ts
 │   ├── utils/
-│   │   └── ideaUtils.ts
+│   │   ├── ideaUtils.ts
+│   │   └── clipboard.ts
 │   ├── styles/
 │   │   ├── theme.ts
 │   │   ├── Typography.ts
@@ -118,6 +120,7 @@ illustration-idea-generator/
 8. Mobile users can access navigation options via a hamburger menu
 9. Logged-in users with invite codes or admin status can access the "Add Idea" page
 10. Admin users can access the admin panel for managing ideas and users
+11. Admins can generate, copy, and cancel invite codes for users
 
 ## Technologies Used
 
@@ -141,6 +144,7 @@ illustration-idea-generator/
 - User contribution system
 - Moderation system for user-submitted content
 - Improved invite code management system
+- Email notifications for invite code recipients
 
 ## License
 
