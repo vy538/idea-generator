@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Tabs, Tab, Box } from '@mui/material';
+import { Tabs, Tab, Box, Grid } from '@mui/material';
 import { Idea } from '../../types';
 import AdminIdeaItem from './AdminIdeaItem';
 
@@ -24,13 +24,11 @@ const ManageIdeasSection: React.FC<Props> = ({ ideas, onAddImage, onDeleteIdea }
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} aria-label="idea categories">
-          {categories.map((category, index) => (
-            <Tab key={category} label={t(`categories.${category}`)} id={`tab-${index}`} />
-          ))}
-        </Tabs>
-      </Box>
+      <Tabs value={value} onChange={handleChange} aria-label="idea categories" sx={{ mb: 2 }}>
+        {categories.map((category, index) => (
+          <Tab key={category} label={t(`categories.${category}`)} id={`tab-${index}`} />
+        ))}
+      </Tabs>
       {categories.map((category, index) => (
         <Box
           key={category}
@@ -40,16 +38,17 @@ const ManageIdeasSection: React.FC<Props> = ({ ideas, onAddImage, onDeleteIdea }
           aria-labelledby={`tab-${index}`}
         >
           {value === index && (
-            <Box sx={{ p: 3 }}>
+            <Grid container spacing={2}>
               {ideas[category].map(idea => (
-                <AdminIdeaItem 
-                  key={idea.text.en} 
-                  idea={idea} 
-                  onAddImage={onAddImage} 
-                  onDeleteIdea={onDeleteIdea}
-                />
+                <Grid item xs={12} sm={6} md={4} lg={3} key={idea.text.en}>
+                  <AdminIdeaItem 
+                    idea={idea} 
+                    onAddImage={onAddImage} 
+                    onDeleteIdea={onDeleteIdea}
+                  />
+                </Grid>
               ))}
-            </Box>
+            </Grid>
           )}
         </Box>
       ))}
