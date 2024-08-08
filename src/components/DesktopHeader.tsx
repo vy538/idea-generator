@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { HeaderWrapper, Nav, LanguageButton, LanguageSelector, LogoWrapper } from '../styles/HeaderStyles';
 import { NavBarLink } from '../styles/Typography';
 
-import { useTheme } from 'styled-components';
 
 const Header: React.FC = () => {
   const { t, i18n } = useTranslation();
