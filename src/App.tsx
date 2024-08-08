@@ -19,8 +19,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
 );
 
 function App() {
-  console.log('App rendering. Theme:', JSON.stringify(theme, null, 2));
-  return (
+ return (
     <ThemeProvider theme={theme}>
       <GlobalStyles/>
       <I18nextProvider i18n={i18n}>

@@ -27,17 +27,18 @@ export const MainPageWrapper = styled(PageWrapper)`
   z-index: 1;
   height: 100vh;
   overflow-y: hidden;
-  overflow-x: hidden;
+  overflow-x: hidden;  
+  padding: 60px 0px;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
 
   display: flex;
   align-items: center;
   justify-content: center;
-    padding: 60px 20px;
-    height: auto;
-    min-height: 100vh;
-    overflow-y: auto;
+  padding: 60px 20px;
+  height: auto;
+  min-height: 100vh;
+  overflow-y: auto;
   }
 `;
 

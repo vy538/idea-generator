@@ -13,7 +13,6 @@ export const HeaderWrapper = styled.header<{ lang: 'en' | 'zh' }>`
   padding: 0 20px;
   font-family: ${({ theme, lang }) => {
   
-    console.log('HeaderWrapper render. Theme:', theme, 'Lang:', lang);
   if (!theme || !theme.fonts || !theme.fonts[lang]) {
       console.error('Theme or fonts not available in HeaderWrapper');
       return 'Arial, sans-serif'; // Fallback
