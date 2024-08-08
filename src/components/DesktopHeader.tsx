@@ -8,7 +8,6 @@ import { useTheme } from 'styled-components';
 const Header: React.FC = () => {
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language as 'en' | 'zh';
-  const theme = useTheme();
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
   };
