@@ -57,8 +57,9 @@ const Gallery: React.FC = () => {
       </GalleryWrapper>
       {enlargedItem && (
         <EnlargedView 
-          imageUrl={enlargedItem.imageUrl}
+          item={enlargedItem}
           onClose={handleCloseEnlargedView}
+          getIdeaById={getIdeaById}
         />
       )}
     </>

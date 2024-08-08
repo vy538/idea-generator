@@ -63,7 +63,7 @@ export const AddIdeaPageWrapper = styled(PageWrapper)`
   flex-direction: column;
   align-items: center;
   background-color: ${({ theme }) => theme.colors.background};
-  padding: 60px 20px;
+  padding: 80px 20px;
 `;
 
 export const AdminPageWrapper = styled(PageWrapper)`

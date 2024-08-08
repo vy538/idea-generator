@@ -72,8 +72,8 @@ const handleSubmit = async (imageFile: File, ideaReferences: IdeaReference[], so
 
   return (
     <UploadCreationPageWrapper>
+      <H1 lang={i18n.language as 'en' | 'zh'}>{t('uploadCreation.title')}</H1>
       <UploadCreationWrapper>
-        <H1 lang={i18n.language as 'en' | 'zh'}>{t('uploadCreation.title')}</H1>
         <UploadCreationForm onSubmit={handleSubmit} isUploading={isUploading} ideas={ideas} />
       </UploadCreationWrapper>
     </UploadCreationPageWrapper>
