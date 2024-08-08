@@ -4,11 +4,11 @@ export const StyledButton = styled.button<{ lang: 'en' | 'zh' }>`
   background-color: ${({ theme }) => theme.colors.background};
   border: none;
   color: ${({ theme }) => theme.colors.primaryText};
-  padding: 32px 72px;
+  padding: 16px 108px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 84px;
+  font-size: 64px;
   font-weight: 700;
   cursor: pointer;
   border-radius: 150px;
