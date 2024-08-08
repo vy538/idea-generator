@@ -6,7 +6,6 @@ export const GalleryWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 32px;
-  padding: 20px;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     grid-template-columns: repeat(2, 1fr);
@@ -25,6 +24,10 @@ export const IllustrationCard = styled.div`
   overflow: hidden;
   aspect-ratio: 1 / 1;
   border: 4px solid ${({ theme }) => theme.colors.primaryText};
+
+  &:hover .overlay {
+    opacity: 1;
+  }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     border-width: 2px;

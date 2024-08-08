@@ -44,7 +44,7 @@ export const MainPageWrapper = styled(PageWrapper)`
 
 export const GalleryPageWrapper = styled(PageWrapper)`
   background-color: ${({ theme }) => theme.colors.background};
-  padding: 60px 0px;
+  padding: 60px 20px;
   position: relative;
   z-index: 1;
   height: 100vh;
