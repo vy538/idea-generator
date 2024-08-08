@@ -1,14 +1,8 @@
 import styled from 'styled-components';
-import { FormWrapper as SharedFormWrapper, Input as SharedInput, SubmitButton as SharedSubmitButton } from './FormStyles';
+import { FormWrapper as SharedFormWrapper, Input as SharedInput, SubmitButton as SharedSubmitButton , Select as SharedSelect} from './FormStyles';
 
-export const UploadCreationWrapper = styled(SharedFormWrapper)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
+export const FormWrapper = styled(SharedFormWrapper)`
+  // You can add any additional styles specific to UploadCreation form here
 `;
 
 export const ImagePreview = styled.img`
@@ -69,5 +63,9 @@ export const CategorySelectionWrapper = styled.div`
 `;
 
 export const Input = styled(SharedInput)`
+  // You can add any additional styles specific to UploadCreation input here
+`;
+
+export const Select = styled(SharedSelect)`
   // You can add any additional styles specific to UploadCreation input here
 `;

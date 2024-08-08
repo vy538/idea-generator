@@ -20,7 +20,7 @@ export const Overlay = styled.div`
 
 export const ContentWrapper = styled.div`
   width: 80%;
-  max-width: 1200px;
+  max-width: 720px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

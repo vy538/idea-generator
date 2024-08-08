@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { H1, Body } from '../styles/Typography';
 import { UploadCreationPageWrapper } from '../styles/LayoutStyles';
-import { UploadCreationWrapper } from '../styles/UploadCreationStyles';
 import { useAuthContext } from '../hooks/AuthContext';
 import { addGalleryItem, fetchIdeas, uploadImage } from '../services/database';
 import { GalleryItem, IdeaReference, Idea, Category, SocialMedia } from '../types';
@@ -73,9 +72,7 @@ const handleSubmit = async (imageFile: File, ideaReferences: IdeaReference[], so
   return (
     <UploadCreationPageWrapper>
       <H1 lang={i18n.language as 'en' | 'zh'}>{t('uploadCreation.title')}</H1>
-      <UploadCreationWrapper>
         <UploadCreationForm onSubmit={handleSubmit} isUploading={isUploading} ideas={ideas} />
-      </UploadCreationWrapper>
     </UploadCreationPageWrapper>
   );
 };

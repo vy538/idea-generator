@@ -1,9 +1,7 @@
 // src/components/UploadCreationForm.tsx
-
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FormWrapper, StyledInput, StyledSelect, SubmitButton } from '../styles/AddIdeaStyles';
-import { ImagePreview, IdeaReferenceWrapper, SocialMediaInput, CategorySelectionWrapper } from '../styles/UploadCreationStyles';
+import {  FormWrapper, ImagePreview, IdeaReferenceWrapper, SocialMediaInput, CategorySelectionWrapper, SubmitButton, Input, Select } from '../styles/UploadCreationStyles';
 import { IdeaReference, Category, Idea, SocialMedia } from '../types';
 
 interface UploadCreationFormProps {
@@ -61,52 +59,51 @@ const UploadCreationForm: React.FC<UploadCreationFormProps> = ({ onSubmit, isUpl
 
   const categories: Category[] = ['adjective', 'character', 'location', 'verb', 'element'];
 
-  return (
-    <FormWrapper onSubmit={handleSubmit}>
-      <StyledInput
-        type="file"
-        accept="image/*"
-        onChange={handleImageChange}
-        required
-      />
-      {previewUrl && <ImagePreview src={previewUrl} alt="Preview" />}
+return (
+      <FormWrapper onSubmit={handleSubmit}>
+        <Input
+          type="file"
+          accept="image/*"
+          onChange={handleImageChange}
+          required
+        />
+        {previewUrl && <ImagePreview src={previewUrl} alt="Preview" />}
 
-      <IdeaReferenceWrapper>
-        {categories.map((category) => (
-          <CategorySelectionWrapper key={category}>
-            <label>{t(`categories.${category}`)}</label>
-            <StyledSelect
-              value={selectedIdeas[category]}
-              onChange={(e) => handleIdeaSelection(category, e.target.value)}
-            >
-              <option value="">{t('uploadCreation.selectIdea')}</option>
-              {ideas[category]?.map((idea) => (
-                <option key={idea.text.en} value={idea.text.en}>
-                  {i18n.language.startsWith('zh') ? idea.text.zh : idea.text.en}
-                </option>
-              ))}
-            </StyledSelect>
-          </CategorySelectionWrapper>
+        <IdeaReferenceWrapper>
+          {categories.map((category) => (
+            <CategorySelectionWrapper key={category}>
+              <label>{t(`categories.${category}`)}</label>
+              <Select
+                value={selectedIdeas[category]}
+                onChange={(e) => handleIdeaSelection(category, e.target.value)}
+              >
+                <option value="">{t('uploadCreation.selectIdea')}</option>
+                {ideas[category]?.map((idea) => (
+                  <option key={idea.text.en} value={idea.text.en}>
+                    {i18n.language.startsWith('zh') ? idea.text.zh : idea.text.en}
+                  </option>
+                ))}
+              </Select>
+            </CategorySelectionWrapper>
+          ))}
+        </IdeaReferenceWrapper>
+        
+        {socialMedia.map((sm) => (
+          <SocialMediaInput key={sm.platform}>
+            <label>{t(`uploadCreation.${sm.platform}Placeholder`)}</label>
+            <Input
+              type="text"
+              placeholder={t(`uploadCreation.${sm.platform}Placeholder`)}
+              value={sm.handle}
+              onChange={(e) => handleSocialMediaChange(sm.platform, e.target.value)}
+            />
+          </SocialMediaInput>
         ))}
-          </IdeaReferenceWrapper>
-          
-            
-      {socialMedia.map((sm) => (
-        <SocialMediaInput key={sm.platform}>
-          <label>{t(`uploadCreation.${sm.platform}Placeholder`)}</label>
-          <StyledInput
-            type="text"
-            placeholder={t(`uploadCreation.${sm.platform}Placeholder`)}
-            value={sm.handle}
-            onChange={(e) => handleSocialMediaChange(sm.platform, e.target.value)}
-          />
-        </SocialMediaInput>
-      ))}
 
-      <SubmitButton type="submit" disabled={isUploading}>
-        {isUploading ? t('uploadCreation.uploading') : t('uploadCreation.submit')}
-      </SubmitButton>
-    </FormWrapper>
+        <SubmitButton type="submit" disabled={isUploading}>
+          {isUploading ? t('uploadCreation.uploading') : t('uploadCreation.submit')}
+        </SubmitButton>
+      </FormWrapper>
   );
 };
 
