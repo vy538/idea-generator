@@ -1,6 +1,5 @@
-// src/styles/AdminPageStyles.ts
-
 import styled from 'styled-components';
+import { Input as SharedInput, Select as SharedSelect, SubmitButton as SharedSubmitButton } from './FormStyles';
 
 export const AdminPageContainer = styled.div`
   padding: 20px;
@@ -72,26 +71,12 @@ export const InputWrapper = styled.div`
   margin-bottom: 1rem;
 `;
 
-export const Input = styled.input`
-  flex: 1;
-  padding: 0.5rem;
-  border: 1px solid ${({ theme }) => theme.colors.secondaryText};
-  border-radius: 4px;
-  margin-right: 0.5rem;
+export const Input = styled(SharedInput)`
+  // You can add any additional styles specific to Admin input here
 `;
 
-export const Button = styled.button`
-  background-color: ${({ theme }) => theme.colors.primaryAccent};
-  color: ${({ theme }) => theme.colors.primaryText};
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.secondaryAccent};
-  }
+export const Button = styled(SharedSubmitButton)`
+  // You can add any additional styles specific to Admin button here
 `;
 
 export const DeleteButton = styled(Button)`
@@ -103,9 +88,6 @@ export const DeleteButton = styled(Button)`
   }
 `;
 
-export const CategorySelect = styled.select`
-  padding: 0.5rem;
-  border: 1px solid ${({ theme }) => theme.colors.secondaryText};
-  border-radius: 4px;
-  margin-right: 0.5rem;
+export const CategorySelect = styled(SharedSelect)`
+  // You can add any additional styles specific to Admin category select here
 `;

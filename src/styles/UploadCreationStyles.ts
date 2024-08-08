@@ -1,8 +1,7 @@
-// src/styles/UploadCreationStyles.ts
-
 import styled from 'styled-components';
+import { FormWrapper as SharedFormWrapper, Input as SharedInput, SubmitButton as SharedSubmitButton } from './FormStyles';
 
-export const UploadCreationWrapper = styled.div`
+export const UploadCreationWrapper = styled(SharedFormWrapper)`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,25 +25,8 @@ export const IdeaReferenceWrapper = styled.div`
   width: 100%;
 `;
 
-export const SubmitButton = styled.button`
-  padding: 10px 20px;
-  font-size: 1rem;
-  background-color: ${({ theme }) => theme.colors.primaryAccent};
-  color: ${({ theme }) => theme.colors.background};
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  font-weight: bold;
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.secondaryAccent};
-  }
-
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
+export const SubmitButton = styled(SharedSubmitButton)`
+  // You can add any additional styles specific to UploadCreation submit button here
 `;
 
 export const AddReferenceButton = styled.button`
@@ -84,4 +66,8 @@ export const CategorySelectionWrapper = styled.div`
     margin-bottom: 5px;
     font-weight: bold;
   }
+`;
+
+export const Input = styled(SharedInput)`
+  // You can add any additional styles specific to UploadCreation input here
 `;

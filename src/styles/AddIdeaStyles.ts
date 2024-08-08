@@ -1,39 +1,18 @@
-// src/styles/AddIdeaStyles.ts
-
 import styled from 'styled-components';
+import { FormWrapper as SharedFormWrapper, Input, Select, SubmitButton as SharedSubmitButton } from './FormStyles';
 
-export const FormWrapper = styled.form`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-width: 400px;
-  gap: 1rem;
+export const FormWrapper = styled(SharedFormWrapper)`
+  // You can add any additional styles specific to AddIdea form here
 `;
 
-export const StyledSelect = styled.select`
-  padding: 0.5rem;
-  font-size: 1rem;
-  border: 1px solid ${({ theme }) => theme.colors.primaryAccent};
-  border-radius: 4px;
+export const StyledInput = styled(Input)`
+  // You can add any additional styles specific to AddIdea input here
 `;
 
-export const StyledInput = styled.input`
-  padding: 0.5rem;
-  font-size: 1rem;
-  border: 1px solid ${({ theme }) => theme.colors.primaryAccent};
-  border-radius: 4px;
+export const StyledSelect = styled(Select)`
+  // You can add any additional styles specific to AddIdea select here
 `;
 
-export const SubmitButton = styled.button`
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  background-color: ${({ theme }) => theme.colors.primaryAccent};
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.secondaryAccent};
-  }
+export const SubmitButton = styled(SharedSubmitButton)`
+  // You can add any additional styles specific to AddIdea submit button here
 `;
