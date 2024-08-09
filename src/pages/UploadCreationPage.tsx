@@ -30,7 +30,7 @@ const handleSubmit = async (imageFile: File, ideaReferences: IdeaReference[], so
 
   setIsUploading(true);
   try {
-    const imageUrl = await uploadImage(imageFile);
+    const imageUrl = await uploadImage(imageFile,`gallery`);
 
     const newGalleryItem: GalleryItem = {
       id: Date.now(),

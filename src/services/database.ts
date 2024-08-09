@@ -103,8 +103,23 @@ export const setInviteCode = async (uid: string, inviteCode: string): Promise<vo
 
 const storage = getStorage();
 
-export const uploadImage = async (file: File): Promise<string> => {
-  const fileRef = storageRef(storage, `gallery/${Date.now()}_${file.name}`);
+export const uploadImage = async (file: File, fileLocation:string): Promise<string> => {
+  const fileRef = storageRef(storage, `${fileLocation}/${Date.now()}_${file.name}`);
   await uploadBytes(fileRef, file);
   return getDownloadURL(fileRef);
+};
+
+export const updateIdeaImage = async (category: Category, ideaEn: string, imageUrl: string): Promise<void> => {
+  const db = getDatabase();
+  const ideasRef = ref(db, `ideas/${category}`);
+  const snapshot = await get(ideasRef);
+  const ideas = snapshot.val();
+
+  const ideaKey = Object.keys(ideas).find(key => ideas[key].text.en === ideaEn);
+
+  if (ideaKey) {
+    await update(ref(db, `ideas/${category}/${ideaKey}`), { image: imageUrl });
+  } else {
+    throw new Error('Idea not found');
+  }
 };

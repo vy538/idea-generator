@@ -4,8 +4,8 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Tabs, Tab, Box } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
-import { fetchIdeas, fetchUsers } from '../services/database';
-import { Idea, User } from '../types';
+import { fetchIdeas, fetchUsers, updateIdeaImage } from '../services/database';
+import { Idea, User, Category } from '../types';
 import ManageIdeasSection from '../components/admin/ManageIdeasSection';
 import ManageUsersSection from '../components/admin/ManageUsersSection';
 import { Body, H1 } from '../styles/Typography';
@@ -14,7 +14,7 @@ import { muiTheme } from '../styles/muiTheme';
 
 const AdminPage: React.FC = () => {
   const { t, i18n } = useTranslation();
-  const [ideas, setIdeas] = useState<Record<string, Idea[]>>({});
+  const [ideas, setIdeas] = useState<Record<Category, Idea[]>>({} as Record<Category, Idea[]>);
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -24,14 +24,7 @@ const AdminPage: React.FC = () => {
     const loadData = async () => {
       try {
         const [ideasData, usersData] = await Promise.all([fetchIdeas(), fetchUsers()]);
-        const categorizedIdeas = Object.entries(ideasData).reduce((acc, [category, categoryIdeas]) => {
-          acc[category] = Object.values(categoryIdeas).map(idea => ({
-            ...idea,
-            category: category as Idea['category']
-          }));
-          return acc;
-        }, {} as Record<string, Idea[]>);
-        setIdeas(categorizedIdeas);
+        setIdeas(ideasData);
         setUsers(usersData);
       } catch (err) {
         console.error("Error loading data:", err);
@@ -48,9 +41,19 @@ const AdminPage: React.FC = () => {
     setActiveTab(newValue);
   };
 
-  const onAddImage = (ideaEn: string, imageUrl: string) => {
-    // Implement this function
-    console.log('Add image', ideaEn, imageUrl);
+  const onAddImage = async (ideaEn: string, imageUrl: string, category: Category) => {
+    try {
+      await updateIdeaImage(category, ideaEn, imageUrl);
+      setIdeas(prevIdeas => ({
+        ...prevIdeas,
+        [category]: prevIdeas[category].map(idea => 
+          idea.text.en === ideaEn ? { ...idea, image: imageUrl } : idea
+        )
+      }));
+    } catch (err) {
+      console.error("Error updating idea image:", err);
+      setError(t('admin.error.updateImage'));
+    }
   };
 
   const onDeleteIdea = (ideaEn: string, category: string) => {

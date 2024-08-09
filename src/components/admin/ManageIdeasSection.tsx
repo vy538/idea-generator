@@ -3,12 +3,12 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Tabs, Tab, Box, Grid } from '@mui/material';
-import { Idea } from '../../types';
+import { Idea, Category } from '../../types';
 import AdminIdeaItem from './AdminIdeaItem';
 
 interface Props {
-  ideas: Record<string, Idea[]>;
-  onAddImage: (ideaEn: string, imageUrl: string) => void;
+  ideas: Record<Category, Idea[]>;
+  onAddImage: (ideaEn: string, imageUrl: string, category: Category) => void;
   onDeleteIdea: (ideaEn: string, category: string) => void;
 }
 
@@ -20,7 +20,7 @@ const ManageIdeasSection: React.FC<Props> = ({ ideas, onAddImage, onDeleteIdea }
     setValue(newValue);
   };
 
-  const categories = Object.keys(ideas);
+  const categories = Object.keys(ideas) as Category[];
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -43,7 +43,7 @@ const ManageIdeasSection: React.FC<Props> = ({ ideas, onAddImage, onDeleteIdea }
                 <Grid item xs={12} sm={6} md={4} lg={3} key={idea.text.en}>
                   <AdminIdeaItem 
                     idea={idea} 
-                    onAddImage={onAddImage} 
+                    onAddImage={(ideaEn, imageUrl) => onAddImage(ideaEn, imageUrl, category)} 
                     onDeleteIdea={onDeleteIdea}
                   />
                 </Grid>
