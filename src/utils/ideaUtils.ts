@@ -23,7 +23,7 @@ export const getDefaultImage = (category: Category): string => {
     case 'verb':
       return '/assets/images/ideas/verb.png';
     case 'element':
-      return '/assets/images/ideas/elem.png';
+      return '/assets/images/ideas/element.png';
     default:
       return '/assets/images/ideas/default.png';
   }
