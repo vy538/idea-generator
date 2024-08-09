@@ -5,6 +5,8 @@ export const theme = {
     secondaryText: '#666666',
     primaryAccent: '#ECE8D9',
     secondaryAccent: '#FAF6E9',
+    darkPrimaryAccent: '#8A7D66',
+    darkSecondaryAccent: '#6A6358',
     buttonHover: '#ECE8D9',
   },
   fonts: {

@@ -20,14 +20,27 @@ export interface GalleryItem {
   ideaReferences: IdeaReference[];
 }
 
+export interface SocialMedia {
+  platform: string;
+  handle: string;
+}
+
 export interface Author {
   name: string;
   email: string;
-  instagram: string;
-  github: string;
+  socialMedia: SocialMedia[];
 }
 
 export interface IdeaReference {
   category: Category;
   id: string;
+}
+export interface User {
+  uid: string;
+  email: string;
+  name: string;
+  role: 'user' | 'admin';
+  inviteCode?: string;
+  hasInviteCode: boolean;
+  storedIdeas?: string[];
 }

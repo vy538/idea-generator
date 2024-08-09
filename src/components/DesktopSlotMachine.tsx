@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ideas as allIdeas } from '../data/ideas';
+import { fetchIdeas } from '../services/database';
 import {
   SlotMachineWrapper,
   SlotWindowWrapper,
@@ -26,6 +26,19 @@ const SlotMachine: React.FC<Props> = ({ ideas, spinning, onGenerate }) => {
   const [displayedIdeas, setDisplayedIdeas] = useState<Idea[][]>([]);
   const spinningRef = useRef(spinning);
   spinningRef.current = spinning;
+  const [allIdeas, setAllIdeas] = useState<Record<string, Idea[]>>({});
+
+  useEffect(() => {
+    const loadAllIdeas = async () => {
+      try {
+        const ideas = await fetchIdeas();
+        setAllIdeas(ideas);
+      } catch (error) {
+        console.error('Failed to load ideas:', error);
+      }
+    };
+    loadAllIdeas();
+  }, []);
 
   const initializeDisplayedIdeas = (baseIdeas: Idea[]) => {
     return baseIdeas.map(idea => {
@@ -40,6 +53,7 @@ const SlotMachine: React.FC<Props> = ({ ideas, spinning, onGenerate }) => {
 
   useEffect(() => {
     setDisplayedIdeas(initializeDisplayedIdeas(ideas));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ideas]);
 
   useEffect(() => {
@@ -70,6 +84,7 @@ const SlotMachine: React.FC<Props> = ({ ideas, spinning, onGenerate }) => {
 
       return () => clearInterval(interval);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [spinning, ideas]);
 
   if (displayedIdeas.length === 0) {

@@ -1,16 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { GalleryWrapper } from '../styles/GalleryStyles';
 import GalleryItem from './GalleryItem';
 import EnlargedView from './EnlargedView';
-import galleryData from '../data/gallery.json';
-import { ideas } from '../data/ideas';
+import { fetchGalleryItems, fetchIdeas } from '../services/database';
 import { GalleryItem as GalleryItemType, Idea, Category } from '../types';
 
 const Gallery: React.FC = () => {
+  const [galleryItems, setGalleryItems] = useState<GalleryItemType[]>([]);
+  const [allIdeas, setAllIdeas] = useState<Record<string, Idea[]>>({});
   const [enlargedItem, setEnlargedItem] = useState<GalleryItemType | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [items, ideas] = await Promise.all([fetchGalleryItems(), fetchIdeas()]);
+        setGalleryItems(items);
+        setAllIdeas(ideas);
+        setError(null);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error('An unknown error occurred'));
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
 
   const getIdeaById = (category: Category, id: string): Idea | undefined => {
-    return ideas[category].find(idea => idea.text.en === id || idea.text.zh === id);
+    return allIdeas[category]?.find(idea => idea.text.en === id || idea.text.zh === id);
   };
 
   const handleItemClick = (item: GalleryItemType) => {
@@ -21,10 +40,13 @@ const Gallery: React.FC = () => {
     setEnlargedItem(null);
   };
 
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error in gallery: {error.message}</div>;
+
   return (
     <>
       <GalleryWrapper>
-        {(galleryData as GalleryItemType[]).map((item: GalleryItemType) => (
+        {galleryItems.map((item: GalleryItemType) => (
           <GalleryItem 
             key={item.id}
             item={item}
@@ -35,8 +57,9 @@ const Gallery: React.FC = () => {
       </GalleryWrapper>
       {enlargedItem && (
         <EnlargedView 
-          imageUrl={enlargedItem.imageUrl}
+          item={enlargedItem}
           onClose={handleCloseEnlargedView}
+          getIdeaById={getIdeaById}
         />
       )}
     </>

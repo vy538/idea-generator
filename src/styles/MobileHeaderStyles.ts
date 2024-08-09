@@ -89,3 +89,22 @@ export const LanguageButton = styled.button<{ isActive: boolean }>`
     background-color: ${({ theme }) => theme.colors.secondaryAccent};
   }
 `;
+
+export const AuthButton = styled.button`
+  background: none;
+  border: 2px solid ${({ theme }) => theme.colors.primaryAccent};
+  border-radius: 20px;
+  cursor: pointer;
+  padding: 8px 16px;
+  font-size: ${({ theme }) => theme.typography.body.mobileFontSize};
+  color: ${({ theme }) => theme.colors.primaryText};
+  font-weight: ${({ theme }) => theme.fonts.en.weights.medium};
+  transition: all 0.3s ease;
+  width: 100%;
+  margin-top: 10px;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.primaryAccent};
+    color: ${({ theme }) => theme.colors.background};
+  }
+`;
