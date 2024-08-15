@@ -10,6 +10,7 @@ import GalleryPage from './pages/GalleryPage';
 import AddIdeaPage from './pages/AddIdeaPage';
 import AdminPage from './pages/AdminPage';
 import InviteRequiredPage from './pages/InviteRequiredPage';
+import FavoritesPage from './pages/FavoritesPage'; // Add this import
 import { PageWrapper } from './styles/LayoutStyles';
 import { GlobalStyles } from './styles/GlobalStyles';
 import { theme } from './styles/theme';
@@ -55,6 +56,13 @@ function App() {
                   <Layout>
                     <PrivateRoute requireInviteCode>
                       <UploadCreationPage />
+                    </PrivateRoute>
+                  </Layout>
+                } />
+                <Route path="/favorites" element={ // Add this new route
+                  <Layout>
+                    <PrivateRoute>
+                      <FavoritesPage />
                     </PrivateRoute>
                   </Layout>
                 } />

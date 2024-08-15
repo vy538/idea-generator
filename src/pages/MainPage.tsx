@@ -1,8 +1,10 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import SlotMachine from '../components/SlotMachine';
+import SaveFavoriteButton from '../components/SaveFavoriteButton';
 import { useRandomIdeas } from '../hooks/useRandomIdeas';
 import { MainPageWrapper, VideoBackground } from '../styles/LayoutStyles';
+import { Box } from '@mui/material';
 
 const MainPage: React.FC = () => {
   const { t } = useTranslation();
@@ -19,6 +21,9 @@ const MainPage: React.FC = () => {
       </VideoBackground>
       <MainPageWrapper>
         <SlotMachine ideas={ideas} spinning={spinning} onGenerate={refetch} />
+        <Box mt={2}>
+          <SaveFavoriteButton ideas={ideas} />
+        </Box>
       </MainPageWrapper>
     </>
   );

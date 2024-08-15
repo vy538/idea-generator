@@ -6,7 +6,8 @@
     "admin": "Admin",
     "login": "Login",
     "logout": "Logout",
-    "uploadCreation": "Upload Creation"
+    "uploadCreation": "Upload Creation",
+    "favorites": "My Favorites"
   },
   "mainPage": {
     "generate": "Generate",
@@ -86,5 +87,12 @@
     "githubPlaceholder": "GitHub handle (optional)",
     "twitterPlaceholder": "Twitter (X) handle (optional)",
     "threadsPlaceholder": "Threads handle (optional)"
+  },
+  "favorites": { 
+    "title": "My Favorites",
+    "save": "Save",
+    "saved": "Added to favorites!",
+    "loginRequired": "Please log in to save favorites",
+    "empty": "You haven't saved any favorites yet."
   }
 }

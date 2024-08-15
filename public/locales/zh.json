@@ -6,7 +6,8 @@
     "admin": "管理員",
     "login": "登入",
     "logout": "登出",
-    "uploadCreation": "上傳作品"
+    "uploadCreation": "上傳作品",
+    "favorites": "我的收藏"
   },
   "mainPage": {
     "generate": "生成",
@@ -86,5 +87,12 @@
     "githubPlaceholder": "GitHub 帳號（選填）",
     "twitterPlaceholder": "Twitter (X) 帳號（選填）",
     "threadsPlaceholder": "Threads 帳號（選填）"
+  },
+  "favorites": { 
+    "title": "我的收藏",
+    "save": "收藏",
+    "saved": "已加入收藏！",
+    "loginRequired": "請登入以收藏想法",
+    "empty": "您還沒有收藏任何想法。"
   }
 }

@@ -42,5 +42,5 @@ export interface User {
   role: 'user' | 'admin';
   inviteCode?: string;
   hasInviteCode: boolean;
-  storedIdeas?: string[];
+  favoriteIdeas?: string[];
 }

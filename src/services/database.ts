@@ -60,7 +60,7 @@ export const fetchUsers = async (): Promise<User[]> => {
     role: userData.role || 'user',
     inviteCode: userData.inviteCode || null,
     hasInviteCode: !!userData.inviteCode,
-    storedIdeas: userData.storedIdeas || []
+    favoriteIdeas: userData.favoriteIdeas || []
   }));
 };
 
@@ -78,7 +78,7 @@ export const storeUserData = async (userData: Omit<User, 'storedIdeas' | 'invite
     ...userData,
     inviteCode: existingData.inviteCode || null,
     hasInviteCode: !!existingData.inviteCode,
-    storedIdeas: existingData.storedIdeas || [],
+    favoriteIdeas: existingData.favoriteIdeas || [],
   };
   
   await set(userRef, updatedData);
@@ -122,4 +122,22 @@ export const updateIdeaImage = async (category: Category, ideaEn: string, imageU
   } else {
     throw new Error('Idea not found');
   }
+};
+
+export const saveFavoriteIdea = async (uid: string, ideaSet: string): Promise<void> => {
+  const db = getDatabase();
+  const userRef = ref(db, `users/${uid}/favoriteIdeas`);
+  const snapshot = await get(userRef);
+  const currentFavorites = snapshot.val() || [];
+  
+  if (!currentFavorites.includes(ideaSet)) {
+    await set(userRef, [...currentFavorites, ideaSet]);
+  }
+};
+
+export const fetchFavoriteIdeas = async (uid: string): Promise<string[]> => {
+  const db = getDatabase();
+  const userRef = ref(db, `users/${uid}/favoriteIdeas`);
+  const snapshot = await get(userRef);
+  return snapshot.val() || [];
 };
