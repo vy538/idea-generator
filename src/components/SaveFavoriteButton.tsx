@@ -47,10 +47,12 @@ const SaveFavoriteButton: React.FC<Props> = ({ ideas }) => {
         setIsFavorite(true);
         alert(t('favorites.saved'));
       }
-    } else {
-      alert(t('favorites.loginRequired'));
     }
   };
+
+  if (!user) {
+    return null;
+  }
 
   return (
     <Tooltip title={isFavorite ? t('favorites.remove') : t('favorites.save')}>
