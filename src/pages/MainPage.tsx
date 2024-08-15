@@ -21,9 +21,9 @@ const MainPage: React.FC = () => {
       </VideoBackground>
       <MainPageWrapper>
         <SlotMachine ideas={ideas} spinning={spinning} onGenerate={refetch} />
-        <Box mt={2}>
+        {/* <Box mt={2}>
           <SaveFavoriteButton ideas={ideas} />
-        </Box>
+        </Box> */}
       </MainPageWrapper>
     </>
   );
