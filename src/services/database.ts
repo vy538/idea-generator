@@ -124,14 +124,16 @@ export const updateIdeaImage = async (category: Category, ideaEn: string, imageU
   }
 };
 
-export const saveFavoriteIdea = async (uid: string, ideaSet: string): Promise<void> => {
+export const saveFavoriteIdea = async (uid: string, ideas: Idea[]): Promise<void> => {
   const db = getDatabase();
   const userRef = ref(db, `users/${uid}/favoriteIdeas`);
   const snapshot = await get(userRef);
   const currentFavorites = snapshot.val() || [];
   
-  if (!currentFavorites.includes(ideaSet)) {
-    await set(userRef, [...currentFavorites, ideaSet]);
+  const newFavoriteSet = ideas.map(idea => `${idea.category}:${idea.text.en}__${idea.text.zh}`).join('|');
+  
+  if (!currentFavorites.includes(newFavoriteSet)) {
+    await set(userRef, [...currentFavorites, newFavoriteSet]);
   }
 };
 
@@ -140,4 +142,25 @@ export const fetchFavoriteIdeas = async (uid: string): Promise<string[]> => {
   const userRef = ref(db, `users/${uid}/favoriteIdeas`);
   const snapshot = await get(userRef);
   return snapshot.val() || [];
+};
+
+export const removeFavoriteIdea = async (uid: string, ideaSet: string): Promise<void> => {
+  const db = getDatabase();
+  const userRef = ref(db, `users/${uid}/favoriteIdeas`);
+  const snapshot = await get(userRef);
+  const currentFavorites = snapshot.val() || [];
+  
+  const updatedFavorites = currentFavorites.filter((favorite: string) => favorite !== ideaSet);
+  await set(userRef, updatedFavorites);
+};
+
+export const isIdeaSetFavorite = async (uid: string, ideas: Idea[]): Promise<boolean> => {
+  const db = getDatabase();
+  const userRef = ref(db, `users/${uid}/favoriteIdeas`);
+  const snapshot = await get(userRef);
+  const favorites = snapshot.val() || [];
+
+  const currentIdeaSet = ideas.map(idea => `${idea.category}:${idea.text.en}__${idea.text.zh}`).join('|');
+  
+  return favorites.includes(currentIdeaSet);
 };

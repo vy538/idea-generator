@@ -49,3 +49,14 @@ export const IdeaText = styled.p`
   margin: 0;
   color: ${({ theme }) => theme.colors.primaryText};
 `;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    gap: 10px;
+  }
+`;

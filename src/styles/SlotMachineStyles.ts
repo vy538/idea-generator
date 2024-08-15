@@ -117,3 +117,14 @@ export const IdeaText = styled(Body)<{ lang: 'en' | 'zh' }>`
   overflow: hidden;
   text-overflow: ellipsis;
 `;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    gap: 10px;
+  }
+`;

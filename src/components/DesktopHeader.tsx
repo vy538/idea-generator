@@ -42,7 +42,7 @@ const DesktopHeader: React.FC = () => {
       <Nav>
         <NavBarLink to="/" lang={currentLang}>{t('header.home')}</NavBarLink>
         <NavBarLink to="/gallery" lang={currentLang}>{t('header.gallery')}</NavBarLink>
-        {/* {user && <NavBarLink to="/favorites" lang={currentLang}>{t('header.favorites')}</NavBarLink>}  */}
+        {user && <NavBarLink to="/favorites" lang={currentLang}>{t('header.favorites')}</NavBarLink>} 
         {user && <NavBarLink to="/add-idea" lang={currentLang}>{t('header.addIdea')}</NavBarLink>}
         {user && <NavBarLink to="/upload-creation" lang={currentLang}>{t('header.uploadCreation')}</NavBarLink>}
         {isAdmin && (

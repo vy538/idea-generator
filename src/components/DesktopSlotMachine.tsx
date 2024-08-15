@@ -10,10 +10,12 @@ import {
   Slot,
   IdeaText,
   IdeaImage,
-  ColumnHeader
+  ColumnHeader,
+  ButtonContainer
 } from '../styles/SlotMachineStyles';
 import GenerateButton from './GenerateButton';
 import { Idea } from '../types';
+import SaveFavoriteButton from './SaveFavoriteButton';
 
 interface Props {
   ideas: Idea[];
@@ -112,7 +114,10 @@ const SlotMachine: React.FC<Props> = ({ ideas, spinning, onGenerate }) => {
           </SlotColumn>
         ))}
       </SlotWindowWrapper>
+     <ButtonContainer>
         <GenerateButton onClick={onGenerate} />
+        <SaveFavoriteButton ideas={ideas} />
+      </ButtonContainer>
     </SlotMachineWrapper>
   );
 };

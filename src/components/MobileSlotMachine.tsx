@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Idea } from '../types';
 import GenerateButton from './GenerateButton';
-import { CategoryCard, IdeaImage, IdeaText, MobileSlotMachineWrapper } from '../styles/MobileSlotMachineStyles';
+import { ButtonContainer, CategoryCard, IdeaImage, IdeaText, MobileSlotMachineWrapper } from '../styles/MobileSlotMachineStyles';
+import SaveFavoriteButton from './SaveFavoriteButton';
 
 interface Props {
   ideas: Idea[];
@@ -47,7 +48,10 @@ const MobileSlotMachine: React.FC<Props> = ({ ideas, onGenerate, spinning }) => 
           </IdeaText>
         </CategoryCard>
       ))}
-      <GenerateButton onClick={handleGenerate} />
+      <ButtonContainer>
+        <GenerateButton onClick={handleGenerate} />
+        <SaveFavoriteButton ideas={ideas} />
+      </ButtonContainer>
     </MobileSlotMachineWrapper>
   );
 };
