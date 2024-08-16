@@ -8,6 +8,7 @@ export const theme = {
     darkPrimaryAccent: '#8A7D66',
     darkSecondaryAccent: '#6A6358',
     buttonHover: '#ECE8D9',
+    errorColor: '#ffb2ba',
   },
   fonts: {
     en: {

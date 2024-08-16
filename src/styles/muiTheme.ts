@@ -9,7 +9,7 @@ export const muiTheme = createTheme({
       main: styledTheme.colors.darkPrimaryAccent,
     },
     secondary: {
-      main: styledTheme.colors.darkSecondaryAccent,
+      main: styledTheme.colors.errorColor,
     },
     text: {
       primary: styledTheme.colors.primaryText,
@@ -44,6 +44,15 @@ export const muiTheme = createTheme({
       styleOverrides: {
         root: {
           textTransform: 'none',
+        },
+      },
+    },
+    MuiIconButton: {
+      styleOverrides: {
+        root: {
+          '&:hover': {
+            backgroundColor: 'transparent',
+          },
         },
       },
     },

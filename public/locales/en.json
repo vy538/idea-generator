@@ -93,6 +93,7 @@
     "save": "Save",
     "saved": "Added to favorites!",
     "loginRequired": "Please log in to save favorites",
-    "empty": "You haven't saved any favorites yet."
+    "empty": "You haven't saved any favorites yet.",
+    "remove": "Remove"
   }
 }

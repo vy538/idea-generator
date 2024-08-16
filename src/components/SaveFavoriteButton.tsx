@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { IconButton, Tooltip } from '@mui/material';
+import { IconButton, Tooltip, IconButtonProps } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { Idea } from '../types';
@@ -13,10 +13,19 @@ interface Props {
   ideas: Idea[];
 }
 
-const StyledIconButton = styled(IconButton)`
-  color: ${props => props.color};
+interface StyledIconButtonProps extends IconButtonProps {
+  $isFavorite: boolean;
+}
+
+const StyledIconWrapper = styled.div`
+  display: inherit;
+`;
+
+const StyledIconButton = styled(IconButton)<StyledIconButtonProps>`
+  color: ${props => props.$isFavorite ? theme.colors.errorColor : theme.colors.darkSecondaryAccent};
   &:hover {
-    color: ${theme.colors.darkPrimaryAccent};
+    background-color: transparent !important;
+    color: ${theme.colors.errorColor} !important;
   }
 `;
 
@@ -55,15 +64,18 @@ const SaveFavoriteButton: React.FC<Props> = ({ ideas }) => {
   }
 
   return (
-    <Tooltip title={isFavorite ? t('favorites.remove') : t('favorites.save')}>
-      <StyledIconButton
-        onClick={handleSaveFavorite}
-        color={isFavorite ? "secondary" : "default"}
-        aria-label={isFavorite ? t('favorites.remove') : t('favorites.save')}
-      >
-        {isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-      </StyledIconButton>
-    </Tooltip>
+    <StyledIconWrapper>
+      <Tooltip title={isFavorite ? t('favorites.remove') : t('favorites.save')}>
+        <StyledIconButton
+          onClick={handleSaveFavorite}
+          size = {'large'}
+          $isFavorite={isFavorite}
+          aria-label={isFavorite ? t('favorites.remove') : t('favorites.save')}
+        >
+          {isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+        </StyledIconButton>
+      </Tooltip>
+    </StyledIconWrapper>
   );
 };
 
