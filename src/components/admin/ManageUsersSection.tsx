@@ -3,7 +3,7 @@ import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
 import { Button, Box } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { User } from '../../types';
-import { setInviteCode } from '../../services/database';
+import { setHasInviteCode } from '../../services/database';
 
 interface Props {
   users: User[];
@@ -13,19 +13,25 @@ interface Props {
 const ManageUsersSection: React.FC<Props> = ({ users, onUpdateUser }) => {
   const { t } = useTranslation();
 
-  const generateInviteCode = () => {
-    return Math.random().toString(36).substring(2, 8).toUpperCase();
-  };
 
-  const handleSendInvite = async (user: User) => {
-    const inviteCode = generateInviteCode();
-    await setInviteCode(user.uid, inviteCode);
-    onUpdateUser({ ...user, inviteCode, hasInviteCode: true });
+const handleSendInvite = async (user: User) => {
+    try {
+      await setHasInviteCode(user.uid, true);
+      onUpdateUser({ ...user, hasInviteCode: true });
+    } catch (error) {
+      console.error("Error sending invite:", error);
+      // You might want to show an error message to the user here
+    }
   };
 
   const handleCancelInvite = async (user: User) => {
-    await setInviteCode(user.uid, '');
-    onUpdateUser({ ...user, inviteCode: undefined, hasInviteCode: false });
+    try {
+      await setHasInviteCode(user.uid, false);
+      onUpdateUser({ ...user, hasInviteCode: false });
+    } catch (error) {
+      console.error("Error cancelling invite:", error);
+      // You might want to show an error message to the user here
+    }
   };
 
   const columns: GridColDef[] = [
@@ -40,7 +46,7 @@ const ManageUsersSection: React.FC<Props> = ({ users, onUpdateUser }) => {
         const user = params.row as User;
         return (
           <Box>
-            {user.hasInviteCode && user.inviteCode ? (
+            {user.hasInviteCode ? (
               <>
                 <Button size="small" onClick={() => handleCancelInvite(user)}>
                   {t('admin.users.cancelInvite')}
@@ -71,7 +77,6 @@ const ManageUsersSection: React.FC<Props> = ({ users, onUpdateUser }) => {
           },
         }}
         pageSizeOptions={[5, 10, 20]}
-        checkboxSelection
         disableRowSelectionOnClick
       />
     </Box>

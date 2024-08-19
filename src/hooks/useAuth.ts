@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { auth } from '../services/firebase';
 import { User as FirebaseUser } from 'firebase/auth';
-import { checkInviteCode, storeUserData, setInviteCode } from '../services/database';
+import { checkInviteCode, storeUserData } from '../services/database';
 import { useUserRole } from './useUserRole';
 
 export const useAuth = () => {
@@ -57,12 +57,5 @@ export const useAuth = () => {
     }
   }, [user, userRole, checkUserStatus]);
 
-  const addInviteCode = useCallback(async (inviteCode: string) => {
-    if (user) {
-      await setInviteCode(user.uid, inviteCode);
-      setHasInviteCode(true);
-    }
-  }, [user]);
-
-  return { user, hasInviteCode, userRole, addInviteCode };
+  return { user, hasInviteCode, userRole };
 };

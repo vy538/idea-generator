@@ -40,7 +40,6 @@ export interface User {
   email: string;
   name: string;
   role: 'user' | 'admin';
-  inviteCode?: string;
   hasInviteCode: boolean;
   favoriteIdeas?: string[];
 }

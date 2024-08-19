@@ -92,14 +92,19 @@ export const checkInviteCode = async (uid: string): Promise<boolean> => {
   return !!userData?.inviteCode;
 };
 
-export const setInviteCode = async (uid: string, inviteCode: string): Promise<void> => {
+export const setHasInviteCode = async (uid: string, hasInviteCode: boolean): Promise<void> => {
   const db = getDatabase();
   const userRef = ref(db, `users/${uid}`);
-  await update(userRef, { 
-    inviteCode, 
-    hasInviteCode: inviteCode !== '' 
-  });
+  console.log(`Attempting to set hasInviteCode to ${hasInviteCode} for user ${uid}`);
+  try {
+    await update(userRef, { hasInviteCode: hasInviteCode });
+    console.log('Update successful');
+  } catch (error) {
+    console.error('Error updating hasInviteCode:', error);
+    throw error;
+  }
 };
+
 
 const storage = getStorage();
 
