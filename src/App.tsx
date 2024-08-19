@@ -18,6 +18,7 @@ import { ThemeProvider } from 'styled-components';
 import PrivateRoute from './components/PrivateRoute';
 import { AuthProvider } from './hooks/AuthContext';
 import UploadCreationPage from './pages/UploadCreationPage';
+import LoadingSpinner from './components/LoadingSpinner';
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <>
@@ -33,7 +34,7 @@ function App() {
       <I18nextProvider i18n={i18n}>
         <AuthProvider>
           <Router>
-            <Suspense fallback="Loading...">
+            <Suspense fallback={<LoadingSpinner loadingText={i18n.t('general.loading')} />}>
               <Routes>
                 <Route path="/" element={<Layout><MainPage /></Layout>} />
                 <Route path="/gallery" element={<Layout><GalleryPage /></Layout>} />

@@ -1,4 +1,7 @@
 {
+  "general":{
+    "loading": "載入中..."
+  },
   "header": {
     "home": "首頁",
     "gallery": "畫廊",

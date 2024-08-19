@@ -4,6 +4,8 @@ import GalleryItem from './GalleryItem';
 import EnlargedView from './EnlargedView';
 import { fetchGalleryItems, fetchIdeas } from '../services/database';
 import { GalleryItem as GalleryItemType, Idea, Category } from '../types';
+import LoadingSpinner from './LoadingSpinner';
+import { t } from 'i18next';
 
 const Gallery: React.FC = () => {
   const [galleryItems, setGalleryItems] = useState<GalleryItemType[]>([]);
@@ -40,7 +42,7 @@ const Gallery: React.FC = () => {
     setEnlargedItem(null);
   };
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return  <LoadingSpinner loadingText={t('general.loading')} />;
   if (error) return <div>Error in gallery: {error.message}</div>;
 
   return (

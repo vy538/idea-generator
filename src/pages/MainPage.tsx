@@ -3,12 +3,13 @@ import { useTranslation } from 'react-i18next';
 import SlotMachine from '../components/SlotMachine';
 import { useRandomIdeas } from '../hooks/useRandomIdeas';
 import { MainPageWrapper, VideoBackground } from '../styles/LayoutStyles';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 const MainPage: React.FC = () => {
   const { t } = useTranslation();
   const { ideas, spinning, loading, error, refetch } = useRandomIdeas();
 
-  if (loading) return <div>{t('mainPage.loading')}</div>;
+  if (loading) return  <LoadingSpinner loadingText={t('mainPage.loading')} />;
   if (error) return <div>{t('mainPage.error', { message: error.message })}</div>;
 
   return (

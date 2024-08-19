@@ -3,6 +3,8 @@
 import React from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { useAuthContext } from '../hooks/AuthContext';
+import LoadingSpinner from './LoadingSpinner';
+import { t } from 'i18next';
 
 interface PrivateRouteProps {
   children: React.ReactNode;
@@ -15,7 +17,7 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({ children, requireInviteCode
 
 
   if (user === undefined || userRole === null) {
-    return <div>Loading...</div>;
+    return  <LoadingSpinner loadingText={t('mainPage.loading')} />;;
   }
 
   if (!user) {

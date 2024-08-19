@@ -11,6 +11,7 @@ import ManageUsersSection from '../components/admin/ManageUsersSection';
 import { Body, H1 } from '../styles/Typography';
 import { AdminPageWrapper } from '../styles/LayoutStyles';
 import { muiTheme } from '../styles/muiTheme';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 const AdminPage: React.FC = () => {
   const { t, i18n } = useTranslation();
@@ -67,7 +68,8 @@ const AdminPage: React.FC = () => {
     ));
   };
 
-  if (loading) return <Body lang={i18n.language as 'en' | 'zh'}>{t('admin.loading')}</Body>;
+  
+  if (loading) return  <LoadingSpinner loadingText={t('mainPage.loading')} />;
   if (error) return <Body lang={i18n.language as 'en' | 'zh'}>{error}</Body>;
 
   return (
