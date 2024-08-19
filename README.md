@@ -19,6 +19,7 @@ This project is a responsive web application that generates random illustration 
 - Admin panel for managing ideas, gallery items, and users
 - Ability for admins to generate and manage invite codes for users
 - Upload creation feature for users to share their illustrations
+- Favorite feature allowing users to save and manage their favorite idea sets
 - Material-UI components for a consistent and modern UI
 
 ## Project Structure
@@ -43,6 +44,7 @@ illustration-idea-generator/
 │   │   ├── MobileSlotMachine.tsx
 │   │   ├── DesktopSlotMachine.tsx
 │   │   ├── GenerateButton.tsx
+│   │   ├── SaveFavoriteButton.tsx
 │   │   ├── Gallery.tsx
 │   │   ├── GalleryItem.tsx
 │   │   ├── EnlargedView.tsx
@@ -56,6 +58,7 @@ illustration-idea-generator/
 │   │   ├── AddIdeaPage.tsx
 │   │   ├── AdminPage.tsx
 │   │   ├── GalleryPage.tsx
+│   │   ├── FavoritesPage.tsx
 │   │   ├── UploadCreationPage.tsx
 │   │   └── InviteRequiredPage.tsx
 │   ├── hooks/
@@ -94,7 +97,6 @@ illustration-idea-generator/
 ├── package.json
 ├── tsconfig.json
 └── README.md
-
 ```
 
 ## Setup and Installation
@@ -103,6 +105,7 @@ illustration-idea-generator/
 2. Run `npm install` to install dependencies
 3. Set up a Firebase project and obtain the configuration
 4. Create a `.env` file in the root directory with the following variables:
+   ```
    REACT_APP_FIREBASE_API_KEY=your_api_key
    REACT_APP_FIREBASE_AUTH_DOMAIN=your_auth_domain
    REACT_APP_FIREBASE_PROJECT_ID=your_project_id
@@ -110,6 +113,7 @@ illustration-idea-generator/
    REACT_APP_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
    REACT_APP_FIREBASE_APP_ID=your_app_id
    REACT_APP_ADMIN_EMAIL=your_admin_email@example.com
+   ```
 5. Place your Firebase service account key (serviceAccountKey.json) in the `scripts/` directory
 6. Run `npm run populate-db` to populate the initial data in Firebase
 7. Run `npm start` to start the development server
@@ -121,13 +125,15 @@ illustration-idea-generator/
 3. User can log in using Google authentication
 4. User clicks "Generate" to spin for new random ideas
 5. User can switch between English and Traditional Chinese
-6. Gallery page showcases illustrations with generated idea tags
-7. Enlarged view available for illustrations in the gallery on all devices
-8. Mobile users can access navigation options via a hamburger menu
-9. Logged-in users with invite codes or admin status can access the "Add Idea" page
-10. Logged-in users can upload their own creations based on generated ideas
-11. Admin users can access the admin panel for managing ideas and users
-12. Admins can generate, copy, and cancel invite codes for users
+6. Logged-in users can save favorite idea sets by clicking the heart icon
+7. Gallery page showcases illustrations with generated idea tags
+8. Enlarged view available for illustrations in the gallery on all devices
+9. Favorites page allows users to view and manage their saved idea sets
+10. Mobile users can access navigation options via a hamburger menu
+11. Logged-in users with invite codes or admin status can access the "Add Idea" page
+12. Logged-in users can upload their own creations based on generated ideas
+13. Admin users can access the admin panel for managing ideas and users
+14. Admins can generate, copy, and cancel invite codes for users
 
 ## Technologies Used
 
@@ -144,13 +150,11 @@ illustration-idea-generator/
 ## Future Improvements
 
 - Implement more robust error handling
-- Add more categories and ideas
-- User accounts with favorite combinations
-- Enhanced animations
-- Sharing functionality
-- User contribution system
+- Social sharing functionality for favorite idea sets
+- User contribution system for new ideas
 - Moderation system for user-submitted content
-- Improved invite code management system
+- Pagination for the favorites and gallery pages
+- Auto translation with AI
 
 ## License
 
