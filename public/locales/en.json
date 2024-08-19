@@ -29,8 +29,8 @@
   },
   "generate": "Go!",
   "inviteRequired": {
-    "title": "Invite Code Required",
-    "message": "You need an invite code to access this page. Please contact the administrator for an invite code."
+    "title": "Invitation Required",
+    "message": "You need an invitation from an administrator to access this page. Please contact an administrator for access."
   },
   "addIdea": {
     "title": "Add New Idea",
