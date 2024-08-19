@@ -58,13 +58,12 @@ export const fetchUsers = async (): Promise<User[]> => {
     email: userData.email || '',
     name: userData.name || '',
     role: userData.role || 'user',
-    inviteCode: userData.inviteCode || null,
-    hasInviteCode: !!userData.inviteCode,
+    hasInviteCode: userData.hasInviteCode,
     favoriteIdeas: userData.favoriteIdeas || []
   }));
 };
 
-export const storeUserData = async (userData: Omit<User, 'storedIdeas' | 'inviteCode' | 'hasInviteCode'>): Promise<void> => {
+export const storeUserData = async (userData: Omit<User, 'storedIdeas' | 'hasInviteCode'>): Promise<void> => {
   const db = getDatabase();
   const userRef = ref(db, `users/${userData.uid}`);
   
@@ -76,8 +75,7 @@ export const storeUserData = async (userData: Omit<User, 'storedIdeas' | 'invite
   const updatedData: User = {
     ...existingData,
     ...userData,
-    inviteCode: existingData.inviteCode || null,
-    hasInviteCode: !!existingData.inviteCode,
+    hasInviteCode: existingData.hasInviteCode,
     favoriteIdeas: existingData.favoriteIdeas || [],
   };
   
@@ -89,7 +87,7 @@ export const checkInviteCode = async (uid: string): Promise<boolean> => {
   const userRef = ref(db, `users/${uid}`);
   const snapshot = await get(userRef);
   const userData = snapshot.val();
-  return !!userData?.inviteCode;
+  return userData?.hasInviteCode;
 };
 
 export const setHasInviteCode = async (uid: string, hasInviteCode: boolean): Promise<void> => {

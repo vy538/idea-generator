@@ -14,7 +14,7 @@ const ManageUsersSection: React.FC<Props> = ({ users, onUpdateUser }) => {
   const { t } = useTranslation();
 
 
-const handleSendInvite = async (user: User) => {
+  const handleSendInvite = async (user: User) => {
     try {
       await setHasInviteCode(user.uid, true);
       onUpdateUser({ ...user, hasInviteCode: true });
@@ -39,8 +39,8 @@ const handleSendInvite = async (user: User) => {
     { field: 'email', headerName: t('admin.users.email'), width: 200 },
     { field: 'role', headerName: t('admin.users.role'), width: 100 },
     {
-      field: 'inviteCode',
-      headerName: t('admin.users.inviteCode'),
+      field: 'hasInviteCode',
+      headerName: t('admin.users.hasInviteCode'),
       width: 250,
       renderCell: (params: GridRenderCellParams) => {
         const user = params.row as User;

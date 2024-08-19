@@ -64,7 +64,6 @@
       "role": "職位",
       "email": "電子郵件",
       "hasInviteCode": "有邀請碼",
-      "inviteCode": "邀請碼",
       "sendInvite": "發送邀請",
       "cancelInvite": "取消邀請",
       "copyInvite": "複製"

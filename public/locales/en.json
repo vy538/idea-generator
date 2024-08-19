@@ -64,7 +64,6 @@
       "role":"Role",
       "email": "Email",
       "hasInviteCode": "Has Invite Code",
-      "inviteCode": "Invite Code",
       "sendInvite": "Send Invite",
       "cancelInvite": "Cancel Invite",
       "copyInvite": "Copy"
