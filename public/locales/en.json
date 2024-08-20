@@ -42,6 +42,8 @@
       "element": "Other Element"
     },
     "placeholders": {
+      "primary": "Enter your idea",
+      "translated": "Choose translated option",
       "english": "English text",
       "chinese": "Chinese text"
     },

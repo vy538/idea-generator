@@ -42,6 +42,8 @@
       "element": "其他元素"
     },
     "placeholders": {
+      "primary": "輸入您的想法",
+      "translated": "選擇翻譯選項",
       "english": "英文文字",
       "chinese": "中文文字"
     },
