@@ -1,31 +1,49 @@
 // src/components/UploadCreationForm.tsx
-import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import {  FormWrapper, ImagePreview, IdeaReferenceWrapper, SocialMediaInput, CategorySelectionWrapper, SubmitButton, Input, Select } from '../styles/UploadCreationStyles';
-import { IdeaReference, Category, Idea, SocialMedia } from '../types';
+import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
+import {
+  FormWrapper,
+  ImagePreview,
+  InnerFormWrapper,
+  SocialMediaInput,
+  CategorySelectionWrapper,
+  SubmitButton,
+  Input,
+  Select,
+} from "../styles/UploadCreationStyles";
+import { IdeaReference, Category, Idea, SocialMedia } from "../types";
+import { Divider } from "@mui/material";
 
 interface UploadCreationFormProps {
-  onSubmit: (imageFile: File, ideaReferences: IdeaReference[], socialMedia: SocialMedia[]) => void;
+  onSubmit: (
+    imageFile: File,
+    ideaReferences: IdeaReference[],
+    socialMedia: SocialMedia[]
+  ) => void;
   isUploading: boolean;
   ideas: Record<Category, Idea[]>;
 }
 
-const UploadCreationForm: React.FC<UploadCreationFormProps> = ({ onSubmit, isUploading, ideas }) => {
+const UploadCreationForm: React.FC<UploadCreationFormProps> = ({
+  onSubmit,
+  isUploading,
+  ideas,
+}) => {
   const { t, i18n } = useTranslation();
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [socialMedia, setSocialMedia] = useState<SocialMedia[]>([
-    { platform: 'instagram', handle: '' },
-    { platform: 'github', handle: '' },
-    { platform: 'twitter', handle: '' },
-    { platform: 'threads', handle: '' },
+    { platform: "instagram", handle: "" },
+    { platform: "github", handle: "" },
+    { platform: "twitter", handle: "" },
+    { platform: "threads", handle: "" },
   ]);
   const [selectedIdeas, setSelectedIdeas] = useState<Record<Category, string>>({
-    adjective: '',
-    character: '',
-    location: '',
-    verb: '',
-    element: '',
+    adjective: "",
+    character: "",
+    location: "",
+    verb: "",
+    element: "",
   });
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,57 +55,64 @@ const UploadCreationForm: React.FC<UploadCreationFormProps> = ({ onSubmit, isUpl
   };
 
   const handleIdeaSelection = (category: Category, id: string) => {
-    setSelectedIdeas(prev => ({ ...prev, [category]: id }));
+    setSelectedIdeas((prev) => ({ ...prev, [category]: id }));
   };
 
   const handleSocialMediaChange = (platform: string, handle: string) => {
-    setSocialMedia(prev => prev.map(sm => 
-      sm.platform === platform ? { ...sm, handle } : sm
-    ));
+    setSocialMedia((prev) =>
+      prev.map((sm) => (sm.platform === platform ? { ...sm, handle } : sm))
+    );
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (imageFile) {
       const ideaReferences: IdeaReference[] = Object.entries(selectedIdeas)
-        .filter(([_, id]) => id !== '')
+        .filter(([_, id]) => id !== "")
         .map(([category, id]) => ({ category: category as Category, id }));
-      const filteredSocialMedia = socialMedia.filter(sm => sm.handle !== '');
+      const filteredSocialMedia = socialMedia.filter((sm) => sm.handle !== "");
       onSubmit(imageFile, ideaReferences, filteredSocialMedia);
     }
   };
 
-  const categories: Category[] = ['adjective', 'character', 'location', 'verb', 'element'];
+  const categories: Category[] = [
+    "adjective",
+    "character",
+    "location",
+    "verb",
+    "element",
+  ];
 
-return (
-      <FormWrapper onSubmit={handleSubmit}>
-        <Input
-          type="file"
-          accept="image/*"
-          onChange={handleImageChange}
-          required
-        />
-        {previewUrl && <ImagePreview src={previewUrl} alt="Preview" />}
-
-        <IdeaReferenceWrapper>
-          {categories.map((category) => (
-            <CategorySelectionWrapper key={category}>
-              <label>{t(`categories.${category}`)}</label>
-              <Select
-                value={selectedIdeas[category]}
-                onChange={(e) => handleIdeaSelection(category, e.target.value)}
-              >
-                <option value="">{t('uploadCreation.selectIdea')}</option>
-                {ideas[category]?.map((idea) => (
-                  <option key={idea.text.en} value={idea.text.en}>
-                    {i18n.language.startsWith('zh') ? idea.text.zh : idea.text.en}
-                  </option>
-                ))}
-              </Select>
-            </CategorySelectionWrapper>
-          ))}
-        </IdeaReferenceWrapper>
-        
+  return (
+    <FormWrapper onSubmit={handleSubmit}>
+      {previewUrl && <ImagePreview src={previewUrl} alt="Preview" />}
+      <Input
+        type="file"
+        accept="image/*"
+        onChange={handleImageChange}
+        required
+      />
+      <Divider />
+      <InnerFormWrapper>
+        {categories.map((category) => (
+          <CategorySelectionWrapper key={category}>
+            <label>{t(`categories.${category}`)}</label>
+            <Select
+              value={selectedIdeas[category]}
+              onChange={(e) => handleIdeaSelection(category, e.target.value)}
+            >
+              <option value="">{t("uploadCreation.selectIdea")}</option>
+              {ideas[category]?.map((idea) => (
+                <option key={idea.text.en} value={idea.text.en}>
+                  {i18n.language.startsWith("zh") ? idea.text.zh : idea.text.en}
+                </option>
+              ))}
+            </Select>
+          </CategorySelectionWrapper>
+        ))}
+      </InnerFormWrapper>
+      <Divider />
+      <InnerFormWrapper>
         {socialMedia.map((sm) => (
           <SocialMediaInput key={sm.platform}>
             <label>{t(`uploadCreation.${sm.platform}Placeholder`)}</label>
@@ -95,15 +120,19 @@ return (
               type="text"
               placeholder={t(`uploadCreation.${sm.platform}Placeholder`)}
               value={sm.handle}
-              onChange={(e) => handleSocialMediaChange(sm.platform, e.target.value)}
+              onChange={(e) =>
+                handleSocialMediaChange(sm.platform, e.target.value)
+              }
             />
           </SocialMediaInput>
         ))}
-
-        <SubmitButton type="submit" disabled={isUploading}>
-          {isUploading ? t('uploadCreation.uploading') : t('uploadCreation.submit')}
-        </SubmitButton>
-      </FormWrapper>
+      </InnerFormWrapper>
+      <SubmitButton type="submit" disabled={isUploading}>
+        {isUploading
+          ? t("uploadCreation.uploading")
+          : t("uploadCreation.submit")}
+      </SubmitButton>
+    </FormWrapper>
   );
 };
 

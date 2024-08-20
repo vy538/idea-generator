@@ -12,6 +12,7 @@ export const FormWrapper = styled.form`
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     max-width: 100%;
     padding: 10px;
+    margin: 0;
   }
 `;
 

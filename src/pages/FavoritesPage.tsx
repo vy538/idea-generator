@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { fetchFavoriteIdeas, removeFavoriteIdea } from '../services/database';
 import { useAuth } from '../hooks/useAuth';
-import { GalleryPageWrapper } from '../styles/LayoutStyles';
-import { Grid, Card, CardContent, Typography, IconButton, Box } from '@mui/material';
+import { AddIdeaPageWrapper } from '../styles/LayoutStyles';
+import { Grid, Card, CardContent, Typography, IconButton, Box, ThemeProvider } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import styled from 'styled-components';
 import { theme } from '../styles/theme';
+import { H1 } from '../styles/Typography';
+import { muiTheme } from '../styles/muiTheme';
 
 const StyledCard = styled(Card)`
   background-color: ${theme.colors.secondaryAccent};
@@ -29,6 +31,7 @@ const CategoryTypography = styled(Typography)`
   font-weight: ${theme.fonts.en.weights.bold};
   color: ${theme.colors.darkPrimaryAccent};
   margin-bottom: 4px;
+  text-transform: uppercase;
 `;
 
 const IdeaTypography = styled(Typography)`
@@ -75,7 +78,7 @@ const FavoritesPage: React.FC = () => {
       <StyledCard>
         <StyledCardContent>
           {ideas.map((idea, index) => (
-            <Box key={index}>
+            <Box key={index} marginBottom={'8px'}>
               <CategoryTypography variant="subtitle2">
                 {t(`categories.${idea.category}`)}
               </CategoryTypography>
@@ -93,10 +96,10 @@ const FavoritesPage: React.FC = () => {
   };
 
   return (
-    <GalleryPageWrapper>
-      <Typography variant="h1" gutterBottom color={theme.colors.primaryText}>
-        {t('favorites.title')}
-      </Typography>
+    <ThemeProvider theme={muiTheme}>
+    <AddIdeaPageWrapper>
+
+      <H1 lang={i18n.language as 'en' | 'zh'}>{t('favorites.title')}</H1>
       {favorites.length === 0 ? (
         <Typography variant="body1" color={theme.colors.secondaryText}>
           {t('favorites.empty')}
@@ -110,7 +113,8 @@ const FavoritesPage: React.FC = () => {
           ))}
         </Grid>
       )}
-    </GalleryPageWrapper>
+      </AddIdeaPageWrapper>
+      </ThemeProvider>
   );
 };
 
