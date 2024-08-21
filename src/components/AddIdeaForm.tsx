@@ -1,5 +1,3 @@
-// src/components/AddIdeaForm.tsx
-
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Idea } from "../types";
@@ -8,9 +6,9 @@ import {
   StyledSelect,
   StyledInput,
   SubmitButton,
+  TranslationPreview,
 } from "../styles/AddIdeaStyles";
 import { translateText } from "../services/azureTranslate";
-import { Autocomplete, TextField } from "@mui/material";
 
 interface AddIdeaFormProps {
   idea: Partial<Idea>;
@@ -26,8 +24,13 @@ const AddIdeaForm: React.FC<AddIdeaFormProps> = ({
   handleSubmit,
 }) => {
   const { t, i18n } = useTranslation();
-  const [translatedOptions, setTranslatedOptions] = useState<string[]>([]);
+  const [translatedText, setTranslatedText] = useState<string>("");
   const [isTranslating, setIsTranslating] = useState(false);
+  console.log(idea);
+
+  const ReadyToSubmit = () => {
+    return idea.text?.en !== "" && idea.text?.zh !== "";
+  };
 
   useEffect(() => {
     const translateIdea = async () => {
@@ -45,28 +48,33 @@ const AddIdeaForm: React.FC<AddIdeaFormProps> = ({
               fromLang,
               toLang
             );
-            setTranslatedOptions([translatedText]);
+            toLang === "en"
+              ? (idea.text.en = translatedText)
+              : (idea.text.zh = translatedText);
+            setTranslatedText(translatedText);
           } catch (error) {
             console.error("Translation error:", error);
+            setTranslatedText(t("addIdea.translationError"));
           } finally {
             setIsTranslating(false);
           }
+        } else {
+          setTranslatedText("");
         }
       }
     };
 
     translateIdea();
-  }, [idea.text, i18n.language]);
+    // eslint-disable-next-line
+  }, [idea.text, i18n.language, t]);
 
-  const handleAutocompleteChange = (
-    event: React.SyntheticEvent,
-    value: string | null
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
-    if (value) {
-      const name = i18n.language === "en" ? "zh" : "en";
-      handleChange({
-        target: { name, value },
-      } as React.ChangeEvent<HTMLInputElement>);
+    handleChange(e);
+    if (e.target.name === "en" || e.target.name === "zh") {
+      // Reset translated text when input changes
+      setTranslatedText("");
     }
   };
 
@@ -75,7 +83,7 @@ const AddIdeaForm: React.FC<AddIdeaFormProps> = ({
       <StyledSelect
         name="category"
         value={idea.category}
-        onChange={handleChange}
+        onChange={handleInputChange}
       >
         <option value="adjective">{t("addIdea.categories.adjective")}</option>
         <option value="character">{t("addIdea.categories.character")}</option>
@@ -89,22 +97,16 @@ const AddIdeaForm: React.FC<AddIdeaFormProps> = ({
         value={
           i18n.language === "en" ? idea.text?.en || "" : idea.text?.zh || ""
         }
-        onChange={handleChange}
+        onChange={handleInputChange}
         placeholder={t("addIdea.placeholders.primary")}
       />
-      <Autocomplete
-        options={translatedOptions}
-        loading={isTranslating}
-        onChange={handleAutocompleteChange}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            label={t("addIdea.placeholders.translated")}
-            variant="outlined"
-          />
-        )}
-      />
-      <SubmitButton type="submit">{t("addIdea.submit")}</SubmitButton>
+      <TranslationPreview>
+        {translatedText ? "" : t("addIdea.placeholders.translate")}
+        {isTranslating ? t("addIdea.translating") : translatedText}
+      </TranslationPreview>
+      <SubmitButton disabled={!ReadyToSubmit()} type="submit">
+        {t("addIdea.submit")}
+      </SubmitButton>
     </FormWrapper>
   );
 };

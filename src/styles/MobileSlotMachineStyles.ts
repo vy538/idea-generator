@@ -47,6 +47,7 @@ export const IdeaImage = styled.img`
 
 export const IdeaText = styled.p`
   margin: 0;
+  text-transform: capitalize;
   color: ${({ theme }) => theme.colors.primaryText};
 `;
 
