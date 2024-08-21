@@ -8,7 +8,7 @@ This project is a responsive web application that generates random illustration 
 
 - Generates random ideas for illustrations across five categories: adjective, character, location, verb, and other element
 - Animated slot machine spinning effect
-- Bilingual support (English and Traditional Chinese)
+- Bilingual support (English and Traditional Chinese) with real-time translation
 - Gallery page to showcase created illustrations
 - Enlarged view for gallery items with interactive overlay
 - Responsive design for desktop, tablet, and mobile devices
@@ -21,6 +21,7 @@ This project is a responsive web application that generates random illustration 
 - Upload creation feature for users to share their illustrations
 - Favorite feature allowing users to save and manage their favorite idea sets
 - Material-UI components for a consistent and modern UI
+- Azure Translator integration for real-time idea translation
 
 ## Project Structure
 
@@ -48,11 +49,8 @@ illustration-idea-generator/
 │   │   ├── Gallery.tsx
 │   │   ├── GalleryItem.tsx
 │   │   ├── EnlargedView.tsx
-│   │   ├── PrivateRoute.tsx
-│   │   └── admin/
-│   │       ├── AdminIdeaItem.tsx
-│   │       ├── ManageIdeasSection.tsx
-│   │       └── ManageUsersSection.tsx
+│   │   ├── AddIdeaForm.tsx
+│   │   └── PrivateRoute.tsx
 │   ├── pages/
 │   │   ├── MainPage.tsx
 │   │   ├── AddIdeaPage.tsx
@@ -67,7 +65,8 @@ illustration-idea-generator/
 │   │   └── AuthContext.tsx
 │   ├── services/
 │   │   ├── database.tsx
-│   │   └── firebase.ts
+│   │   ├── firebase.ts
+│   │   └── azureTranslate.ts
 │   ├── utils/
 │   │   ├── ideaUtils.ts
 │   │   └── clipboard.ts
@@ -85,6 +84,7 @@ illustration-idea-generator/
 │   │   ├── GalleryStyles.ts
 │   │   ├── EnlargedViewStyles.ts
 │   │   ├── AdminPageStyles.ts
+│   │   ├── AddIdeaStyles.ts
 │   │   └── UploadCreationStyles.ts
 │   ├── types/
 │   │   └── index.ts
@@ -104,7 +104,8 @@ illustration-idea-generator/
 1. Clone the repository
 2. Run `npm install` to install dependencies
 3. Set up a Firebase project and obtain the configuration
-4. Create a `.env` file in the root directory with the following variables:
+4. Set up an Azure Translator resource and obtain the key and endpoint
+5. Create a `.env` file in the root directory with the following variables:
    ```
    REACT_APP_FIREBASE_API_KEY=your_api_key
    REACT_APP_FIREBASE_AUTH_DOMAIN=your_auth_domain
@@ -113,10 +114,12 @@ illustration-idea-generator/
    REACT_APP_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
    REACT_APP_FIREBASE_APP_ID=your_app_id
    REACT_APP_ADMIN_EMAIL=your_admin_email@example.com
+   REACT_APP_AZURE_TRANSLATE_ENDPOINT=your_azure_translate_endpoint
+   REACT_APP_AZURE_TRANSLATE_KEY=your_azure_translate_key
    ```
-5. Place your Firebase service account key (serviceAccountKey.json) in the `scripts/` directory
-6. Run `npm run populate-db` to populate the initial data in Firebase
-7. Run `npm start` to start the development server
+6. Place your Firebase service account key (serviceAccountKey.json) in the `scripts/` directory
+7. Run `npm run populate-db` to populate the initial data in Firebase
+8. Run `npm start` to start the development server
 
 ## User Flow
 
@@ -125,26 +128,29 @@ illustration-idea-generator/
 3. User can log in using Google authentication
 4. User clicks "Generate" to spin for new random ideas
 5. User can switch between English and Traditional Chinese
-6. Logged-in users can save favorite idea sets by clicking the heart icon
-7. Gallery page showcases illustrations with generated idea tags
-8. Enlarged view available for illustrations in the gallery on all devices
-9. Favorites page allows users to view and manage their saved idea sets
-10. Mobile users can access navigation options via a hamburger menu
-11. Logged-in users with invite codes or admin status can access the "Add Idea" page
-12. Logged-in users can upload their own creations based on generated ideas
-13. Admin users can access the admin panel for managing ideas and users
-14. Admins can generate, copy, and cancel invite codes for users
+6. Ideas are automatically translated between English and Chinese
+7. Logged-in users can save favorite idea sets by clicking the heart icon
+8. Gallery page showcases illustrations with generated idea tags
+9. Enlarged view available for illustrations in the gallery on all devices
+10. Favorites page allows users to view and manage their saved idea sets
+11. Mobile users can access navigation options via a hamburger menu
+12. Logged-in users with invite codes or admin status can access the "Add Idea" page
+13. Logged-in users can upload their own creations based on generated ideas
+14. Admin users can access the admin panel for managing ideas and users
+15. Admins can generate, copy, and cancel invite codes for users
 
 ## Technologies Used
 
 - React
 - TypeScript
 - Firebase (Authentication, Realtime Database, Storage)
+- Azure Translator API
 - react-i18next
 - styled-components
 - Material-UI
 - react-responsive
 - react-tabs
+- axios
 - Netlify
 
 ## Future Improvements
@@ -154,7 +160,7 @@ illustration-idea-generator/
 - User contribution system for new ideas
 - Moderation system for user-submitted content
 - Pagination for the favorites and gallery pages
-- Auto translation with AI
+- Enhanced translation options and language support
 
 ## License
 
