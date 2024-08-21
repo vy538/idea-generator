@@ -42,9 +42,14 @@
       "element": "Other Element"
     },
     "placeholders": {
+      "primary": "Enter your idea in English",
+      "translated": "Choose translated option",
       "english": "English text",
-      "chinese": "Chinese text"
+      "chinese": "Chinese text",
+      "translate": "Translation will appear here"
     },
+    "translating": "Translating...",
+    "translationError": "Translation error. Please try again.",
     "submit": "Submit",
     "success": "New idea added successfully!",
     "error": "Error adding idea. Please try again later."

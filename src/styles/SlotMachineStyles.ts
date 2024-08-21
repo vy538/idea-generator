@@ -98,6 +98,7 @@ export const Slot = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
+  text-transform: capitalize;
   padding: 20px 0px; // Add some padding to create more space
 `;
 

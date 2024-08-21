@@ -42,9 +42,14 @@
       "element": "其他元素"
     },
     "placeholders": {
+      "primary": "請用中文輸入您的想法",
+      "translated": "選擇翻譯選項",
       "english": "英文文字",
-      "chinese": "中文文字"
+      "chinese": "中文文字",
+      "translate": "翻譯文字會在此出現"
     },
+    "translating": "翻譯中...",
+    "translationError": "翻譯錯誤。請再試一次。",
     "submit": "提交",
     "success": "成功新增選項！",
     "error": "新增選項時出錯，請稍後再試。"

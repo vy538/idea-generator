@@ -99,15 +99,16 @@ export const SubmitButton = styled.button`
   padding: 0.75rem 1.5rem;
   font-size: ${({ theme }) => theme.typography.body.fontSize};
   font-weight: ${({ theme }) => theme.fonts.en.weights.medium};
-  background-color: ${({ theme }) => theme.colors.primaryAccent};
-  color: ${({ theme }) => theme.colors.primaryText};
+  background-color: ${({ theme }) => theme.colors.darkPrimaryAccent};
+  color: ${({ theme }) => theme.colors.primaryAccent};
   border: none;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.darkPrimaryAccent};
+    background-color: ${({ theme }) => theme.colors.secondaryAccent};
+    color: ${({ theme }) => theme.colors.darkSecondaryAccent};
   }
 
   &:disabled {

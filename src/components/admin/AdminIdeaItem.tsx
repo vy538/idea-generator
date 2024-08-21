@@ -1,10 +1,10 @@
 // src/components/admin/AdminIdeaItem.tsx
 
-import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Typography } from '@mui/material';
-import { Idea } from '../../types';
-import { uploadImage } from '../../services/database';
+import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { Typography } from "@mui/material";
+import { Idea } from "../../types";
+import { uploadImage } from "../../services/database";
 import {
   StyledCard,
   ImageContainer,
@@ -14,8 +14,8 @@ import {
   FileInput,
   CenteredTypography,
   AdminButton,
-  AdminDeleteButton
-} from '../../styles/AdminPageStyles';
+  AdminDeleteButton,
+} from "../../styles/AdminPageStyles";
 
 interface Props {
   idea: Idea;
@@ -38,11 +38,11 @@ const AdminIdeaItem: React.FC<Props> = ({ idea, onAddImage, onDeleteIdea }) => {
     if (imageFile) {
       setIsUploading(true);
       try {
-        const imageUrl = await uploadImage(imageFile,`ideas/${idea.category}`);
+        const imageUrl = await uploadImage(imageFile, `ideas/${idea.category}`);
         onAddImage(idea.text.en, imageUrl);
         setImageFile(null);
       } catch (error) {
-        console.error('Error uploading image:', error);
+        console.error("Error uploading image:", error);
         // You might want to show an error message to the user here
       } finally {
         setIsUploading(false);
@@ -50,12 +50,12 @@ const AdminIdeaItem: React.FC<Props> = ({ idea, onAddImage, onDeleteIdea }) => {
     }
   };
 
- return (
+  return (
     <StyledCard>
       <ImageContainer>
         <StyledCardMedia
           component="img"
-          image={idea.image || '/placeholder-image.jpg'}
+          image={idea.image || "/placeholder-image.jpg"}
           alt={idea.text.en}
         />
       </ImageContainer>
@@ -65,28 +65,23 @@ const AdminIdeaItem: React.FC<Props> = ({ idea, onAddImage, onDeleteIdea }) => {
             {idea.text.en} / {idea.text.zh}
           </Typography>
         </CenteredTypography>
-        <FileInput
-          type="file"
-          accept="image/*"
-          onChange={handleImageChange}
-        />
+        <FileInput type="file" accept="image/*" onChange={handleImageChange} />
       </StyledCardContent>
       <StyledCardActions>
-        <AdminButton 
-          onClick={handleAddImage} 
+        <AdminButton
+          onClick={handleAddImage}
           disabled={!imageFile || isUploading}
         >
-          {isUploading ? t('admin.uploading') : t('admin.addImageButton')}
+          {isUploading ? t("admin.uploading") : t("admin.addImageButton")}
         </AdminButton>
-        <AdminDeleteButton 
+        <AdminDeleteButton
           onClick={() => onDeleteIdea(idea.text.en, idea.category)}
         >
-          {t('admin.deleteButton')}
+          {t("admin.deleteButton")}
         </AdminDeleteButton>
       </StyledCardActions>
     </StyledCard>
   );
 };
-
 
 export default AdminIdeaItem;
