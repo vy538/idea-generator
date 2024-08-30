@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { NavBarLink, SecondaryNavBarLink } from './Typography';
 
-export const HeaderWrapper = styled.header<{ lang: 'en' | 'zh' }>`
+export const HeaderWrapper = styled.header<{ lang: 'en' | 'zh'; isScrolled: boolean }>`
   height: 60px;
   position: fixed;
   top: 0;
@@ -12,13 +12,18 @@ export const HeaderWrapper = styled.header<{ lang: 'en' | 'zh' }>`
   align-items: center;
   padding: 0 20px;
   font-family: ${({ theme, lang }) => {
-  if (!theme || !theme.fonts || !theme.fonts[lang]) {
+    if (!theme || !theme.fonts || !theme.fonts[lang]) {
       console.error('Theme or fonts not available in HeaderWrapper');
       return 'Arial, sans-serif'; // Fallback
     }
     return theme.fonts[lang].family;
   }};
   z-index: 1000;
+  transition: background-color 0.3s ease;
+  background-color: ${({ theme, isScrolled }) =>
+    isScrolled ? theme.colors.background : 'transparent'};
+  box-shadow: ${({ isScrolled }) =>
+    isScrolled ? '0 2px 4px rgba(0, 0, 0, 0.1)' : 'none'};
 `;
 
 export const Nav = styled.nav`
